@@ -1,10 +1,10 @@
 const merge = require('webpack-merge'),
   path = require('path'),
   nodeExternals = require('webpack-node-externals'),
-  common = require('./webpack.common.config.js')
+  common = require('./webpack.config.common.js')
 
-module.exports = merge(common, {
-  mode: 'development',
+module.exports = (env) => merge(common, {
+  mode: env.NODE_ENV || 'development',
   externals: [nodeExternals()],
   output: {
     path: path.resolve(__dirname, 'dev'),

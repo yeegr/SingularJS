@@ -3,7 +3,7 @@ FROM node:8.9.0
 
 # File author / maintainer
 LABEL "maintainer"="Stone Chen"
-LABEL "email"="dev@singularjs.com"
+LABEL "email"="yeegr@hotmail.com"
 
 # Set NPM registry
 RUN npm config set registry https://registry.npm.taobao.org

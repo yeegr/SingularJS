@@ -7,9 +7,12 @@
   "license": "ISC",
   "main": "./dev/index",
   "typings": "./dev/index.d.ts",
+  "config": {
+    "init": ". ./config/development/init.sh"
+  },
   "scripts": {
-    "dev": "NODE_ENV=development && rm -rf dev && webpack --mode development --config webpack.development.config.js",
-    "build": "NODE_ENV=production && rm -rf dist && webpack --config webpack.production.config.js",
+    "dev": "rm -rf dev && webpack --env.NODE_ENV=development --config webpack.config.development.js",
+    "build": "rm -rf dist && webpack --env.NODE_ENV=production --config webpack.config.production.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {

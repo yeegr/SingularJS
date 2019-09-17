@@ -1,0 +1,52 @@
+version: "3.7"
+
+networks:
+  data:
+    driver: bridge
+
+  web:
+    driver: bridge
+
+services:
+  container_name: ${APP_TITLE}-${DB_NAME}
+    image: ${APP_TITLE}/mongo
+    labels:
+      com.kidmngr.db: ${DB_NAME}
+    build:
+      context: .
+      dockerfile: ./config/{NODE_ENV}/dockerfiles/$mongo.dockerfile
+    command: "--auth"
+    expose:
+      - "27017"
+    volumes:
+      - /data/${DB_PATH}:/data/${DB_NAME}:rw
+    networks:
+      - data
+
+  api:
+    container_name: ${APP_TITLE}-api
+    image: ${APP_TITLE}/api
+    build:
+      context: .
+      dockerfile: ./config/${NODE_ENV}/dockerfiles/api.dockerfile
+    depends_on:
+      - mongo
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./config/${NODE_ENV}/env/api.env
+    environment:
+      - NODE_ENV=${NODE_ENV}
+    volumes:
+      - "./api/dev/index.js:/usr/app/index.js"
+      - "./public:/public"
+    working_dir: "/usr/app"
+    tty: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50k"
+        max-file: "1"
+    networks:
+      - data
+      - web
