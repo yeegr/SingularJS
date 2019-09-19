@@ -3,9 +3,10 @@
 MODE="development"
 
 # set environmental variables
-. ./config/$MODE/init.env
+. ./config/shared/app.env
+. ./config/$MODE/db.env
 
 # pull and create docker images
 # run docker containers
 # setup database
-. ./config/common/setup.sh
+. ./config/shared/setup.sh

@@ -7,16 +7,16 @@
     "registry": "registry.cn-hangzhou.aliyuncs.com"
   },
   "scripts": {
-    "setup": "$npm_package_config_init && ./devops/setup.sh",
-    "mongo": "docker exec -it singular-db mongo db -u user -p UserPassWord",
+    "setup": "./config/development/setup.sh",
+    "mongo": "docker exec -it $npm_package_name-db mongo db -u user -p UserPassWord",
     "install:api": "cd api && npm install && cd .. ",
     "install:upload": "cd upload && npm install && cd .. ",
     "install:lib": "cd lib && npm install && cd .. ",
     "install:platform": "cd platform && npm install && cd .. ",
     "install": "npm run install:api && npm run install:upload && npm run install:lib && npm run install:platform",
     "status": "docker ps -a",
-    "rmi": "docker rmi -f $(docker images -qf since=singular/mongo)",
-    "api": "cd api && webpack",
+    "rmi": "docker rmi -f $(docker images -qf since=$npm_package_name/mongo)",
+    "api": "cd api && npm run dev && cd .. && $npm_package_config_init && docker-compose restart api",
     "upload": "cd upload && webpack",
     "platform": "cd platform && webpack -d",
     "build": "$npm_package_config_init && docker-compose build",
@@ -24,7 +24,7 @@
     "stop": "$npm_package_config_init && docker-compose down",
     "restart": "npm run stop && npm run start",
     "reset": "npm stop && npm run rmi && npm run build && npm start",
-    "logs": "$npm_package_config_init && docker-compose logs",
+    "logs": "$npm_package_config_init && docker-compose logs -t",
     "ps": "$npm_package_config_init && docker-compose ps"
   },
   "repository": {

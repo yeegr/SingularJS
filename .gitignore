@@ -1,6 +1,9 @@
 # node.js
 #
 
+**/assets/alipay/*
+**/config/production/*
+
 **/common/options/ignored.ts
 
 !**/node_modules/

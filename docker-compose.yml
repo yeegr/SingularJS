@@ -8,39 +8,50 @@ networks:
     driver: bridge
 
 services:
-  container_name: ${APP_TITLE}-${DB_NAME}
+  mongo:
+    container_name: ${APP_TITLE}-${DB_NAME}
     image: ${APP_TITLE}/mongo
     labels:
       com.kidmngr.db: ${DB_NAME}
+      com.kidmngr.description: "NoSQL database"
+      com.kidmngr.maintainer: ${MAINTAINER}
+      com.kidmngr.email: ${EMAIL}
     build:
       context: .
-      dockerfile: ./config/{NODE_ENV}/dockerfiles/$mongo.dockerfile
+      dockerfile: ./config/${NODE_ENV}/mongo.dockerfile
     command: "--auth"
-    expose:
-      - "27017"
+    expose: 
+      - ${DB_PORT}
     volumes:
-      - /data/${DB_PATH}:/data/${DB_NAME}:rw
+      - ${LOCAL_PATH}:${DB_PATH}:rw
     networks:
       - data
 
   api:
     container_name: ${APP_TITLE}-api
-    image: ${APP_TITLE}/api
+    image: node:10.16.3
+    labels:
+      com.kidmngr.api: "api"
+      com.kidmngr.description: "Main API endpoint"
+      com.kidmngr.maintainer: ${MAINTAINER}
+      com.kidmngr.email: ${EMAIL}
     build:
       context: .
-      dockerfile: ./config/${NODE_ENV}/dockerfiles/api.dockerfile
     depends_on:
       - mongo
     ports:
-      - "3000:3000"
+      - "${API_PORT}:3000"
     env_file:
-      - ./config/${NODE_ENV}/env/api.env
+      - ./config/${NODE_ENV}/api.env
     environment:
       - NODE_ENV=${NODE_ENV}
     volumes:
-      - "./api/dev/index.js:/usr/app/index.js"
+      - "./api/dev/:/usr/app/"
+      - "./api/node_modules/:/usr/app/node_modules/"
+      - "./assets/alipay:/usr/app/assets/alipay"
       - "./public:/public"
     working_dir: "/usr/app"
+    command: node bundle.js
     tty: true
     logging:
       driver: "json-file"
