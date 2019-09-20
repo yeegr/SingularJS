@@ -553,7 +553,7 @@ interface IStatuses {
     SUSPENDED: string
     EXPIRED: string
   }
-  EVENT_BATCH: {
+  EVENT_SUBSET: {
     ACCEPTING: string
     FILLED: string
     PASTDUE: string
@@ -625,7 +625,7 @@ export const STATUSES: IStatuses = {
     SUSPENDED: 'suspended',
     EXPIRED: 'expired'
   },
-  EVENT_BATCH: {
+  EVENT_SUBSET: {
     ACCEPTING: 'accepting',
     FILLED: 'filled',
     PASTDUE: 'pastdue',
@@ -689,10 +689,10 @@ export const POST_STATUSES_ENUM = obj2enum(STATUSES.POST)
  */
 export const EVENT_STATUSES_ENUM = obj2enum(STATUSES.EVENT)
 /**
- * @constant EVENT_BATCH_STATUSES_ENUM
+ * @constant EVENT_SUBSET_STATUSES_ENUM
  * @type {string[]}
  */
-export const EVENT_BATCH_STATUSES_ENUM = obj2enum(STATUSES.EVENT_BATCH)
+export const EVENT_SUBSET_STATUSES_ENUM = obj2enum(STATUSES.EVENT_SUBSET)
 /**
  * @constant SIGNUP_STATUSES_ENUM
  * @type {string[]}
@@ -880,12 +880,13 @@ export const PUBLIC_CONSUMER_INFO_LIST: string = 'handle gender avatar status po
 export const BASIC_USER_INFO: string = 'handle username avatar status points level'
 
 /**
- * Basic post information
+ * Basic content information 
+ * shared across posts, events, etc.
  * 
- * @constant BASIC_POST_INFO
+ * @constant BASIC_CONTENT_INFO
  * @type {string}
  */
-export const BASIC_POST_INFO: string = 'title slug'
+export const BASIC_CONTENT_INFO: string = 'title slug'
 
 /**
  * Content (including posts and events) counters

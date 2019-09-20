@@ -41,7 +41,7 @@ export const ENV: IServers = {
     UPLOAD_SERVER: DEV_SERVER + ':3001/',
     STATIC_SERVER: 'http://static/',
     CONSUMER_SERVER: DEV_SERVER + ':8080/',
-    SUPPLIER_SERVER: DEV_SERVER + ':8081/',
+    PROVIDER_SERVER: DEV_SERVER + ':8081/',
     PLATFORM_SERVER: DEV_SERVER + ':8082/'
   }
 }

@@ -191,8 +191,8 @@ class Server {
     // // consumer router - use 'users' in url following common practices
     // this.app.use(root, ConsumerRouter)
 
-    // service / prodcut supplier router
-    // this.app.use(root + 'suppliers', SupplierRouter)
+    // service / prodcut provider router
+    // this.app.use(root + 'providers', ProviderRouter)
 
     // post router
     // this.app.use(root + 'posts', PostRouter)
