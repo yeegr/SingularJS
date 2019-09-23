@@ -2,10 +2,10 @@ import { Request, Response, NextFunction, Router } from 'express'
 import { Schema, Types } from 'mongoose'
 
 import passport from 'passport'
-import '../config/auth/platform'
+import '@auth/platform'
 
-import { CONST, ERRORS } from 'common/.'
-import { Logger, Err, UTIL } from '../modules'
+import { CONST, ERRORS, UTIL } from '@common'
+import { Logger, Err, MISC } from '@modules'
 
 import IUser from '../interfaces/users/IUser'
 import Process, { IProcess } from '../models/workflow/ProcessModel'
@@ -40,7 +40,7 @@ class ProcessRouter {
    * @return {void}
    */
   public list = (req: Request, res: Response): void => {
-    let params: any = UTIL.assembleSearchParams(req, {}, '')
+    let params: any = MISC.assembleSearchParams(req, {}, '')
 
     if (req.query.status) {
       params.query.status = req.query.status

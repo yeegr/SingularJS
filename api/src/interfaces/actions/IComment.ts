@@ -6,4 +6,9 @@ export default interface IComment extends IAction {
   rating?: number
   diff?: number
   content: string
+  agent?: string
+  type: string
+
+  status?: string
+  updated?: number
 }

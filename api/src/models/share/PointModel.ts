@@ -1,9 +1,8 @@
 import { Schema, model } from 'mongoose'
 
-import { CONFIG, CONST } from 'common/.'
+import { CONFIG, UTIL } from '@common'
 
-import IPoint from 'interfaces/shared/IPoint'
-import * as UTIL from 'modules/util'
+import IPoint from '@interfaces/shared/IPoint'
 
 let PointSchema: Schema = new Schema({
   // latitude

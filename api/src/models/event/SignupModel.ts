@@ -1,10 +1,10 @@
 import { Schema, model } from 'mongoose'
 
-import { CONST } from 'common/.'
+import { CONST } from '@common'
 
 import Attendee from './AttendeeModel'
 
-import ISignup from 'interfaces/event/ISignup'
+import ISignup from '@interfaces/event/ISignup'
 
 let SignupSchema: Schema = new Schema({
   // member

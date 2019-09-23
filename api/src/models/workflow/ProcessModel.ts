@@ -1,10 +1,10 @@
 import { NativeError, Schema, model } from 'mongoose'
 
-import { CONST }  from 'common/.'
-import * as UTIL from 'modules/util'
+import { CONST, UTIL }  from '@common'
+import * as ModelHelper from 'models/_modelHelpers'
 
 import Activity, { IActivity } from './ActivityModel'
-import IProcess from 'interfaces/workflow/IProcess'
+import IProcess from '@interfaces/workflow/IProcess'
 
 let ProcessSchema: Schema = new Schema({
   // creator
@@ -88,7 +88,7 @@ ProcessSchema.virtual('TargetModel', {
  * @returns {void}
  */
 ProcessSchema.methods.finalize = function(status: string): Promise<IProcess> {
-  let TargetModel = UTIL.getModelFromName(this.targetRef)
+  let TargetModel = ModelHelper.getModelFromName(this.targetRef)
 
   return TargetModel
   .findByIdAndUpdate(this.target, {status})

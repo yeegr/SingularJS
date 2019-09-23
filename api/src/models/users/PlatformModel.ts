@@ -3,10 +3,10 @@ import bcrypt from 'bcrypt'
 import moment from 'moment-timezone'
 import validator from 'validator'
 
-import { CONFIG, CONST } from 'common/.'
-import * as UTIL from 'modules/util'
+import { CONFIG, CONST, UTIL } from '@common'
+import * as ModelHelper from 'models/_modelHelpers'
 
-import IPlatform from 'interfaces/users/IPlatform'
+import IPlatform from '@interfaces/users/IPlatform'
 
 let PlatformSchema: Schema = new Schema({
   // user type
@@ -196,7 +196,7 @@ PlatformSchema.pre('save', function(next: Function): void {
       if (err) { return next(err) }
 
       // encrypt password with salt
-      bcrypt.hash(user.password, salt, null, (err, hash) => {
+      bcrypt.hash(user.password, salt, (err, hash) => {
         if (err) { return next(err) }
 
         // overwrite plain text password with encrypted password
@@ -206,7 +206,7 @@ PlatformSchema.pre('save', function(next: Function): void {
       })
     })
   } else {
-    UTIL.setUpdateTime(user, ['username', 'password', 'nickname', 'name', 'gender', 'mobile', 'email', 'pid', 'avatar', 'background', 'locale', 'city', 'country'])
+    ModelHelper.setUpdateTime(user, ['username', 'password', 'nickname', 'name', 'gender', 'mobile', 'email', 'pid', 'avatar', 'background', 'locale', 'city', 'country'])
     user.wasNew = user.isNew
 
     next()

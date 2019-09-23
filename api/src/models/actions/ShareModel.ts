@@ -1,9 +1,9 @@
 import { NativeError, Schema, model } from 'mongoose'
 
-import { CONST } from 'common/.'
-import * as UTIL from 'modules/util'
+import { CONST } from '@common'
+import * as ModelHelper from '../_modelHelpers'
 
-import IAction from 'interfaces/actions/IAction'
+import IAction from '@interfaces/actions/IAction'
 
 let ShareSchema: Schema = new Schema({
   // creator
@@ -55,7 +55,7 @@ ShareSchema.virtual('TargetModel', {
 })
 
 ShareSchema.post('save', function(action: IAction) {
-  let TargetModel = UTIL.getModelFromName(action.targetRef)
+  let TargetModel = ModelHelper.getModelFromName(action.targetRef)
 
   TargetModel
   .findByIdAndUpdate(action.target, {$inc: {shareCount: 1}})

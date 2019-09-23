@@ -3,7 +3,8 @@ import { Request, Response, NextFunction, Router } from 'express'
 import debug from 'debug'
 import mongoose from 'mongoose'
 
-import * as UTIL from '../modules/util'
+import { MISC } from '@modules'
+import * as ModelHelper from 'models/_modelHelpers'
 
 import Consumer from '../models/users/ConsumerModel'
 import IAction from '../interfaces/actions/IAction'
@@ -84,8 +85,8 @@ class HelperRouter {
    */
   public logs = (req: Request, res: Response): void => {
     const query = {},
-      page: number = UTIL.getListPageIndex(req),
-      count: number = UTIL.getListCountPerPage(req)
+      page: number = MISC.getListPageIndex(req),
+      count: number = MISC.getListCountPerPage(req)
     
     Log
     .find(query)
@@ -104,8 +105,8 @@ class HelperRouter {
 
   public errs = (req: Request, res: Response): void => {
     const query = {},
-      page: number = UTIL.getListPageIndex(req),
-      count: number = UTIL.getListCountPerPage(req)
+      page: number = MISC.getListPageIndex(req),
+      count: number = MISC.getListCountPerPage(req)
     
     Err
     .find(query)
@@ -123,8 +124,8 @@ class HelperRouter {
   }
 
   public actions = (req: Request, res: Response): void => {
-    const ActionModel = UTIL.getModelFromAction(req.params.action),
-      params = UTIL.assembleSearchParams(req)
+    const ActionModel = ModelHelper.getModelFromAction(req.params.action),
+      params = MISC.assembleSearchParams(req)
 
     ActionModel
     .find(params.query)
@@ -143,8 +144,8 @@ class HelperRouter {
 
   public totp = (req: Request, res: Response): void => {
     const query = {},
-      page: number = UTIL.getListPageIndex(req),
-      count: number = UTIL.getListCountPerPage(req),
+      page: number = MISC.getListPageIndex(req),
+      count: number = MISC.getListCountPerPage(req),
       match: string = (req.query.hasOwnProperty('match')) ? req.query.match : null
 
     Totp

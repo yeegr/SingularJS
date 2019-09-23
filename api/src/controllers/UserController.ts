@@ -8,20 +8,22 @@ import passport from 'passport'
 import path from 'path'
 import request from 'request'
 import util from 'util'
-import '../config/auth/consumer'
-import '../config/auth/platform'
+import '@auth/consumer'
+import '@auth/platform'
 import { IncomingForm, Fields, Files } from 'formidable'
 
-import { CONFIG, CONST, ERRORS, SERVERS } from 'common/.'
-import { Logger, Err, LANG, UTIL } from '../modules'
+import { CONFIG, CONST, ERRORS, SERVERS, UTIL } from '@common'
+import { Logger, Err, LANG, MISC } from '@modules'
+import * as ModelHelper from 'models/_modelHelpers'
+import * as UserHelper from 'models/_userHelpers'
 
-import IUser from '../interfaces/users/IUser'
-import IContent from '../interfaces/shared/IContent'
+import IUser from '@interfaces/users/IUser'
+import IContent from '@interfaces/shared/IContent'
 import Totp, { ITotp } from '../models/users/TotpModel'
-import SMS from '../modules/sms'
-import Emailer from '../modules/email'
+import SMS from 'modules/sms'
+import Emailer from 'modules/email'
 
-import Processor from '../modules/process'
+import Processor from 'modules/process'
 import Process, { IProcess } from '../models/workflow/ProcessModel'
 import Activity, { IActivity } from '../models/workflow/ActivityModel'
 
@@ -34,11 +36,11 @@ import Activity, { IActivity } from '../models/workflow/ActivityModel'
  * @returns {void}
  */
 export function list(req: Request, res: Response): void {
-  let params = UTIL.assembleSearchParams(req, {
+  let params = MISC.assembleSearchParams(req, {
       status: CONST.STATUSES.CONSUMER.ACTIVE
     }, 'handle')
 
-  const UserModel: Model<IUser> = UTIL.getModelFromName(req.routeVar.userType!)
+  const UserModel: Model<IUser> = ModelHelper.getModelFromName(req.routeVar.userType!)
 
   UserModel
   .find(params.query)
@@ -139,7 +141,7 @@ export function isUnique(req: Request, res: Response): void {
   if (!result) {
     res.status(400).send(query)
   } else {
-    const UserModel: Model<IUser> = UTIL.getModelFromName(req.routeVar.userType!)
+    const UserModel: Model<IUser> = ModelHelper.getModelFromName(req.routeVar.userType!)
 
     UserModel
     .findOne(query)
@@ -166,7 +168,7 @@ export function isUnique(req: Request, res: Response): void {
  */
 export function initTotp(req: Request, res: Response, next: NextFunction): void {
   let body = req.body,
-    UserModel: Model<IUser> = UTIL.getModelFromName(req.routeVar.userType!)
+    UserModel: Model<IUser> = ModelHelper.getModelFromName(req.routeVar.userType!)
   
   if (!body.hasOwnProperty('action')) {
     res.status(400).send({
@@ -432,7 +434,7 @@ export function verifyTotp(req: Request, res: Response, next: NextFunction): voi
       verifiedAt: null
     }
 
-  const UserModel: Model<IUser> = UTIL.getModelFromName(req.routeVar.userType!),
+  const UserModel: Model<IUser> = ModelHelper.getModelFromName(req.routeVar.userType!),
     now: number = moment().valueOf()
 
   Totp
@@ -487,7 +489,7 @@ export function verifyTotp(req: Request, res: Response, next: NextFunction): voi
   })
   .then((user: IUser) => {
     if (user) {
-      res.status(200).json(UTIL.getSignedUser(user))
+      res.status(200).json(UserHelper.getSignedUser(user))
 
       log.creator = user._id
       log.creatorRef = user.ref
@@ -512,7 +514,7 @@ export function verifyTotp(req: Request, res: Response, next: NextFunction): voi
 export function create(req: Request, res: Response, next: NextFunction): void {
   let body: any = req.body
 
-  const UserModel: Model<IUser> = UTIL.getModelFromName(req.routeVar.userType!)
+  const UserModel: Model<IUser> = ModelHelper.getModelFromName(req.routeVar.userType!)
 
   if (!body.hasOwnProperty('username') || !UTIL.validateUsername(body.username)) {
     res.status(401).json({ code: ERRORS.LOGIN.MISSING_CREDENTIALS })      
@@ -549,7 +551,7 @@ export function createUser(user: IUser, req: Request, res: Response): void {
   .save()
   .then((data: IUser) => {
     req.user = data
-    res.status(201).json(UTIL.getSignedUser(data))
+    res.status(201).json(UserHelper.getSignedUser(data))
 
     new Logger(Object.assign({}, log, {
       creator: data._id,
@@ -620,7 +622,7 @@ export function local(req: Request, res: Response, next: NextFunction): void {
 export function login(req: Request, res: Response): void {
   const user: IUser = req.user as IUser
 
-  res.status(200).json(UTIL.getSignedUser(user))
+  res.status(200).json(UserHelper.getSignedUser(user))
 
   new Logger({
     creator: user._id,
@@ -643,12 +645,12 @@ export function login(req: Request, res: Response): void {
  * @returns {void}
  */
 export function sublist(req: Request, res: Response): void {
-  const [user, ref] = UTIL.getLoginedUser(req),
-    UserModel: Model<IUser> = UTIL.getModelFromName(ref),
+  const [user, ref] = UserHelper.getLoginedUser(req),
+    UserModel: Model<IUser> = ModelHelper.getModelFromName(ref),
     path = req.params.sublist,
-    model = UTIL.getModelNameFromPath(path),
-    opt: any = UTIL.assembleSearchParams(req),
-    select: string = UTIL.getSelectFieldsFromPath(path)
+    model = ModelHelper.getModelNameFromPath(path),
+    opt: any = MISC.assembleSearchParams(req),
+    select: string = ModelHelper.getSelectFieldsFromPath(path)
 
   UserModel
   .findById(user)
@@ -692,10 +694,10 @@ export function sublist(req: Request, res: Response): void {
  * @returns {void}
  */
 export function content(req: Request, res: Response): void {
-  let [creator, creatorRef] = UTIL.getLoginedUser(req),
+  let [creator, creatorRef] = UserHelper.getLoginedUser(req),
     path = req.params.sublist,
     slug = req.params.slug,
-    DataModel = UTIL.getModelFromName(UTIL.getModelNameFromPath(path))
+    DataModel = ModelHelper.getModelFromName(ModelHelper.getModelNameFromPath(path))
 
   DataModel
   .findOne({
@@ -727,7 +729,7 @@ export function content(req: Request, res: Response): void {
  * @returns {void}
  */
 export function update(req: Request, res: Response): void {
-  const [creator, creatorRef] = UTIL.getLoginedUser(req)
+  const [creator, creatorRef] = UserHelper.getLoginedUser(req)
   
   let log = {
       creator,
@@ -735,18 +737,18 @@ export function update(req: Request, res: Response): void {
       action: CONST.USER_ACTIONS.COMMON.UPDATE,
       ua: req.body.ua || req.ua
     },
-    update = UTIL.sanitizeObject(req.body,
+    update = MISC.sanitizeObject(req.body,
       CONST.USER_UNUPDATABLE_FIELDS,
       true
     )
   
-  const UserModel: Model<IUser> = UTIL.getModelFromName(creatorRef)
+  const UserModel: Model<IUser> = ModelHelper.getModelFromName(creatorRef)
 
   UserModel
   .findByIdAndUpdate(creator, update, {new: true})
   .then((user: IUser) => {
     if (user) {
-      res.status(200).json(UTIL.getSignedUser(user))
+      res.status(200).json(UserHelper.getSignedUser(user))
       new Logger(log)
     } else {
       res.status(404).send()
@@ -767,9 +769,9 @@ export function update(req: Request, res: Response): void {
  * @returns {void}
  */
 export function avatar(req: Request, res: Response): void {
-  const [creator, creatorRef] = UTIL.getLoginedUser(req),
-    UserModel: Model<IUser> = UTIL.getModelFromName(creatorRef),
-    root: string = UTIL.getRootFolderFromModelName(creatorRef),
+  const [creator, creatorRef] = UserHelper.getLoginedUser(req),
+    UserModel: Model<IUser> = ModelHelper.getModelFromName(creatorRef),
+    root: string = ModelHelper.getRootFolderFromModelName(creatorRef),
     now: string = UTIL.getTimestamp().toString()
   
   let form: IncomingForm = new IncomingForm(),
@@ -791,7 +793,7 @@ export function avatar(req: Request, res: Response): void {
       file: {
         value: fs.createReadStream(file.path),
         options: {
-          filename: UTIL.renameFile(file.name)
+          filename: MISC.renameFile(file.name)
         }
       }
     }
@@ -809,7 +811,7 @@ export function avatar(req: Request, res: Response): void {
       .findByIdAndUpdate(creator, {avatar: filePath}, {new: true})
       .then((user: IUser) => {
         if (user) {
-          res.status(200).json(UTIL.getSignedUser(user))
+          res.status(200).json(UserHelper.getSignedUser(user))
           new Logger(log)
         }
       })
@@ -834,7 +836,7 @@ export function avatar(req: Request, res: Response): void {
  * @returns {void}
  */
 export function remove(req: Request, res: Response): void {
-  const [creator, creatorRef] = UTIL.getLoginedUser(req)
+  const [creator, creatorRef] = UserHelper.getLoginedUser(req)
 
   let log = {
     creator,
@@ -843,7 +845,7 @@ export function remove(req: Request, res: Response): void {
     ua: req.body.ua || req.ua
   }
 
-  const UserModel: Model<IUser> = UTIL.getModelFromName(creatorRef)
+  const UserModel: Model<IUser> = ModelHelper.getModelFromName(creatorRef)
 
   UserModel
   .findByIdAndRemove(creator)
@@ -869,11 +871,11 @@ export function remove(req: Request, res: Response): void {
  * @returns {void}
  */
 export function submit(req: Request, res: Response): void {
-  const [creator, creatorRef] = UTIL.getLoginedUser(req),
+  const [creator, creatorRef] = UserHelper.getLoginedUser(req),
     roles: string[] = (req.user as IUser).roles,
     target: Schema.Types.ObjectId = req.body.id,
     targetRef: string = req.body.type,
-    DataModel: Model<IContent> = UTIL.getModelFromName(targetRef)
+    DataModel: Model<IContent> = ModelHelper.getModelFromName(targetRef)
 
   let log: any = {
     creator,
@@ -977,10 +979,10 @@ export function submit(req: Request, res: Response): void {
  * @returns {void}
  */
 export function retract(req: Request, res: Response): void {
-  const [creator, creatorRef] = UTIL.getLoginedUser(req),
+  const [creator, creatorRef] = UserHelper.getLoginedUser(req),
     target: Schema.Types.ObjectId = req.body.id,
     targetRef: string = req.body.type,
-    DataModel: Model<IContent> = UTIL.getModelFromName(targetRef)
+    DataModel: Model<IContent> = ModelHelper.getModelFromName(targetRef)
 
   let log: any = {
     creator,

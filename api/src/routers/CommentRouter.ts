@@ -2,10 +2,10 @@ import { Request, Response, NextFunction, Router } from 'express'
 import { Schema, Types } from 'mongoose'
 
 import passport from 'passport'
-import '../config/auth/consumer'
+import '@auth/consumer'
 
-import { CONST, ERRORS } from 'common/.'
-import { Logger, Err, UTIL } from 'modules/.'
+import { CONST, ERRORS } from '@common'
+import { Logger, Err, MISC } from '@modules'
 
 import Consumer from '../models/users/ConsumerModel'
 import IUser from '../interfaces/users/IUser'
@@ -41,7 +41,7 @@ class CommentRouter {
    * @return {void}
    */
   public list = (req: Request, res: Response): void => {
-    let params = UTIL.assembleSearchParams(req, {}, 'content')
+    let params = MISC.assembleSearchParams(req, {}, 'content')
 
     Comment
     .find(params.query)

@@ -2,10 +2,10 @@ import { Request, Response, NextFunction, Router } from 'express'
 import { Schema, Types } from 'mongoose'
 
 import passport from 'passport'
-import '../config/auth/consumer'
+import '@auth/consumer'
 
-import { CONST } from 'common/.'
-import { Logger, Err, UTIL } from '../modules'
+import { CONST, UTIL } from '@common'
+import { Logger, Err } from '@modules'
 
 import IUser from '../interfaces/users/IUser'
 import Activity, { IActivity } from '../models/workflow/ActivityModel'

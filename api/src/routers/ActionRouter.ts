@@ -1,11 +1,11 @@
 import { Request, Response, NextFunction, Router } from 'express'
 import { Schema, NativeError } from 'mongoose'
-
 import passport from 'passport'
-import '../config/auth/consumer'
+import '@auth/consumer'
 
-import { CONST, ERRORS } from 'common/.'
-import { Logger, Err, UTIL } from 'modules/.'
+import { CONST, ERRORS, UTIL } from '@common'
+import { Logger, Err, MISC } from '@modules'
+import * as ModelHelper from 'models/_modelHelpers'
 
 import Consumer from '../models/users/ConsumerModel'
 import IAction from '../interfaces/actions/IAction'
@@ -56,8 +56,8 @@ class ActionRouter {
     } else if (creatorRef === CONST.USER_TYPES.CONSUMER && CONST.CONSUMER_USER_ACTIONS_ENUM.indexOf(action) < 0) {
       res.status(400).json({ code: ERRORS.ACTION.ACTION_TYPE_NOT_FOUND })
     } else {
-      let ActionModel = UTIL.getModelFromAction(action),
-        TargetModel = UTIL.getModelFromName(targetRef),
+      let ActionModel = ModelHelper.getModelFromAction(action),
+        TargetModel = ModelHelper.getModelFromName(targetRef),
         query = {
           creator,
           creatorRef,
@@ -138,7 +138,7 @@ class ActionRouter {
                     this.logger(log)
                   })
                   .catch((err: Error) => {
-                    UTIL.formatError(res, err, action)
+                    MISC.formatError(res, err, action)
                   })
                 break
 

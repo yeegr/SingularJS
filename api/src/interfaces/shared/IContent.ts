@@ -36,9 +36,11 @@ export default interface IContent extends Document {
   shares: Schema.Types.ObjectId[]
   downloads: Schema.Types.ObjectId[]
   follows: Schema.Types.ObjectId[]
+
+  // configuration
+  commentStatus: string
   
   // document status
-  isNew: boolean
   wasNew: boolean
 
   // methods

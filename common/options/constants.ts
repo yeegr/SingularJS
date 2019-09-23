@@ -576,6 +576,10 @@ interface IStatuses {
     NETWORK: string
     UNKNOWN: string
   }
+  COMMENT: {
+    OPENED: string
+    CLOSED: string
+  }
   PROCESS: {
     PENDING: string
     CANCELLED: string
@@ -652,6 +656,10 @@ export const STATUSES: IStatuses = {
     PENDING: 'pending',
     CANCELLED: 'cancelled',
     FINALIZED: 'finalized'
+  },
+  COMMENT: {
+    OPENED: 'opened',
+    CLOSED: 'closed'
   }
 }
 
@@ -698,6 +706,11 @@ export const EVENT_SUBSET_STATUSES_ENUM = obj2enum(STATUSES.EVENT_SUBSET)
  * @type {string[]}
  */
 export const SIGNUP_STATUSES_ENUM = obj2enum(STATUSES.SIGNUP)
+/**
+ * @constant COMMENT_STATUSES_ENUM
+ * @type {string[]}
+ */
+export const COMMENT_STATUSES_ENUM = obj2enum(STATUSES.COMMENT)
 /**
  * @constant PAYMENT_STATUSES_ENUM
  * @type {string[]}

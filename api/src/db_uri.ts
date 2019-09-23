@@ -4,7 +4,7 @@ import app from '../../config/shared/app.env'
 import dev from '../../config/development/db.env'
 import dist from '../../config/production/db.env'
 
-import * as UTIL from './modules/util'
+import { UTIL } from './modules/common'
 
 let txt = (process.env.NODE_ENV === 'production') ? dist : dev,
   env = UTIL.readEnv(txt),

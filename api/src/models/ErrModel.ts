@@ -1,8 +1,8 @@
 import { Schema, model } from 'mongoose'
 
-import { CONST } from 'common/.'
+import { CONST } from '../modules/common' // cannot use '@common' because the model is used in ./modules
 
-import IErr from '../interfaces/IErr'
+import IErr from '@interfaces/IErr'
 
 let ErrSchema: Schema = new Schema({
   // user id

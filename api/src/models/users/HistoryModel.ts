@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose'
 
-import IHistory from 'interfaces/users/IHistory'
+import IHistory from '@interfaces/users/IHistory'
 
 let HistorySchema: Schema = new Schema({
   created: {

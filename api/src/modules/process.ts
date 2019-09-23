@@ -1,5 +1,5 @@
-import { CONST } from 'common/.'
-import { Logger } from '../modules'
+import { CONST } from './common'
+import { Logger } from '.'
 
 import Process, { IProcess } from '../models/workflow/ProcessModel'
 import Activity, { IActivity } from '../models/workflow/ActivityModel'

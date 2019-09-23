@@ -1,6 +1,6 @@
 import { Response } from 'express'
 
-import * as ERR from 'common/options/errors'
+import { ERRORS } from './common'
 
 import ErrModel, { IErr } from '../models/ErrModel'
 
@@ -33,7 +33,7 @@ class ErrLogger {
         status = 409
         code = 11000
         key = err.message.split(':')[2].trim().split(' ')[0].split('_')[0]
-        message = ERR.LOGIN.DUPLICATED_USER_INFORMATION
+        message = ERRORS.LOGIN.DUPLICATED_USER_INFORMATION
       break
 
       default:

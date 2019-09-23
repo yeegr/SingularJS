@@ -6,8 +6,10 @@ import path from 'path'
 import request from 'request'
 import { IncomingForm, Fields, Files } from 'formidable'
 
-import { CONFIG, CONST, ERRORS, SERVERS } from 'common/.'
-import { Logger, Err, UTIL } from '../modules'
+import { CONST, ERRORS, SERVERS } from '@common'
+import { Logger, Err, MISC } from '@modules'
+import * as ModelHelper from 'models/_modelHelpers'
+import * as UserHelper from 'models/_userHelpers'
 
 import Media, { IMedia } from '../models/share/MediaModel'
 import IUser from '../interfaces/users/IUser'
@@ -23,10 +25,10 @@ import IContent from '../interfaces/shared/IContent'
  * @returns {void} 
  */
 export function list(req: Request, res: Response): void {
-  let handle: string = UTIL.getRequestParam(req, req.routeVar.userHandleKey!)
+  let handle: string = MISC.getRequestParam(req, req.routeVar.userHandleKey!)
 
   if (handle && handle.length > 0) {
-    const UserModel: Model<IUser> = UTIL.getModelFromName(req.routeVar.creatorType!)
+    const UserModel: Model<IUser> = ModelHelper.getModelFromName(req.routeVar.creatorType!)
 
     UserModel
     .findOne({handle})
@@ -58,7 +60,7 @@ export function list(req: Request, res: Response): void {
  * @return {void}
  */
 const search = (req: Request, res: Response, creator?: Schema.Types.ObjectId) => {
-  let params = UTIL.assembleSearchParams(req, {
+  let params = MISC.assembleSearchParams(req, {
       status: CONST.STATUSES.CONTENT.APPROVED
     }, req.routeVar.keywordFields)
 
@@ -66,7 +68,7 @@ const search = (req: Request, res: Response, creator?: Schema.Types.ObjectId) =>
     params.query.creator = creator
   }
 
-  const DataModel: Model<IContent> = UTIL.getModelFromName(req.routeVar.contentType!)
+  const DataModel: Model<IContent> = ModelHelper.getModelFromName(req.routeVar.contentType!)
 
   DataModel
   .find(params.query)
@@ -103,7 +105,7 @@ const search = (req: Request, res: Response, creator?: Schema.Types.ObjectId) =>
  * @return {void}
  */
 export function get(req: Request, res: Response): void {
-  const DataModel: Model<IContent> = UTIL.getModelFromName(req.routeVar.contentType!)
+  const DataModel: Model<IContent> = ModelHelper.getModelFromName(req.routeVar.contentType!)
 
   DataModel
   .findOneAndUpdate({
@@ -150,7 +152,7 @@ export function get(req: Request, res: Response): void {
  */
 export function comments(req: Request, res: Response): void {
   let slug: string = req.params.slug,
-    opt: any = UTIL.assembleSearchParams(req),
+    opt: any = MISC.assembleSearchParams(req),
     match: any = {}
     
   if (req.query.hasOwnProperty('keywords') && req.query.keywords.length > 0) {
@@ -158,7 +160,7 @@ export function comments(req: Request, res: Response): void {
     match = {content: {$in: query}}
   }
 
-  const DataModel: Model<IContent> = UTIL.getModelFromName(req.routeVar.contentType!)
+  const DataModel: Model<IContent> = ModelHelper.getModelFromName(req.routeVar.contentType!)
 
   DataModel
   .findOne({slug})
@@ -205,10 +207,10 @@ export function comments(req: Request, res: Response): void {
 export function sublist(req: Request, res: Response): void {
   const slug: string = req.params.slug,
     path: string = req.params.sublist,
-    opt: any = UTIL.assembleSearchParams(req)
+    opt: any = MISC.assembleSearchParams(req)
 
   if (CONST.SUBLISTS.indexOf(path) > -1) {
-    const DataModel: Model<IContent> = UTIL.getModelFromName(req.routeVar.contentType!)
+    const DataModel: Model<IContent> = ModelHelper.getModelFromName(req.routeVar.contentType!)
 
     DataModel
     .findOne({slug})
@@ -216,7 +218,7 @@ export function sublist(req: Request, res: Response): void {
     .populate('creator', CONST.PUBLIC_CONSUMER_INFO_LIST)
     .populate({
       path,
-      model: UTIL.getModelNameFromPath(path),
+      model: ModelHelper.getModelNameFromPath(path),
       group: 'type',
       options: {
         sort: {'_id': -1},
@@ -261,7 +263,7 @@ export function isUnique(req: Request, res: Response): void {
   if (slug.length < 1) {
     res.status(422).json({ code: ERRORS.CONTENT.CONTENT_SLUG_REQUIRED })
   } else {
-    const DataModel = UTIL.getModelFromName(req.routeVar.contentType!)
+    const DataModel = ModelHelper.getModelFromName(req.routeVar.contentType!)
 
     DataModel
     .findOne({slug})
@@ -286,7 +288,7 @@ export function isUnique(req: Request, res: Response): void {
  * @return {void}
  */
 export function create(req: Request, res: Response): void {
-  const [creator, creatorRef] = UTIL.getLoginedUser(req),
+  const [creator, creatorRef] = UserHelper.getLoginedUser(req),
     title: string = req.body.title,
     slug: string = req.body.slug
 
@@ -297,12 +299,12 @@ export function create(req: Request, res: Response): void {
   } else if (!title || validator.isEmpty(title)) {
     res.status(422).json({ code: ERRORS.CONTENT.CONTENT_TITLE_REQUIRED })
   } else {
-    const [UserModel, DataModel] = UTIL.getModels(req)
+    const [UserModel, DataModel] = ModelHelper.getModels(req)
 
     const data: IContent = new DataModel(Object.assign({}, {
         creator,
         ref: creatorRef
-      }, UTIL.sanitizeInput(req.routeVar.contentType, req.body)))
+      }, MISC.sanitizeInput(req.routeVar.contentType, req.body)))
 
     let log: any = {
       creator,
@@ -318,7 +320,7 @@ export function create(req: Request, res: Response): void {
       res.status(201).json(content)
       log.target = content._id
 
-      return UserModel.findByIdAndUpdate(creator, UTIL.getIncrement(req, 1))
+      return UserModel.findByIdAndUpdate(creator, MISC.getIncrement(req, 1))
     })
     .then((user: IUser) => {
       new Logger(log)
@@ -339,10 +341,10 @@ export function create(req: Request, res: Response): void {
  * @return {void}
  */
 export function update(req: Request, res: Response): void {
-  const [creator, creatorRef] = UTIL.getLoginedUser(req),
+  const [creator, creatorRef] = UserHelper.getLoginedUser(req),
     slug: string = req.params.slug,
     title: string = req.body.title,
-    body: any = UTIL.sanitizeInput(req.routeVar.contentType, req.body)
+    body: any = MISC.sanitizeInput(req.routeVar.contentType, req.body)
 
   if (!creator || validator.isEmpty(creatorRef)) {
     res.status(422).json({ code: ERRORS.CONTENT.CONTENT_CREATOR_REQUIRED })
@@ -359,7 +361,7 @@ export function update(req: Request, res: Response): void {
       ua: req.body.ua || req.ua
     }
 
-    const DataModel = UTIL.getModelFromName(req.routeVar.contentType!)
+    const DataModel = ModelHelper.getModelFromName(req.routeVar.contentType!)
 
     DataModel
     .findOneAndUpdate({creator, slug}, body, {new: true})
@@ -407,9 +409,9 @@ export function clear(req: Request, res: Response, next: NextFunction): void {
  * @param {Response} res 
  */
 export function upload(req: Request, res: Response): void {
-  const [creator, creatorRef] = UTIL.getLoginedUser(req),
-    DataModel: Model<IContent> = UTIL.getModelFromName(req.routeVar.contentType!),
-    root: string = UTIL.getRootFolderFromModelName(req.routeVar.contentType!),
+  const [creator, creatorRef] = UserHelper.getLoginedUser(req),
+    DataModel: Model<IContent> = ModelHelper.getModelFromName(req.routeVar.contentType!),
+    root: string = ModelHelper.getRootFolderFromModelName(req.routeVar.contentType!),
     slug: string = req.params.slug
 
   DataModel
@@ -437,13 +439,13 @@ export function upload(req: Request, res: Response): void {
     
       form
       .on('file', (fields: Fields, file: any) => {
-        let fileName = UTIL.renameFile(file.name),
+        let fileName = MISC.renameFile(file.name),
           key = fileName.substring(0, fileName.lastIndexOf('.'))
 
         formData[key] = {
           value: fs.createReadStream(file.path),
           options: {
-            filename: UTIL.renameFile(file.name)
+            filename: MISC.renameFile(file.name)
           }
         }
       })
@@ -495,8 +497,8 @@ export function upload(req: Request, res: Response): void {
  * @return {void}
  */
 export function remove(req: Request, res: Response): void {
-  const [creator, creatorRef] = UTIL.getLoginedUser(req),
-    [UserModel, DataModel] = UTIL.getModels(req),
+  const [creator, creatorRef] = UserHelper.getLoginedUser(req),
+    [UserModel, DataModel] = ModelHelper.getModels(req),
     slug: string = req.params.slug
 
   let log: any = {
@@ -523,7 +525,7 @@ export function remove(req: Request, res: Response): void {
     return UserModel.findOneAndUpdate({
       _id: creator,
       [req.routeVar.contentCounter!]: {$gt: 0}
-    }, UTIL.getIncrement(req, -1))
+    }, MISC.getIncrement(req, -1))
   })
   .then((user: IUser) => {
     new Logger(log)

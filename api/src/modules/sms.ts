@@ -7,7 +7,7 @@ import {
   SMS_PROVIDER,
   ALIYUN_SMS_ACCESS_ID as accessKeyId,
   ALIYUN_SMS_ACCESS_KEY as secretAccessKey
-} from 'common/options/config'
+} from '../../../common/options/config'
 
 class SMS {
   client: any

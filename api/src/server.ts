@@ -11,7 +11,7 @@ import passport from 'passport'
 import path from 'path'
 import { UAParser } from 'ua-parser-js'
 
-import { CONFIG } from '../../common'
+import { CONFIG } from './modules/common'
 
 import db_uri from './db_uri'
 

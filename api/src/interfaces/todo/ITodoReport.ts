@@ -1,21 +1,17 @@
-import { Schema } from 'mongoose'
+import { Document, Schema } from 'mongoose'
 
 export default interface ITodoReport extends Document {
   [key: string]: any
   _id: Schema.Types.ObjectId
 
   // referenced checklist
-  todo: Schema.Types.ObjectId
+  list: Schema.Types.ObjectId
 
   // for which date this report is generated
   date: number
 
-  // creator
-  creator: Schema.Types.ObjectId
-  creatorRef: string
-
   // check if the list was past due time
-  past_due: boolean
+  status: boolean
 
   // checkmark each heading
   items: boolean[]

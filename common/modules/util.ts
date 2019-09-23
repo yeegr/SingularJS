@@ -321,3 +321,4 @@ export function getValueByInputName(name: string): string | null {
   let input = (document.querySelector('[name=' + name + ']') as HTMLInputElement)
   return (input) ? input.value.trim() : null
 }
+

@@ -1,19 +1,19 @@
 import { Request, Response, NextFunction, RequestHandler, Router } from 'express'
 import passport from 'passport'
-import '../config/auth/consumer'
+import '@auth/consumer'
 
-import { CONST } from 'common/.'
+import { Schema, Types } from 'mongoose'
+import * as validator from 'validator'
+
+import { CONST } from '@common'
 
 import * as ContentController from '../controllers/ContentController'
 
 
-import { Schema, Types } from 'mongoose'
+import '@auth/consumer'
 
-import * as validator from 'validator'
-import '../config/auth/consumer'
-
-import { CONFIG, ERRORS, UTIL } from 'common/.'
-import { Logger, Err } from '../modules'
+import { CONFIG, ERRORS, UTIL } from '@common'
+import { Logger, Err } from '@modules'
 
 import Processor from '../modules/process'
 import Process, { IProcess } from '../models/workflow/ProcessModel'

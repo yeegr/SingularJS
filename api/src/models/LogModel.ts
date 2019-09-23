@@ -1,8 +1,8 @@
 import { Schema, model } from 'mongoose'
 
-import { CONST } from 'common/.'
+import { CONST } from '../modules/common' // cannot use '@common' because the model is used in ./modules
 
-import ILog from '../interfaces/ILog'
+import ILog from '@interfaces/ILog'
 
 let LogSchema: Schema = new Schema({
   // user id

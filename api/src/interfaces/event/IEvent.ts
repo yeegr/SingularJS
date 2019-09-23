@@ -2,10 +2,8 @@ import { Schema } from 'mongoose'
 import IContent from '../shared/IContent'
 
 import IAgenda from './IAgenda'
-import IAttendee from './IAttendee'
 import ISubset from './ISubset'
 import IMedia from '../shared/IMedia'
-import IPoint from '../shared/IPoint'
 
 export default interface IEvent extends IContent {
   isPublic: boolean

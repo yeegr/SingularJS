@@ -1,14 +1,14 @@
 import { Schema, model } from 'mongoose'
 
-import { CONST } from 'common/.'
-import * as UTIL from 'modules/util'
+import { CONST, UTIL } from '@common'
+import * as ModelHelper from '../_modelHelpers'
 
 import Consumer, { IConsumer } from '../users/ConsumerModel'
 
-import Media from 'models/share/MediaModel'
+import Media from '../share/MediaModel'
 
-import IContent from 'interfaces/shared/IContent'
-import IPost from 'interfaces/post/IPost'
+import IContent from '@interfaces/shared/IContent'
+import IPost from '@interfaces/post/IPost'
 
 let PostSchema: Schema = new Schema({
   // author
@@ -116,6 +116,12 @@ let PostSchema: Schema = new Schema({
   downloadCount: {
     type: Number,
     default: 0
+  },
+  // comment status
+  // @enum {String}
+  commentStatus: {
+    type: String,
+    default: CONST.COMMENT_STATUSES_ENUM
   }
 }, {
   toObject: {
@@ -184,7 +190,7 @@ PostSchema.virtual('downloads', {
  * Creates a virtual 'averageRating' property
  */
 PostSchema.virtual('averageRating').get(function() {
-  return UTIL.getAverageRating(this)
+  return ModelHelper.getAverageRating(this)
 })
 
 PostSchema.pre('save', function(next: Function): void {
@@ -201,7 +207,7 @@ PostSchema.pre('save', function(next: Function): void {
 
 PostSchema.pre('findOneAndUpdate', function(next: Function): void {
   // Set last modified time when values of only following props are changed
-  UTIL.setUpdateTime((this as any), ['slug', 'title', 'content', 'excerpt', 'hero', 'tags', 'publish'])
+  ModelHelper.setUpdateTime((this as any), ['slug', 'title', 'content', 'excerpt', 'hero', 'tags', 'publish'])
   next()
 })
 

@@ -1,9 +1,10 @@
 import { NativeError, Schema, model } from 'mongoose'
 
-import { CONST } from 'common/.'
-import * as UTIL from 'modules/util'
+import { CONST } from '@common'
+import * as ModelHelper from '../_modelHelpers'
 
-import IComment from 'interfaces/actions/IComment'
+import IComment from '@interfaces/actions/IComment'
+import IContent from '@interfaces/shared/IContent'
 
 let CommentSchema: Schema = new Schema({
   // creator
@@ -81,24 +82,26 @@ CommentSchema.pre('save', function(next: Function) {
 })
 
 CommentSchema.post('save', function(comment: IComment) {
-  let CreatorModel = UTIL.getModelFromName(comment.creatorRef),
-    TargetModel = UTIL.getModelFromName(comment.targetRef),
+  let CreatorModel = ModelHelper.getModelFromName(comment.creatorRef),
+    TargetModel = ModelHelper.getModelFromName(comment.targetRef),
     wasNew = this.wasNew
 
   TargetModel
   .findById(comment.target)
   .then((doc: any) => {
-    if (wasNew) {
-      UTIL.addComment(doc, comment.rating)      
+    if ((doc as IContent).commentStatus === CONST.STATUSES.COMMENT.OPENED) {
+      if (wasNew) {
+        ModelHelper.addComment(doc, comment.rating)      
 
-      CreatorModel
-      .findByIdAndUpdate(comment.creator, {$inc: {commentCount: 1}})
-      .then()
-      .catch((err: NativeError) => {
-        console.log(err)
-      })
-    } else {
-      UTIL.updateComment(doc, comment.diff)
+        CreatorModel
+        .findByIdAndUpdate(comment.creator, {$inc: {commentCount: 1}})
+        .then()
+        .catch((err: NativeError) => {
+          console.log(err)
+        })
+      } else {
+        ModelHelper.updateComment(doc, comment.diff)
+      }
     }
   })
   .catch((err: NativeError) => {
@@ -107,13 +110,13 @@ CommentSchema.post('save', function(comment: IComment) {
 })
 
 CommentSchema.post('findOneAndRemove', function(comment: IComment) {
-  let CreatorModel = UTIL.getModelFromName(comment.creatorRef),
-    TargetModel = UTIL.getModelFromName(comment.targetRef)
+  let CreatorModel = ModelHelper.getModelFromName(comment.creatorRef),
+    TargetModel = ModelHelper.getModelFromName(comment.targetRef)
   
   TargetModel
   .findById(comment.target)
   .then((doc: any) => {
-    UTIL.removeComment(doc, comment.rating)
+    ModelHelper.removeComment(doc, comment.rating)
 
     CreatorModel
     .findOneAndUpdate({

@@ -5,9 +5,9 @@ import { Strategy as OAuth2Strategy } from 'passport-oauth2'
 import { Strategy as WeChatStrategy } from 'passport-wechat'
 import validator from 'validator'
 
-import { CONFIG, CONST, ERRORS } from 'common/.'
+import { CONFIG, CONST, ERRORS } from '@common'
 
-import Consumer, { IConsumer } from 'models/users/ConsumerModel'
+import Consumer, { IConsumer } from '../models/users/ConsumerModel'
 
 passport.use('consumerJwt', new JwtStrategy({
     jwtFromRequest: ExtractJwt.fromHeader('authorization'),

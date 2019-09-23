@@ -1,8 +1,8 @@
 import { Schema, model } from 'mongoose'
 import * as validator from 'validator'
 
-import { CONFIG, CONST } from 'common/.'
-import * as UTIL from 'modules/util'
+import { CONFIG, CONST, UTIL } from '@common'
+import * as ModelHelper from '../_modelHelpers'
 
 import Consumer, { IConsumer } from '../users/ConsumerModel'
 
@@ -12,7 +12,7 @@ import Media from '../share/MediaModel'
 import Point from '../share/PointModel'
 import Subset from './SubsetModel'
 
-import IEvent from 'interfaces/event/IEvent'
+import IEvent from '@interfaces/event/IEvent'
 
 let EventSchema: Schema = new Schema({
   // organizer id
@@ -165,7 +165,7 @@ let EventSchema: Schema = new Schema({
   status: {
     type: String,
     required: true,
-    enum: CONST.CONTENT_STATUSES_ENUM,
+    enum: CONST.EVENT_STATUSES_ENUM,
     default: CONST.STATUSES.CONTENT.EDITING
   },
   // last modified time
@@ -210,6 +210,12 @@ let EventSchema: Schema = new Schema({
   shareCount: {
     type: Number,
     default: 0
+  },
+  // comment status
+  // @enum {String}
+  commentStatus: {
+    type: String,
+    default: CONST.COMMENT_STATUSES_ENUM
   }
 }, {
   toObject: {
@@ -269,13 +275,13 @@ EventSchema.virtual('shares', {
  * Creates a virtual 'averageRating' property
  */
 EventSchema.virtual('averageRating').get(function() {
-  return UTIL.getAverageRating(this)
+  return ModelHelper.getAverageRating(this)
 })
 
 EventSchema.pre('save', function(next: Function): void {
   // Set last modified time when values of only following props are changed
-  UTIL.setUpdateTime(this, ['slug', 'title', 'content', 'excerpt', 'hero', 'tags', 'publish', 'isPublic', 'requireApproval', 'misc', 'destination', 'gallery', 'notes', 'gears', 'city', 'country', 'expenses', 'contacts', 'schedule', 'subsets'])
-  this.wasNew = this.isNew
+  ModelHelper.setUpdateTime((this as IEvent), ['slug', 'title', 'content', 'excerpt', 'hero', 'tags', 'publish', 'isPublic', 'requireApproval', 'misc', 'destination', 'gallery', 'notes', 'gears', 'city', 'country', 'expenses', 'contacts', 'schedule', 'subsets']);
+  (this as IEvent).wasNew = this.isNew
 
   next()
 })

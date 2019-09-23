@@ -1,8 +1,8 @@
 import { NativeError, Schema, model } from 'mongoose'
 
-import { CONST } from 'common/.'
+import { CONST } from '@common'
 
-import IActivity from 'interfaces/workflow/IActivity'
+import IActivity from '@interfaces/workflow/IActivity'
 
 let ActivitySchema: Schema = new Schema({
   // creator

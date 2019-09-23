@@ -1,8 +1,8 @@
 import { RequestHandler, Request, Response, NextFunction, Router } from 'express'
 import passport from 'passport'
-import '../config/auth/consumer'
+import '@auth/consumer'
 
-import { CONST } from 'common/.'
+import { CONST } from '@common'
 
 import * as ContentController from '../controllers/ContentController'
 

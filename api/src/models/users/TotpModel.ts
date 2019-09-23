@@ -2,9 +2,9 @@ import { Schema, model } from 'mongoose'
 import moment from 'moment-timezone'
 import validator from 'validator'
 
-import { CONFIG, CONST } from 'common/.'
+import { CONFIG, CONST } from '@common'
 
-import ITotp from 'interfaces/users/ITotp'
+import ITotp from '@interfaces/users/ITotp'
 
 let TotpSchema: Schema = new Schema({
   action: {

@@ -4,10 +4,10 @@ import moment from 'moment-timezone'
 import validator from 'validator'
 import randomstring from 'randomstring'
 
-import { CONFIG, CONST } from 'common/.'
-import * as UTIL from 'modules/util'
+import { CONFIG, CONST, UTIL } from '@common'
+import * as ModelHelper from 'models/_modelHelpers'
 
-import IConsumer from 'interfaces/users/IConsumer'
+import IConsumer from '@interfaces/users/IConsumer'
 
 let ConsumerSchema: Schema = new Schema({
   // user type
@@ -408,7 +408,7 @@ ConsumerSchema.pre('save', function(next: Function): void {
 })
 
 ConsumerSchema.pre('findOneAndUpdate', function(next: Function): void {
-  UTIL.setUpdateTime((this as any), ['username', 'handle', 'name', 'gender', 'intro', 'mobile', 'email', 'pid', 'avatar', 'background', 'locale', 'city', 'country'])
+  ModelHelper.setUpdateTime((this as any), ['username', 'handle', 'name', 'gender', 'intro', 'mobile', 'email', 'pid', 'avatar', 'background', 'locale', 'city', 'country'])
   next()
 })
 

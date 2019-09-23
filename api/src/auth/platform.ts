@@ -4,9 +4,9 @@ import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as OAuth2Strategy } from 'passport-oauth2'
 import validator from 'validator'
 
-import { CONFIG, CONST, ERRORS } from 'common/.'
+import { CONFIG, CONST, ERRORS } from '@common'
 
-import Platform, { IPlatform } from 'models/users/PlatformModel'
+import Platform, { IPlatform } from '../models/users/PlatformModel'
 
 passport.use('platformJwt', new JwtStrategy({
     jwtFromRequest: ExtractJwt.fromHeader('authorization'),

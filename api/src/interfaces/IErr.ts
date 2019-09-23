@@ -1,4 +1,3 @@
-import { Schema } from 'mongoose'
 import ILog from './ILog'
 
 export default interface IErr extends ILog {

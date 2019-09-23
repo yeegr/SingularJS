@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose'
 
-import IMedia from 'interfaces/shared/IMedia'
+import IMedia from '@interfaces/shared/IMedia'
 
 let MediaSchema: Schema = new Schema({
   // relative path to resource
