@@ -7,7 +7,6 @@ module.exports = (env) => merge(common, {
   mode: env.NODE_ENV || 'development',
   externals: [nodeExternals()],
   output: {
-    path: path.resolve(__dirname, 'dev'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, 'dev')
   }
 })

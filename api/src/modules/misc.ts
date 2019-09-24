@@ -428,3 +428,18 @@ export function renameFile(fileName: string): string {
 
   return str + ext
 }
+
+import bcrypt from 'bcryptjs'
+
+export async function encryptPassword(password: string): Promise<string> {
+  try {
+    // generate a salt then run callback
+    const salt: string = await bcrypt.genSalt(CONFIG.USER_SALT_ROUNDS)
+    // hash the password along with generated salt
+    const hash: string = await bcrypt.hash(password, salt)
+
+    return hash
+  } catch (err) {
+    throw err
+  }
+}

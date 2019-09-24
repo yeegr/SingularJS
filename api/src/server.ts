@@ -200,34 +200,34 @@ class Server {
     // helper router - not for production
     this.app.use(root + 'helpers', _HelperRouter)
 
-    // // consumer router - use 'users' in url following common practices
-    // this.app.use(root, ConsumerRouter)
-
-    // service / prodcut provider router
-    // this.app.use(root + 'providers', ProviderRouter)
+    // consumer router - use 'users' in url following common practices
+    this.app.use(root, ConsumerRouter)
 
     // post router
-    // this.app.use(root + 'posts', PostRouter)
+    this.app.use(root + 'posts', PostRouter)
 
-    // // event router
-    // this.app.use(root + 'events', EventRouter)
+    // event router
+    this.app.use(root + 'events', EventRouter)
 
-    // store router
+    // // service / prodcut provider router
+    // this.app.use(root + 'providers', ProviderRouter)
+
+    // // store router
     // this.app.use(root + 'stores', StoreRouter)
 
-    // product category router
+    // // product category router
     // this.app.use(root + 'categories', CategoryRouter)
 
-    // product router
+    // // product router
     // this.app.use(root + 'products', ProductRouter)
 
-    // order router
+    // // order router
     // this.app.use(root + 'orders', OrderRouter)
 
-    // validation router
+    // // validation router
     // this.app.use(root + 'validates', ValidateRouter)
 
-    // action router
+    // // action router
     // this.app.use(root + 'actions', ActionRouter)
 
     // // comment router

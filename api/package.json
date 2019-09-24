@@ -17,7 +17,8 @@
   },
   "devDependencies": {
     "@types/ajv": "^1.0.0",
-    "@types/bcrypt-nodejs": "0.0.30",
+    "@types/bcrypt": "^3.0.0",
+    "@types/bcryptjs": "^2.4.2",
     "@types/body-parser": "^1.17.1",
     "@types/compression": "^1.0.1",
     "@types/cookie-parser": "^1.4.2",
@@ -60,7 +61,7 @@
   "dependencies": {
     "@alicloud/sms-sdk": "^1.1.6",
     "ajv": "^6.10.2",
-    "bcrypt-nodejs": "0.0.3",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.4",

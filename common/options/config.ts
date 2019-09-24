@@ -35,7 +35,7 @@ export const POST_SELF_PUBLISH_ROLE: string = CONST.USER_ROLES.CONSUMER.AUTHOR
 export const PUBLIC_EVENT_REQURIES_APPROVAL: boolean = true
 export const PUBLIC_EVENT_PUBLISH_ROLE: string = CONST.USER_ROLES.CONSUMER.ORGANIZER
 
-export const USER_SALT_LENGTH: number = 10
+export const USER_SALT_ROUNDS: number = 10
 export const USER_SALT_CHARSET: string = 'alphanumeric'
 
 export const TOTP_CODE_LENGTH: number = 4

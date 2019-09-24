@@ -1,13 +1,15 @@
 const webpack = require('webpack'),
-  TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+  TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')  // enables path mapping in tsconfig.json
 
 module.exports = {
   target: 'node',
   entry: './src/index.ts',
   resolve: {
     extensions: ['.ts', '.json'],
-    plugins: [new TsconfigPathsPlugin({
-    })]
+    plugins: [new TsconfigPathsPlugin()]
+  },
+  output: {
+    filename: 'bundle.js'
   },
   module: {
     rules: [

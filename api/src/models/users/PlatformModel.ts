@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose'
-import bcrypt from 'bcrypt-nodejs'
+import bcrypt from 'bcryptjs'
 import moment from 'moment-timezone'
 import validator from 'validator'
 
@@ -8,6 +8,10 @@ import * as ModelHelper from '@modelHelpers'
 
 import IPlatform from '@interfaces/users/IPlatform'
 
+/**
+ * @class Platform
+ * @mixes { PlatformSchema.methods }
+ */
 let PlatformSchema: Schema = new Schema({
   // user type
   ref: {
@@ -189,19 +193,18 @@ PlatformSchema.methods.comparePassword = function(candidatePassword: string, cal
 PlatformSchema.pre('save', function(next: Function): void {
   let user: IPlatform = this as IPlatform
 
-  // generate a salt then run callback
   if (user.isNew) {
-    bcrypt
-    .genSalt(10, (err: Error, salt: string) => {
-      if (err) { return next(err) }
+    // generate a salt then run callback
+    bcrypt.genSalt(CONFIG.USER_SALT_ROUNDS, function(err: Error, salt: string): void {
+      if (err) return next(err)
 
-      // encrypt password with salt
-      bcrypt.hash(user.password, salt, (err, hash) => {
-        if (err) { return next(err) }
+      // hash the password along with generated salt
+      bcrypt.hash(user.password, salt, function(err: Error, hash: string): void {
+        if (err) return next(err)
 
-        // overwrite plain text password with encrypted password
+        // override the cleartext password with the hashed one
         user.password = hash
-
+        user.updated = UTIL.getTimestamp()
         next()
       })
     })

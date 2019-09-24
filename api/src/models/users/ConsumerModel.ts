@@ -1,14 +1,16 @@
 import { Schema, model } from 'mongoose'
-import bcrypt from 'bcrypt-nodejs'
-import moment from 'moment-timezone'
+import bcrypt from 'bcryptjs'
 import validator from 'validator'
-import randomstring from 'randomstring'
 
 import { CONFIG, CONST, UTIL } from '@common'
 import * as ModelHelper from '@modelHelpers'
 
 import IConsumer from '@interfaces/users/IConsumer'
 
+/**
+ * @class Consumer
+ * @mixes { ConsumerSchema.methods }
+ */
 let ConsumerSchema: Schema = new Schema({
   // user type
   ref: {
@@ -394,7 +396,7 @@ ConsumerSchema.methods.addToBalance = function(subTotal: number): number {
  */
 ConsumerSchema.methods.comparePassword = function(candidatePassword: string, callback: Function): void {
   bcrypt
-  .compare(candidatePassword, this.password, (err, isMatch: boolean) => {
+  .compare(candidatePassword, this.password, (err: Error, isMatch: boolean) => {
     if (err) { return callback(err) }
     callback(null, isMatch)
   })
@@ -404,10 +406,20 @@ ConsumerSchema.pre('save', function(next: Function): void {
   let user: IConsumer = this as IConsumer
 
   if (user.isModified('password')) {
-  // generate a salt then run callback
-    let salt = bcrypt.genSaltSync(CONFIG.USER_SALT_LENGTH)
-    user.password = bcrypt.hashSync(user.password, salt)
-    user.updated = UTIL.getTimestamp()
+    // generate a salt then run callback
+    bcrypt.genSalt(CONFIG.USER_SALT_ROUNDS, function(err: Error, salt: string): void {
+      if (err) return next(err)
+
+      // hash the password along with generated salt
+      bcrypt.hash(user.password, salt, function(err: Error, hash: string): void {
+        if (err) return next(err)
+
+        // override the cleartext password with the hashed one
+        user.password = hash
+        user.updated = UTIL.getTimestamp()
+        next()
+      })
+    })
   }
   
   if (user.isNew) {
@@ -416,6 +428,25 @@ ConsumerSchema.pre('save', function(next: Function): void {
 
   next()
 })
+
+
+// import { MISC } from '@modules'
+
+// ConsumerSchema.pre('save', async function(next: Function) {
+//   let user: IConsumer = this as IConsumer
+
+//   if (user.isModified('password')) {
+//     user.password = await MISC.encryptPassword(user.password)
+//     user.updated = UTIL.getTimestamp()
+//     next()
+//   }
+  
+//   if (user.isNew) {
+//     user.wasNew = user.isNew
+//   }
+
+//   next()
+// })
 
 ConsumerSchema.pre('findOneAndUpdate', function(next: Function): void {
   ModelHelper.setUpdateTime((this as any), ['username', 'handle', 'name', 'gender', 'intro', 'mobile', 'email', 'pid', 'avatar', 'background', 'locale', 'city', 'country'])
