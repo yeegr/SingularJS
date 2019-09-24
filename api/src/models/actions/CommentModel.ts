@@ -1,7 +1,7 @@
 import { NativeError, Schema, model } from 'mongoose'
 
 import { CONST } from '@common'
-import * as ModelHelper from '../_modelHelpers'
+import * as ModelHelper from '@modelHelpers'
 
 import IComment from '@interfaces/actions/IComment'
 import IContent from '@interfaces/shared/IContent'

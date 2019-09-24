@@ -1,7 +1,7 @@
 import { NativeError, Schema, model } from 'mongoose'
 
 import { CONST, UTIL }  from '@common'
-import * as ModelHelper from 'models/_modelHelpers'
+import * as ModelHelper from '@modelHelpers'
 
 import Activity, { IActivity } from './ActivityModel'
 import IProcess from '@interfaces/workflow/IProcess'

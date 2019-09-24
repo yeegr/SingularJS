@@ -5,7 +5,7 @@ import '@auth/consumer'
 
 import { CONST, ERRORS, UTIL } from '@common'
 import { Logger, Err, MISC } from '@modules'
-import * as ModelHelper from 'models/_modelHelpers'
+import * as ModelHelper from '@modelHelpers'
 
 import Consumer from '../models/users/ConsumerModel'
 import IAction from '../interfaces/actions/IAction'

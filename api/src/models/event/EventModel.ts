@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose'
 import * as validator from 'validator'
 
 import { CONFIG, CONST, UTIL } from '@common'
-import * as ModelHelper from '../_modelHelpers'
+import * as ModelHelper from '@modelHelpers'
 
 import Consumer, { IConsumer } from '../users/ConsumerModel'
 
@@ -166,7 +166,7 @@ let EventSchema: Schema = new Schema({
     type: String,
     required: true,
     enum: CONST.EVENT_STATUSES_ENUM,
-    default: CONST.STATUSES.CONTENT.EDITING
+    default: CONST.STATUSES.EVENT.EDITING
   },
   // last modified time
   updated: {

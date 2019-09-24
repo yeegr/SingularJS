@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose'
 
 import { CONST, UTIL } from '@common'
-import * as ModelHelper from '../_modelHelpers'
+import * as ModelHelper from '@modelHelpers'
 
 import Consumer, { IConsumer } from '../users/ConsumerModel'
 
@@ -67,7 +67,7 @@ let PostSchema: Schema = new Schema({
     type: String,
     required: true,
     enum: CONST.POST_STATUSES_ENUM,
-    default: CONST.STATUSES.CONTENT.EDITING
+    default: CONST.STATUSES.POST.EDITING
   },
   // last updated time
   updated: {

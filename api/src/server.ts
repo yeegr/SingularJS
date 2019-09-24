@@ -11,9 +11,20 @@ import passport from 'passport'
 import path from 'path'
 import { UAParser } from 'ua-parser-js'
 
-import { CONFIG } from './modules/common'
+import { CONFIG } from '@common'
 
 import db_uri from './db_uri'
+
+import _HelperRouter from './routers/_helper'
+import AdminRouter from './routers/_admin'
+
+import ConsumerRouter from './routers/ConsumerRouter'
+
+import EventRouter from './routers/EventRouter'
+import PostRouter from './routers/PostRouter'
+
+import ActionRouter from './routers/ActionRouter'
+import CommentRouter from './routers/CommentRouter'
 
 // use native ES6 promises instead of mongoose promise library
 (<any>mongoose).Promise = global.Promise
@@ -57,6 +68,7 @@ class Server {
   public connect(): void {
     let dbConn = () => mongoose.connect(db_uri, {
       autoReconnect: true,
+      useCreateIndex: true,
       useNewUrlParser: true,
       useUnifiedTopology: true
     })
@@ -159,14 +171,14 @@ class Server {
       next()
     })
 
-    // cors
-    this.app.use((req: Request, res: Response, next: NextFunction) => {
-      res.header('Access-Control-Allow-Origin', 'http://localhost:8080')
-      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS, PURGE')
-      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials')
-      res.header('Access-Control-Allow-Credentials', 'true')
-      next()
-    })
+    // // cors
+    // this.app.use((req: Request, res: Response, next: NextFunction) => {
+    //   res.header('Access-Control-Allow-Origin', 'http://localhost:8080')
+    //   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS, PURGE')
+    //   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials')
+    //   res.header('Access-Control-Allow-Credentials', 'true')
+    //   next()
+    // })
   }
 
   /**
@@ -181,12 +193,12 @@ class Server {
     router = express.Router()
 
     // use router middleware
-    // this.app.use('/', router)
+    this.app.use('/', router)
 
-    // const root = '/api/v1/'
+    const root = '/api/v1/'
 
-    // // helper router - not for production
-    // this.app.use(root + 'helpers', _HelperRouter)
+    // helper router - not for production
+    this.app.use(root + 'helpers', _HelperRouter)
 
     // // consumer router - use 'users' in url following common practices
     // this.app.use(root, ConsumerRouter)

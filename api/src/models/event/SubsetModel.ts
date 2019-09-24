@@ -40,7 +40,7 @@ let SubsetSchema: Schema = new Schema({
   status: {
     type: String,
     enum: CONST.EVENT_SUBSET_STATUSES_ENUM,
-    default: CONST.STATUSES.SET.ACCEPTING
+    default: CONST.STATUSES.EVENT_SUBSET.ACCEPTING
   },
   // attendees | participants
   attendees: [Attendee]

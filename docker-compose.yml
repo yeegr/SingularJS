@@ -24,6 +24,10 @@ services:
       - ${DB_PORT}
     volumes:
       - ${LOCAL_PATH}:${DB_PATH}:rw
+    logging:
+      options:
+        max-size: "50k"
+        max-file: "2"
     networks:
       - data
 
@@ -57,7 +61,7 @@ services:
       driver: "json-file"
       options:
         max-size: "50k"
-        max-file: "1"
+        max-file: "2"
     networks:
       - data
       - web

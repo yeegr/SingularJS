@@ -1,11 +1,11 @@
 import { Schema, model } from 'mongoose'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt-nodejs'
 import moment from 'moment-timezone'
 import validator from 'validator'
 import randomstring from 'randomstring'
 
 import { CONFIG, CONST, UTIL } from '@common'
-import * as ModelHelper from 'models/_modelHelpers'
+import * as ModelHelper from '@modelHelpers'
 
 import IConsumer from '@interfaces/users/IConsumer'
 
@@ -142,6 +142,16 @@ let ConsumerSchema: Schema = new Schema({
   // user verification expiration time
   expires: {
     type: Number
+  },
+  // linked user accounts of the same user type
+  linked: {
+    type: [Schema.Types.ObjectId]
+  },
+  // name displayed within the linked accounts
+  linkname: {
+    type: String,
+    minlength: CONST.INPUT_LIMITS.MIN_HANDLE_LENGTH,
+    maxlength: CONST.INPUT_LIMITS.MAX_HANDLE_LENGTH
   },
   // user self introduction
   intro: {

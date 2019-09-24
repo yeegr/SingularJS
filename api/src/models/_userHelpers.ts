@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 import moment from 'moment-timezone'
 import randomstring from 'randomstring'
 
-import { CONFIG, CONST, ERRORS } from '../modules/common'
+import { CONFIG, CONST, ERRORS } from '@common'
 
 import IUser from '../interfaces/users/IUser'
 

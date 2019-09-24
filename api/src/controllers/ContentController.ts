@@ -8,8 +8,8 @@ import { IncomingForm, Fields, Files } from 'formidable'
 
 import { CONST, ERRORS, SERVERS } from '@common'
 import { Logger, Err, MISC } from '@modules'
-import * as ModelHelper from 'models/_modelHelpers'
-import * as UserHelper from 'models/_userHelpers'
+import * as ModelHelper from '@modelHelpers'
+import * as UserHelper from '@userHelpers'
 
 import Media, { IMedia } from '../models/share/MediaModel'
 import IUser from '../interfaces/users/IUser'

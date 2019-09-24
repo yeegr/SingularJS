@@ -1,10 +1,10 @@
 import { Schema, model } from 'mongoose'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt-nodejs'
 import moment from 'moment-timezone'
 import validator from 'validator'
 
 import { CONFIG, CONST, UTIL } from '@common'
-import * as ModelHelper from 'models/_modelHelpers'
+import * as ModelHelper from '@modelHelpers'
 
 import IPlatform from '@interfaces/users/IPlatform'
 

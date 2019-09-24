@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@types/ajv": "^1.0.0",
-    "@types/bcrypt": "^3.0.0",
+    "@types/bcrypt-nodejs": "0.0.30",
     "@types/body-parser": "^1.17.1",
     "@types/compression": "^1.0.1",
     "@types/cookie-parser": "^1.4.2",
@@ -50,6 +50,7 @@
     "raw-loader": "^3.1.0",
     "ts-jest": "^24.1.0",
     "ts-loader": "^6.1.0",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
     "typescript": "^3.6.3",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.8",
@@ -59,7 +60,7 @@
   "dependencies": {
     "@alicloud/sms-sdk": "^1.1.6",
     "ajv": "^6.10.2",
-    "bcrypt": "^3.0.6",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.4",

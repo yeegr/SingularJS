@@ -22,6 +22,12 @@ export default interface IConsumer extends Document {
   status: string
   verified?: Schema.Types.ObjectId
   expires: number
+
+  // linked user accounts of the same user type
+  // value of 'ref' are the same
+  linked?: Schema.Types.ObjectId[]
+  // name displayed within the linked accounts
+  linkname?: string
   
   // virtual fields
   comments: Schema.Types.ObjectId[]

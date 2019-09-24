@@ -4,10 +4,10 @@ import debug from 'debug'
 import mongoose from 'mongoose'
 
 import { MISC } from '@modules'
-import * as ModelHelper from 'models/_modelHelpers'
+import * as ModelHelper from '@modelHelpers'
 
 import Consumer from '../models/users/ConsumerModel'
-import IAction from '../interfaces/actions/IAction'
+import IAction from '@interfaces/actions/IAction'
 import Log, { ILog } from '../models/LogModel'
 import Err, { IErr } from '../models/ErrModel'
 import Totp, { ITotp } from '../models/users/TotpModel'

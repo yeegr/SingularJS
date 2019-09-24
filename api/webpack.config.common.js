@@ -1,10 +1,13 @@
-const webpack = require('webpack')
+const webpack = require('webpack'),
+  TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 module.exports = {
   target: 'node',
   entry: './src/index.ts',
   resolve: {
-    extensions: ['.ts', '.json']
+    extensions: ['.ts', '.json'],
+    plugins: [new TsconfigPathsPlugin({
+    })]
   },
   module: {
     rules: [

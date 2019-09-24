@@ -14,8 +14,8 @@ import { IncomingForm, Fields, Files } from 'formidable'
 
 import { CONFIG, CONST, ERRORS, SERVERS, UTIL } from '@common'
 import { Logger, Err, LANG, MISC } from '@modules'
-import * as ModelHelper from 'models/_modelHelpers'
-import * as UserHelper from 'models/_userHelpers'
+import * as ModelHelper from '@modelHelpers'
+import * as UserHelper from '@userHelpers'
 
 import IUser from '@interfaces/users/IUser'
 import IContent from '@interfaces/shared/IContent'

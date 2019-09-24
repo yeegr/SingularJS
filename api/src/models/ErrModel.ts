@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose'
 
-import { CONST } from '../modules/common' // cannot use '@common' because the model is used in ./modules
+import { CONST } from '@common'
 
 import IErr from '@interfaces/IErr'
 
