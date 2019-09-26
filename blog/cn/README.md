@@ -365,7 +365,7 @@ App Store是唯一的苹果官方软件下载渠道，上架一款软件首先�
 
 ###### Git操作
 
-想真正掌握Git操作，可以从[Pro Git](https://git-scm.com/book/zh/v2 "Pro Git")开始，然而在实际工作中，Git的诸多命令你不需要都记下来。我将这些命令分为以下四大类。
+想真正掌握Git操作，可以从[Pro Git](https://git-scm.com/book/zh/v2 "Pro Git")或者[Become a Git pro in just one blog.](https://itnext.io/become-a-git-pro-in-just-one-blog-a-thorough-guide-to-git-architecture-and-command-line-interface-93fbe9bdb395 "Become a Git pro in just one blog. A thorough guide to Git architecture and command line interface")开始，然而在实际工作中，Git的诸多命令你不需要都记下来。我将这些命令分为以下四大类。
 
 第一类是零星用到的命令，包括
 
@@ -572,20 +572,22 @@ SingularJS将会开发、使用以下几个容器
 | db | 数据库 | MongoDB | 负责保存服务和用户数据 |
 | api | API | api.domain.com | Node.js | 负责前后端之间的主要通讯传输 |
 | app | 消费者App | app.domain.com | Node.js | 负责host消费者的web app |
-| sp | 服务商APP | sp.domain.com | Node.js | 负责host服务商的web app |
-| admin | 管理员APP | admin.domain.com | Node.js | 负责host管理员的web app |
+| pro | 服务商App | pro.domain.com | Node.js | 负责host服务商的web app |
+| admin | 管理员App | admin.domain.com | Node.js | 负责host管理员的web app |
 | static | 静态文件 | static.domain.com | Nginx | 负责host静态文件，如UI图片、CSS以及用户上传的文件等 |
 | upload | 文件处理 | upload.domain.com | Node.js | 负责处理、保存用户提交的文件，如图片、视频、PDF等 |
 
 ###### 注册Docker账户
 
-###### 注册阿里账户
+![Docker Hub](./img/docker/docker_hub_signup.png "Docker Hub Signup")
+
+###### 注册阿里云账户
 
 ##### Postman
 
 [Postman](https://www.getpostman.com/ "Postman")专为开发API而生，在API开发的过程中我感觉是不可或缺的。简而言之，Postman就是个REST GUI，专门用于测试API端点。
 
-![Postman](http://blog.getpostman.com/wp-content/uploads/2016/06/Screen-Shot-2016-06-30-at-16.24.19.png?x38712 "Postman")
+![Postman](./img/postman.png "Postman")
 
 ##### <span id="vsc">文本编辑器</span>
 
@@ -691,12 +693,11 @@ Yarn是一个由Facebook、Exponent、Google和Tilde共同开发的JavaScript包
 * [Yarn vs npm: Everything You Need to Know](https://www.sitepoint.com/yarn-vs-npm/)
 * [Yarn vs npm - The State of Node.js Package Managers](https://blog.risingstack.com/yarn-vs-npm-node-js-package-managers/)
 
-#### 安装TypeScript
+#### [TypeScript](https://www.typescriptlang.org/ "TypeScript")
 
-```sh
-npm i -g typescript
-npm i -D typescript
-```
+2013年刚开始接触TypeScript，我就马上中招了。TypeScript最主要的功能是给JavaScript加上了静态类型（Static Types），而和更早的CoffeeScript不同的是，TypeScript是JavaScript的一个超集，代码兼容JavaScript。静态类型给动态、弱类的JavaScript划了一道圈，使大部分的bugs在编辑（Coding）和编译（Transcompiling）阶段就能被发现。
+
+TypeScript终于使得JavaScript成为一个中、大型项目可选的语言，[Slack](https://slack.com/)、[Asana](https://asana.com/)等企业App已经转换到TypeScript上，[Angular 2+](https://angular.io)、[Nest.js](https://nextjs.org/)和[RxJS](https://rxjs-dev.firebaseapp.com/)等JavaScript框架，[Ant Design](https://ant.design/)、[material-ui](https://material-ui.com/)等设计库也都基于TypeScript。
 
 ##### TypeScript vs. Flow
 
@@ -704,7 +705,12 @@ npm i -D typescript
 
 更详细的比较可以参考[TypeScript vs Flow](https://github.com/niieani/typescript-vs-flowtype "TypeScript vs Flow")
 
-##### tsconfig.json
+##### 安装TypeScript
+
+```sh
+npm i -g typescript
+npm i --save-dev typescript ts-loader tsconfig-paths-webpack-plugin
+```
 
 ##### TypeScript基础知识
 
@@ -716,9 +722,15 @@ npm i -D typescript
 
 #### Webpack
 
+
+
 #### Express
 
-##### Restify
+##### Restify / Loopbback
+
+#### Jest
+
+
 
 #### 安装React Native
 
@@ -754,6 +766,8 @@ mongoose-delete
 ### SingularJS Library
 
 SingularJS将有自己的前端组件库，将包括以下组件。
+
+Ant Design & Ant Design Mobile
 
 * singular-glyph
 * singular-icon (top-right indicator)
@@ -810,12 +824,15 @@ SingularJS
 │ ├───logo
 │ └───ui
 │
+├─┬─lib             // 共享的前端组件库
+│ └─┬─src
+│   ├───native      // app
+│   ├───web         // web
+│   └───...
+│
 ├─┬─common          // 静态文件夹，用以保存各级服务共享的代码
 │ ├───locales       // 语言包
-│ ├─┬─modules       // 共享的模块
-│ │ ├───util        // 共享的函数
-│ │ ├───app
-│ │ └───web
+│ ├───modules       // 共享的函数
 │ ├─┬─options       // 项目设置
 │ │ ├───config      // 项目常量
 │ │ ├───constants   // 共享的常量
@@ -881,7 +898,7 @@ SingularJS
 * 三个前端app工程下的src文件夹下都有各自的redux文件夹，用以统一处理app逻辑
 
 
-ACL
+## ACL (Access-control list) 访问控制列表
 
 consumer
 guest
@@ -915,5 +932,5 @@ super
 3. Docker → Preference... → File Sharing → + → ***desitination database directory***
 4. Terminal → ***working directory***
 5. `export NODE_ENV=development`
-6. `./devops/setup.sh`
+6. `npm run setup`
 7. `npm start`
