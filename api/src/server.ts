@@ -13,18 +13,18 @@ import { UAParser } from 'ua-parser-js'
 
 import { CONFIG } from '@common'
 
-import db_uri from './db_uri'
+import db_uri from './config/db_uri'
 
-import _HelperRouter from './routers/_helper'
+import _HelperRouter from './helper'
 import AdminRouter from './routers/_admin'
 
-import ConsumerRouter from './routers/ConsumerRouter'
+import ConsumerRouter from '@users/consumer/ConsumerRouter'
 
-import EventRouter from './routers/EventRouter'
-import PostRouter from './routers/PostRouter'
+import EventRouter from '@content/event/EventRouter'
+import PostRouter from '@content/post/PostRouter'
 
-import ActionRouter from './routers/ActionRouter'
-import CommentRouter from './routers/CommentRouter'
+import ActionRouter from '@actions/ActionRouter'
+import CommentRouter from '@actions/comment/CommentRouter'
 
 // use native ES6 promises instead of mongoose promise library
 (<any>mongoose).Promise = global.Promise

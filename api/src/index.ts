@@ -2,7 +2,7 @@ import http from 'http'
 import colors from 'colors'
 
 import Server from './server'
-import API_PORT from './api_port'
+import API_PORT from './config/api_port'
 
 const port = normalizePort(process.env.API_PORT || API_PORT)
 Server.set('port', port)

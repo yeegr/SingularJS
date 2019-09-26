@@ -4,6 +4,7 @@
 **/assets/alipay/*
 **/config/production/*
 
+# this file stores sensitive variables that are not made to the public
 **/common/options/ignored.ts
 
 !**/node_modules/

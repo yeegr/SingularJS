@@ -1,8 +1,8 @@
 import { Router } from 'express'
 
-import PlatformRouter from './PlatformRouter'
-import ProcessRouter from './ProcessRouter'
-import ActivityRouter from './ActivityRouter'
+import PlatformRouter from '@users/platform/PlatformRouter'
+import ActivityRouter from '@workflow/activity/ActivityRouter'
+import ProcessRouter from '@workflow/process/ProcessRouter'
 
 /**
  * AdminRouter class

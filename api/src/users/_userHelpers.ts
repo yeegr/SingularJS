@@ -1,4 +1,4 @@
-import { Document, Schema, NativeError, Model } from 'mongoose'
+import { Schema, NativeError } from 'mongoose'
 import { Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
 import moment from 'moment-timezone'
@@ -6,61 +6,61 @@ import randomstring from 'randomstring'
 
 import { CONFIG, CONST, ERRORS } from '@common'
 
-import IUser from '../users/IUser'
+import IUser from './IUser'
 
 /**
- * Formats MongoDB native error to string
- * 
- * @export 
- * @param {Response} res 
- * @param {NativeError} err 
- * @param {string} [act=''] 
- * @param {string} [db=''] 
- * @returns {void}
- */
-export function formatError(res: Response, err: NativeError, act: string = '', db: string = ''): void {
-  let status: number = 500,
-    message: string = '',
-    code: number | null = err.hasOwnProperty('code') ? parseInt((<any>err).code, 10) : null
-
-  if (code === 11000) {
-    switch (act) {
-      case CONST.USER_ACTIONS.CONSUMER.LIKE:
-      case CONST.USER_ACTIONS.CONSUMER.DISLIKE:
-      case CONST.USER_ACTIONS.CONSUMER.SAVE:
-      case CONST.USER_ACTIONS.CONSUMER.FOLLOW:
-        status = 409
-        message = ERRORS.ACTION.DUPLICATED_ACTION
-      break
-
-      case CONST.USER_ACTIONS.COMMON.CREATE:
-        status = 409
-        message = ERRORS.LOGIN.DUPLICATED_USER_INFORMATION
-      break
-
-      default:
-        message = ERRORS.UNKNOWN
-      break
-    }
-  }
-
-  res.status(status).json({ code, message })
-  console.log(err.message)
-}
-
-/**
- * Returns an increment object for findOneAndUpdate (get)
+ * Returns a signed user
  * 
  * @export
- * @param {Request} req 
- * @param {number} [inc=1] 
- * @returns {*} 
+ * @param {IUser} user 
+ * @return {object}
  */
-export function getIncrement(req: Request, inc: number = 1): any {
-  let $inc: any = {}
-  $inc[req.routeVar.contentCounter!] = inc
-  return {$inc}
+export function getSignedUser(user: IUser): object {
+  let data: any = user.toJSON(),
+    token: string = signToken(user)
+  return (<any>Object).assign({}, data, {token})
 }
+
+/**
+ * Signs a token using user id
+ * 
+ * @export
+ * @param {IUser} user 
+ * @returns {string}
+ */
+export function signToken(user: IUser): string {
+  let now: moment.Moment = moment(),
+    ref: string = user.ref.toUpperCase(),
+    duration: [number, moment.unitOfTime.DurationConstructor] = CONFIG.USER_TOKEN_EXPIRATION[ref]
+  
+  return jwt.sign({
+    iss: CONFIG.PROJECT_TITLE,
+    sub: user._id,
+    ref,
+    iat: now.valueOf(),
+    exp: now.add(duration[0], duration[1]).valueOf()
+  }, CONFIG.JWT_SECRETS[ref])
+}
+
+/**
+ * Returns user id and reference
+ * 
+ * @export
+ * @param {Request} req
+ * @returns {[Schema.Types.ObjectId, string]} 
+ */
+export function getLoginedUser(req: Request): [Schema.Types.ObjectId, string] {
+  const user: IUser = req.user as IUser,
+    id: Schema.Types.ObjectId = user._id,
+    ref: string = user.ref
+
+  return [id, ref]
+}
+
+
+
+
+
 
 /*******************************
  * Generic functions to retrieve 
@@ -342,104 +342,5 @@ export function assembleSearchParams(req: Request, query: any = {}, keyFields: s
     skip: page * count,
     limit: count,
     sort
-  }
-}
-
-/*******************************
- * Miscellaneous functions 
- *******************************/
-
-/**
- * Returns the timestamp from MongoDB ObjectId
- * 
- * @param {string} id
- * @param {boolean} [isUnix=true] 
- * @return {number} 
- */
-export function getTimeFromObjectId(id: string, isUnix: boolean = true): number {
-  return parseInt(id.substring(0, 8), 16) * (isUnix ? 1 : 1000)
-}
-
-
-/**
- * Check if any element in array 1 is also in array 2
- * 
- * @export
- * @param {any[]} arr1 
- * @param {any[]} arr2 
- * @returns {boolean} 
- */
-export function matchAnyInArray(arr1: any[], arr2: any[]): boolean {
-  let found = false
-
-  for (let i = 0, j = arr1.length; i < j; i++) {
-    if (arr2.indexOf(arr1[i]) > -1) {
-      found = true
-      break
-    }
-  }
-
-  return found
-}
-
-/**
- * Check if user has roles that include roles to create content
- * 
- * @export
- * @param {IUser} user 
- * @param {string} contentType 
- * @returns {boolean} 
- */
-export function checkUserCreateRight(user: IUser, contentType: string): boolean {
-  const userRoles = user.roles,
-    creatorRoles = CONST.CONTENT_CREATOR_ROLES[contentType.toUpperCase()]
-
-  return matchAnyInArray(userRoles, creatorRoles)
-}
-
-
-/**
- * Normalizes file name
- * 
- * @export
- * @param {string} fileName 
- * @returns {string} 
- */
-export function normalizeFilename(fileName: string): string {
-  let tmpName = fileName.replace(/\.jpeg$/, '.jpg')
-  return tmpName
-}
-
-/**
- * Renames file with random string
- * 
- * @export
- * @param {string} fileName 
- * @returns {string} 
- */
-export function renameFile(fileName: string): string {
-  let tmpName = normalizeFilename(fileName),
-    ext = tmpName.substring(tmpName.lastIndexOf('.')),
-    str = randomstring.generate({
-      length: CONFIG.UPLOAD_FILENAME_LENGTH,
-      charset: CONFIG.UPLOAD_FILENAME_CHARSET,
-      capitalization: 'lowercase'
-    })
-
-  return str + ext
-}
-
-import bcrypt from 'bcryptjs'
-
-export async function encryptPassword(password: string): Promise<string> {
-  try {
-    // generate a salt then run callback
-    const salt: string = await bcrypt.genSalt(CONFIG.USER_SALT_ROUNDS)
-    // hash the password along with generated salt
-    const hash: string = await bcrypt.hash(password, salt)
-
-    return hash
-  } catch (err) {
-    throw err
   }
 }

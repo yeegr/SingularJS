@@ -1,4 +1,4 @@
-import LogModel, { ILog } from '../models/LogModel'
+import LogModel, { ILog } from '../system/log/LogModel'
 
 class Logger {
   constructor(obj: any) {
