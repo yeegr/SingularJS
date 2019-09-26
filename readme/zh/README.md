@@ -292,7 +292,7 @@ Amazon [AWS](https://aws.amazon.com/cn/ "Amazon Web Services")和Microsoft [Azur
 
 实际上，在阿里云（万网）域名控制台解析域名时，利用其《新手设置引导》功能，可以直接选择的腾讯企业邮箱作为解析目标。
 
-![阿里云域名解析-MX](./img/aliyun_domain_mx.png "阿里云域名解析-MX")
+![阿里云域名解析-MX](./img/aliyun/aliyun_domain_mx.png "阿里云域名解析-MX")
 
 ###### 常用邮箱地址
 
@@ -456,7 +456,10 @@ $ git diff
 
 了解更多Teambition的功能，可以[点击这里](https://www.teambition.com/zh/tour "Teambition功能展示")
 
-###### Microsoft Planner
+###### Microsoft Planner/Teams
+
+对于已有微软Office 365商业版的团队，不妨尝试一下[Planner](https://products.office.com/zh-cn/business/task-management-software)和[Teams](https://products.office.com/zh-cn/microsoft-teams/)，微软的项目管理和团队通讯服务。
+
 
 #### 第三方服务
 
@@ -464,7 +467,7 @@ $ git diff
 
 [微信公众平台](https://mp.weixin.qq.com "微信公众平台")目前提供三种不同的公众号，服务号、订阅号和企业号，点击[这里](https://kf.qq.com/faq/120911VrYVrA130805byM32u.html)了解其中的区别。
 
-![微信公众号功能区别](http://file.service.qq.com/user-files/uploads/201612/cc31a8aa962694ea6a2b2ee08bdc4632.jpg "微信公众号功能区别")
+![微信公众号功能区别](./img/tencent/wechat_public_account_comparison.jpg "微信公众号功能区别")
 
 公众号注册流程可参见[微信公众平台注册流程指引](https://kf.qq.com/product/weixinmp.html#hid=87 "微信公众平台注册流程指引")。
 
@@ -569,7 +572,7 @@ SingularJS将会开发、使用以下几个容器
 
 | 名称 | 说明 | 网址 | 类型 | 功能 |
 | :- | :- | :- | :- | :- |
-| db | 数据库 | MongoDB | 负责保存服务和用户数据 |
+| db | 数据库 | ~ | MongoDB | 负责保存服务和用户数据 |
 | api | API | api.domain.com | Node.js | 负责前后端之间的主要通讯传输 |
 | app | 消费者App | app.domain.com | Node.js | 负责host消费者的web app |
 | pro | 服务商App | pro.domain.com | Node.js | 负责host服务商的web app |
@@ -589,7 +592,7 @@ SingularJS将会开发、使用以下几个容器
 
 ![Postman](./img/postman.png "Postman")
 
-##### <span id="vsc">文本编辑器</span>
+##### 文本编辑器
 
 当下编程文本编辑器多的数不胜数，或许你已经有自己习惯的一个，或许没有。没关系，看看我的选择或许会给你一些启发，或许没有，你只需要知道，一个好的编辑器会加快你的开发速度、提升你的开发体验，但是只要你愿意，Vim😵或Notepad😱照样能用来开发，不大可能，但是可以。
 
@@ -605,7 +608,7 @@ SingularJS将会开发、使用以下几个容器
 
 ###### Atom
 
-![Atom](https://github-atom-io-herokuapp-com.global.ssl.fastly.net/assets/screenshot-main@2x-ca61af7db484f8df39fc8dea27ce1752.png "Atom")
+![Atom](https://upload.wikimedia.org/wikipedia/commons/7/7c/Screenshot_of_Atom_editor.png "Atom")
 
 如果你有来自前端开发的背景，你也可以从Adobe的[Brackets](http://brackets.io/ "Brackets")入手。Brackets和Visual Studio Code、Atom也很相似，只是更着重于前端开发，有着不错的设备预览和Photoshop整合，但对Node.js等的后端支持就比较弱了。
 
@@ -655,9 +658,9 @@ $ brew link node@10.16.3
 * `> choco upgrade nodejs@10.16.3`
 
 
-#### [npm](https://npmjs.com "npm")
+#### npm
 
-npm（**N**ode **P**ackage **M**anager）是Node.js自带的JavaScript包管理器，号称是世界最大的代码注册录。
+[npm](https://npmjs.com "npm")（**N**ode **P**ackage **M**anager）是Node.js自带的JavaScript包管理器，号称是世界最大的代码注册录。
 
 ```sh
 brew update
@@ -686,22 +689,22 @@ npm i -g npm
 * [typings](https://github.com/typings/typings "Typings")
 * [webpack-cli](https://webpack.js.org/ "webpack")
 
-##### [Yarn](https://yarnpkg.com/zh-Hans/ "Yarn")
+##### Yarn
 
-Yarn是一个由Facebook、Exponent、Google和Tilde共同开发的JavaScript包管理器，在2016年10月开源代码，2017年9月正式发布1.0版，还是个小鲜肉。相对于npm，Yarn主打稳定和安全，默认自动锁包，并能平行安装包。
+[Yarn](https://yarnpkg.com/zh-Hans/ "Yarn")是一个由Facebook、Exponent、Google和Tilde共同开发的JavaScript包管理器，在2016年10月开源代码，2017年9月正式发布1.0版，还是个小鲜肉。相对于npm，Yarn主打稳定和安全，默认自动锁包，并能平行安装包。
 
 * [Yarn vs npm: Everything You Need to Know](https://www.sitepoint.com/yarn-vs-npm/)
 * [Yarn vs npm - The State of Node.js Package Managers](https://blog.risingstack.com/yarn-vs-npm-node-js-package-managers/)
 
-#### [TypeScript](https://www.typescriptlang.org/ "TypeScript")
+#### TypeScript
 
-2013年刚开始接触TypeScript，我就马上中招了。TypeScript最主要的功能是给JavaScript加上了静态类型（Static Types），而和更早的CoffeeScript不同的是，TypeScript是JavaScript的一个超集，代码兼容JavaScript。静态类型给动态、弱类的JavaScript划了一道圈，使大部分的bugs在编辑（Coding）和编译（Transcompiling）阶段就能被发现。
+2013年刚开始接触[TypeScript](https://www.typescriptlang.org/ "TypeScript")，我就立马中招了。TypeScript最主要的功能是给JavaScript加上了静态类型（Static Types），而和更早的CoffeeScript不同的是，TypeScript是JavaScript的一个超集，代码兼容JavaScript。静态类型给动态、弱类的JavaScript划了一道圈，使大部分的bugs在编辑（Coding）和编译（Transcompiling）阶段就能被发现。
 
-TypeScript终于使得JavaScript成为一个中、大型项目可选的语言，[Slack](https://slack.com/)、[Asana](https://asana.com/)等企业App已经转换到TypeScript上，[Angular 2+](https://angular.io)、[Nest.js](https://nextjs.org/)和[RxJS](https://rxjs-dev.firebaseapp.com/)等JavaScript框架，[Ant Design](https://ant.design/)、[material-ui](https://material-ui.com/)等设计库也都基于TypeScript。
+TypeScript终于使得JavaScript成为一个中、大型项目可选的语言，[Slack](https://slack.com/)、[Asana](https://asana.com/)等企业App已经z转移到TypeScript上，[Angular 2+](https://angular.io)、[Nest.js](https://nextjs.org/)和[RxJS](https://rxjs-dev.firebaseapp.com/)等JavaScript框架，[Ant Design](https://ant.design/)、[material-ui](https://material-ui.com/)等设计库也都基于TypeScript。
 
 ##### TypeScript vs. Flow
 
-99%的SingularJS代码，或者说，100%的JavaScript代码，采用了TypeScript。既然SingularJS大量采用了React，为什么不使用同是Facebook开发的Flow做类型强制，而要采用来自Microsoft，被广泛利用在Angular和Native Script上的TypeScript呢？一是TypeScript年头比较久了，相对Flow来说，TypeScript的开发环境更为成熟、资源更为丰富，而我自己也更熟悉。二是因为有API和upload两个后端服务，采用TypeScript更适合SingularJS这种复杂的项目。
+99%的SingularJS代码，或者说，100%的JavaScript代码，采用了TypeScript。既然SingularJS大量采用了React，为什么不使用同是Facebook开发的Flow做类型强制，而要采用来自Microsoft，被广泛利用在Angular和Native Script上的TypeScript呢？一是TypeScript年头比较久了，相对Flow来说，TypeScript的开发环境更为成熟、资源更为丰富，而我自己也更熟悉。二是因为有API和upload两个后端服务，采用TypeScript更适合SingularJS这种相对复杂的项目。
 
 更详细的比较可以参考[TypeScript vs Flow](https://github.com/niieani/typescript-vs-flowtype "TypeScript vs Flow")
 
