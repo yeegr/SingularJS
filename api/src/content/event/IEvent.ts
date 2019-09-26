@@ -2,7 +2,7 @@ import { Schema } from 'mongoose'
 import IContent from '../IContent'
 
 import IAgenda from './agenda/IAgenda'
-import ISubset from './subset/ISubset'
+import IBatch from './batch/IBatch'
 import IMedia from '../_shared/media/IMedia'
 
 export default interface IEvent extends IContent {
@@ -34,5 +34,5 @@ export default interface IEvent extends IContent {
     email?: string
   }]
   schedule: IAgenda[]
-  subsets: ISubset[]
+  batches: IBatch[]
 }

@@ -6,9 +6,9 @@ import { CONST } from '@common'
 import Attendee from '../attendee/AttendeeModel'
 import Point from '@content/_shared/point/PointModel'
 
-import ISubset from './ISubset'
+import IBatch from './IBatch'
 
-let SubsetSchema: Schema = new Schema({
+let BatchSchema: Schema = new Schema({
   // title
   title: {
     type: String
@@ -39,8 +39,8 @@ let SubsetSchema: Schema = new Schema({
   // status
   status: {
     type: String,
-    enum: CONST.EVENT_SUBSET_STATUSES_ENUM,
-    default: CONST.STATUSES.EVENT_SUBSET.ACCEPTING
+    enum: CONST.EVENT_BATCH_STATUSES_ENUM,
+    default: CONST.STATUSES.EVENT_BATCH.ACCEPTING
   },
   // attendees | participants
   attendees: [Attendee]
@@ -48,4 +48,4 @@ let SubsetSchema: Schema = new Schema({
   _id: false
 })
 
-export default SubsetSchema
+export default BatchSchema

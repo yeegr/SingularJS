@@ -10,7 +10,7 @@ import Agenda from './agenda/AgendaModel'
 import Attendee from './attendee/AttendeeModel'
 import Media from '../_shared/media/MediaModel'
 import Point from '../_shared/point/PointModel'
-import Subset from './subset/SubsetModel'
+import Batch from './batch/BatchModel'
 
 import IEvent from '@content/event/IEvent'
 
@@ -159,8 +159,8 @@ let EventSchema: Schema = new Schema({
   }],
   // schedule
   schedule: [Agenda],
-  // repeating groups
-  subsets: [Subset],
+  // batches/subsets
+  batches: [Batch],
   // current status
   status: {
     type: String,
@@ -280,7 +280,7 @@ EventSchema.virtual('averageRating').get(function() {
 
 EventSchema.pre('save', function(next: Function): void {
   // Set last modified time when values of only following props are changed
-  ModelHelper.setUpdateTime((this as IEvent), ['slug', 'title', 'content', 'excerpt', 'hero', 'tags', 'publish', 'isPublic', 'requireApproval', 'misc', 'destination', 'gallery', 'notes', 'gears', 'city', 'country', 'expenses', 'contacts', 'schedule', 'subsets']);
+  ModelHelper.setUpdateTime((this as IEvent), ['slug', 'title', 'content', 'excerpt', 'hero', 'tags', 'publish', 'isPublic', 'requireApproval', 'misc', 'destination', 'gallery', 'notes', 'gears', 'city', 'country', 'expenses', 'contacts', 'schedule', 'batches']);
   (this as IEvent).wasNew = this.isNew
 
   next()

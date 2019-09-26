@@ -553,7 +553,7 @@ interface IStatuses {
     SUSPENDED: string
     EXPIRED: string
   }
-  EVENT_SUBSET: {
+  EVENT_BATCH: {
     ACCEPTING: string
     FILLED: string
     PASTDUE: string
@@ -629,7 +629,7 @@ export const STATUSES: IStatuses = {
     SUSPENDED: 'suspended',
     EXPIRED: 'expired'
   },
-  EVENT_SUBSET: {
+  EVENT_BATCH: {
     ACCEPTING: 'accepting',
     FILLED: 'filled',
     PASTDUE: 'pastdue',
@@ -697,10 +697,10 @@ export const POST_STATUSES_ENUM = obj2enum(STATUSES.POST)
  */
 export const EVENT_STATUSES_ENUM = obj2enum(STATUSES.EVENT)
 /**
- * @constant EVENT_SUBSET_STATUSES_ENUM
+ * @constant EVENT_BATCH_STATUSES_ENUM
  * @type {string[]}
  */
-export const EVENT_SUBSET_STATUSES_ENUM = obj2enum(STATUSES.EVENT_SUBSET)
+export const EVENT_BATCH_STATUSES_ENUM = obj2enum(STATUSES.EVENT_BATCH)
 /**
  * @constant SIGNUP_STATUSES_ENUM
  * @type {string[]}

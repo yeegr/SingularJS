@@ -19,8 +19,8 @@ let SignupSchema: Schema = new Schema({
     ref: 'Event',
     required: true
   },
-  // subset index number
-  subset: {
+  // batch/subset index number
+  batch: {
     type: Number,
     required: true,
     default: 0

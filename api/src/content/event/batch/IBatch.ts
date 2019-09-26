@@ -2,7 +2,7 @@ import { Document } from 'mongoose'
 
 import IPoint from '@content/_shared/point/IPoint'
 
-export default interface ISubset extends Document {
+export default interface IBatch extends Document {
   title?: string
   misc?: string
   startDate: number
