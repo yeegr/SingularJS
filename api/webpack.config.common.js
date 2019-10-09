@@ -4,12 +4,12 @@ const webpack = require('webpack'),
 module.exports = {
   target: 'node',
   entry: './src/index.ts',
+  output: {
+    filename: 'bundle.js'
+  },
   resolve: {
     extensions: ['.ts', '.json'],
     plugins: [new TsconfigPathsPlugin()]
-  },
-  output: {
-    filename: 'bundle.js'
   },
   module: {
     rules: [

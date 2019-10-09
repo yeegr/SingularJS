@@ -138,6 +138,14 @@ export const TOTP_TYPES: ITotpTypes = {
   QR: 'qr'
 }
 
+export namespace Status {
+  enum totp {
+    email = 'email',
+    sms = 'sms',
+    qr = 'qr'
+  }
+}
+
 /**
  * TOTP types
  * in string array format

@@ -227,14 +227,14 @@ class Server {
     // // validation router
     // this.app.use(root + 'validates', ValidateRouter)
 
-    // // action router
-    // this.app.use(root + 'actions', ActionRouter)
+    // action router
+    this.app.use(root + 'actions', ActionRouter)
 
-    // // comment router
-    // this.app.use(root + 'comments', CommentRouter)
+    // comment router
+    this.app.use(root + 'comments', CommentRouter)
 
-    // // platform administrator router
-    // this.app.use(root + 'admin', AdminRouter)
+    // platform administrator router
+    this.app.use(root + 'admin', AdminRouter)
   }
 }
 

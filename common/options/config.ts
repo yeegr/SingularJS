@@ -1,18 +1,44 @@
 import * as CONST from './constants'
 
+// sensitive information not sync to git service
 export * from './ignored'
 
 /** 
- * export * from './ignored.ts'
+ * content of './ignored.ts'
  * 
 export const ALIYUN_SMS_ACCESS_ID: string = ''
 export const ALIYUN_SMS_ACCESS_KEY: string = ''
 export const ALIYUN_SMS_TEMPLATES: any = {
   LOGIN_SIGNUP: '',
   RESET_PASSWORD: '',
-  UPDATE_MOBILE_NUMBER: ''  
+  UPDATE_MOBILE_NUMBER: ''
+}
+
+interface INodeMailer_Server_Options {
+  [key: string]: any
+}
+
+export const NODEMAILER_SERVER_OPTIONS = {
+  NETEASE: {
+    service: '163',
+    host: 'smtp.163.com',
+    port: 465,
+    secure: true,
+    greetingTimeout: 100000,
+    auth: {
+      user: 'username@163.com',
+      pass: 'auth_code'
+    }
+  }
 }
 */
+
+
+const DEFAULT_EMAIL_SERVICE: string = 'NETEASE'
+
+// retrieve and set default email server configuration from './ignored'
+import { NODEMAILER_SERVER_OPTIONS } from './ignored'
+export const DEFAULT_EMAIL_SERVER_OPTIONS = NODEMAILER_SERVER_OPTIONS[DEFAULT_EMAIL_SERVICE]
 
 export const DB_CONNECTION_RETRIES: number = 10
 export const DB_CONNECTION_INTERVAL: number = 500  // milliseconds
@@ -43,18 +69,6 @@ export const TOTP_CODE_CHARSET: string = 'numeric'
 
 export const DEFAULT_EVENT_MAX_ATTENDEE: number = 200
 export const DEFAULT_EVENT_MIN_ATTENDEE: number = 20
-
-export const DEFAULT_EMAIL_SERVICE = {
-  service: '163',
-  host: 'smtp.163.com',
-  port: 465,
-  secure: true,
-  greetingTimeout: 100000,
-  auth: {
-    user: 'yeegr@hotmail.com',
-    pass: 'Ss0ucSsx7622'
-  }
-}
 
 /**
  * Default TOTP Expiration Time

@@ -1,7 +1,7 @@
 import { NativeError, Model } from 'mongoose'
 import { Request, Response } from 'express'
 
-import { CONST } from '@common'
+import { CONST, UTIL } from '@common'
 
 import IUser from '@users/IUser'
 import IContent from '@content/IContent'
@@ -72,7 +72,7 @@ export function getModelFromAction(action: string): any {
  * @returns {Model<any> | null}
  */
 export function getModelFromName(key: string): Model<any> {
-  let modelName = this.capitalizeFirstLetter(key),
+  let modelName = UTIL.capitalizeFirstLetter(key),
     dataModel: Model<any> = Model
 
   switch (modelName) {
@@ -276,7 +276,7 @@ export function setUpdateTime(doc: IUser|IContent, keys: string[]): void {
   })
 
   if (toUpdate) {
-    doc.updated = this.getTimestamp()
+    doc.updated = UTIL.getTimestamp()
   }
 }
 

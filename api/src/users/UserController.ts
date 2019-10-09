@@ -1069,7 +1069,7 @@ export function createRoutes(router: Router, setRouteVar: RequestHandler, auth: 
   // update routes via TOTP
   router.patch('/self/totp', setRouteVar, auth, verifyTotp)
 
-  // login routes via username/passport
+  // login routes via username/password
   router.post('/login/local', setRouteVar, local, login)
 
   // JWT login routes

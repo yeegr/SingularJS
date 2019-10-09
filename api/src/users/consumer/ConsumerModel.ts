@@ -405,7 +405,9 @@ ConsumerSchema.methods.comparePassword = function(candidatePassword: string, cal
 ConsumerSchema.pre('save', function(next: Function): void {
   let user: IConsumer = this as IConsumer
 
-  if (user.isModified('password')) {
+  if (!user.isModified('password')) return next()
+
+  if (user.password) {
     // generate a salt then run callback
     bcrypt.genSalt(CONFIG.USER_SALT_ROUNDS, function(err: Error, salt: string): void {
       if (err) return next(err)
@@ -417,36 +419,16 @@ ConsumerSchema.pre('save', function(next: Function): void {
         // override the cleartext password with the hashed one
         user.password = hash
         user.updated = UTIL.getTimestamp()
+
+        if (user.isNew) {
+          user.wasNew = user.isNew
+        }
+
         next()
       })
     })
   }
-  
-  if (user.isNew) {
-    user.wasNew = user.isNew
-  }
-
-  next()
 })
-
-
-// import { MISC } from '@modules'
-
-// ConsumerSchema.pre('save', async function(next: Function) {
-//   let user: IConsumer = this as IConsumer
-
-//   if (user.isModified('password')) {
-//     user.password = await MISC.encryptPassword(user.password)
-//     user.updated = UTIL.getTimestamp()
-//     next()
-//   }
-  
-//   if (user.isNew) {
-//     user.wasNew = user.isNew
-//   }
-
-//   next()
-// })
 
 ConsumerSchema.pre('findOneAndUpdate', function(next: Function): void {
   ModelHelper.setUpdateTime((this as any), ['username', 'handle', 'name', 'gender', 'intro', 'mobile', 'email', 'pid', 'avatar', 'background', 'locale', 'city', 'country'])

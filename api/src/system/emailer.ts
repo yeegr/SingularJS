@@ -7,7 +7,7 @@ class Emailer {
   mailOptions: SendMailOptions
   transporter: Transporter
 
-  constructor(mailOptions: SendMailOptions, serverOptions: any = CONFIG.DEFAULT_EMAIL_SERVICE) {
+  constructor(mailOptions: SendMailOptions, serverOptions: any = CONFIG.DEFAULT_EMAIL_SERVER_OPTIONS) {
     if (!mailOptions.hasOwnProperty('from')) {
       mailOptions.from = serverOptions.auth.user
     }
@@ -22,8 +22,8 @@ class Emailer {
         if (err) {
           reject(err)
         }
-  
-        if (info.response.indexOf('250') < 0) {
+
+        if (info && info.response.indexOf('250') < 0) {
           reject(err)
         }
 

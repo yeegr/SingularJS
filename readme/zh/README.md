@@ -242,9 +242,13 @@ SingularJS对开发者的要求不高，主要包括基础的OS操作，如怎�
 
 ##### 云服务器
 
-Amazon [AWS](https://aws.amazon.com/cn/ "Amazon Web Services")和Microsoft [Azure](https://www.azure.cn/ "Microsoft Azure")是当前全球最大的两个云服务平台，以IaaS<sup id="r7">[[7]](#f7)</sup>为主，直接提供虚拟化的服务环境如防火墙、数据库、储存、计算等，主要优势是进一步降低维护成本，主要缺点是开发成本提升，开发者需要熟悉服务平台的开发方案。
+Amazon [AWS](https://aws.amazon.com/cn/ "Amazon Web Services")和Microsoft [Azure](https://www.azure.cn/ "Microsoft Azure")是当前全球最大的两个云服务平台，拥有混合的IaaS<sup id="r7">[[7]](#f7)</sup>和PaaS<sup id="r8">[[8]](#f8)</sup>的服务，可以提供虚拟化的服务环境如防火墙、数据库、储存、计算等，主要优势是进一步降低维护成本，主要缺点是开发成本提升，开发者需要熟悉服务平台的开发方案。
 
-相较而言，国内的三大云平台[百度云](https://cloud.baidu.com/ "百度云")、[阿里云](https://aliyun.com/ "阿里云")、[腾讯云](https://www.qcloud.com/ "腾讯云")则提供的是PaaS<sup id="r8">[[8]](#f8)</sup>，直接提供虚拟的服务器，主要优点是开发更直观，缺点则是类似负载均衡、硬件拓展等大量的运维工作仍需要自己管理。
+相较而言，国内的三大云平台[百度云](https://cloud.baidu.com/ "百度云")、[阿里云](https://aliyun.com/ "阿里云")、[腾讯云](https://www.qcloud.com/ "腾讯云")则提供的是PaaS，直接提供虚拟的服务器，主要优点是开发更直观，缺点则是类似负载均衡、硬件拓展等大量的运维工作仍需要自己管理。
+
+7. <span id="f7">[^](#r7)<span> *Infrastruction as a Service*，[基础设施即服务](https://baike.baidu.com/item/IaaS)，简而言之，云端控制的底层基础设施，包括处理器、内存、存储、网络、以及路由器、防火墙和负载均衡等。
+
+8. <span id="f8">[^](#r8)<span> *Platform as a Service*，[平台即服务](https://baike.baidu.com/item/PAAS平台)，或者说，云端系统环境服务。
 
 我们将首先考虑PaaS，不仅能熟悉部分Linux的运维操作，更重要的是，PaaS是符合多数大、中项目的需求。在SingularJS逐渐成熟后，在适当的时候，我们将加入AWS和Azure的移植方案。
 
@@ -270,6 +274,8 @@ Amazon [AWS](https://aws.amazon.com/cn/ "Amazon Web Services")和Microsoft [Azur
 ##### 邮箱
 
 有了域名和服务器，下一步就是建立一个企业邮箱了。我建议你选择一个企业邮箱云服务（SaaS<sup id="r9">[[9]](#f9)</sup>），虽然你也可以自建一个邮箱服务器，硬件、软件和维护成本实在是得不偿失。
+
+9. <span id="f9">[^](#r9)<span> *Software as a Service*，软件云服务，或者说，云端软件服务。
 
 ###### 云邮箱
 
@@ -444,7 +450,7 @@ $ git diff
 
 有效的项目管理能协助团队掌控开发节奏，保持开发进度，而和市场、销售，乃至投资人等不间断的沟通，则可以保证产品不至于拐入死角。即便是一个人的独自开发，使用项目管理的方式方法也有助于培养个人的开发纪律，维持开发动力。然而项目管理的内容相当广泛，我不想在这里花更多的篇幅探讨，这里只针对全栈开发时可能用到的项目管理工具发表一下个人的意见。
 
-最注明的项目管理工具可能就是微软的[Project](https://products.office.com/zh-cn/project "Microsoft Project")，这是一个传统的Server-Client结构的软件，更适合有规模公司做项目规划，对今天互联网中小开发团队更灵活的需求显得臃肿庞大。目前国际上最火的项目管理服务是[Asana](https://asana.com/ "Asana")，对15人（包括）内的团队免费开放。另一个是出名的软件则是[JIRA](https://www.atlassian.com/software/jira/ "JIRA")，10人（包括）以内的团队自带服务器只需要一次性支付10美元就可以下载安装。相对来说，Asana是一个更通用的项目管理系统，而JIRA出身于软件缺陷跟踪系统，所以对软件开发的支持要强于Asana。
+最著名的项目管理工具可能就是微软的[Project](https://products.office.com/zh-cn/project "Microsoft Project")，这是一个传统的Server-Client结构的软件，更适合有规模公司做项目规划，对今天互联网中小开发团队更灵活的需求显得臃肿庞大。目前国际上最火的项目管理服务是[Asana](https://asana.com/ "Asana")，对15人（包括）内的团队免费开放。另一个是出名的软件则是[JIRA](https://www.atlassian.com/software/jira/ "JIRA")，10人（包括）以内的团队自带服务器只需要一次性支付10美元就可以下载安装。相对来说，Asana是一个更通用的项目管理系统，而JIRA出身于软件缺陷跟踪系统，所以对软件开发的支持要强于Asana。
 
 ###### Teambition
 
@@ -588,7 +594,7 @@ SingularJS将会开发、使用以下几个容器
 
 ##### Postman
 
-[Postman](https://www.getpostman.com/ "Postman")专为开发API而生，在API开发的过程中我感觉是不可或缺的。简而言之，Postman就是个REST GUI，专门用于测试API端点。
+[Postman](https://www.getpostman.com/ "Postman")专为开发API而生，在API开发的过程中我感觉是不可或缺的。简而言之，Postman就是个API GUI，专门用于测试API端点。
 
 ![Postman](./img/postman.png "Postman")
 
@@ -600,21 +606,40 @@ SingularJS将会开发、使用以下几个容器
 
 第三个要求就把[Sublime Text](https://www.sublimetext.com/ "Sublime Text")和[WebStorm](https://www.jetbrains.com/webstorm/ "WebStorm")踢出了局，虽然这两个老牌JavaScript集成开发环境（IDE）仍有不少忠实粉丝，但是其US$70的价格或US$129的年费，相较于免费的选项来说，性价比可以说是空值了😉。
 
-于是，我的选项降至Github的[Atom](https://atom.io/ "Atom")和微软的[Visual Studio Code](https://code.visualstudio.com/ "Visual Studio Code")。我认为实际上，这两款IDE之间的相似处远远超过他们间的不同。如果说Atom有什么优于Visual Studio Code的地方，那可能是其Git整合，毕竟，Atom是Github开发的。如果说Visual Studio Code有什么优于Atom的地方，那就是速度，文本搜索和打开大的文件往往会噎着Atom，而Visual Studio Code则没问题。而且，Visual Studio Code也已整合了Git，虽然功能没有Atom全面，但是对我来说刚刚好——绝大部分时间你用不到那些功能。所以，对我来说，Visual Studio Code胜出。只是我仍要声明，选择Atom你也不会失望。
-
-###### Visual Studio Code
+于是，我的选项降至Github的<img src="./img/editors/atom_icon.png" style="width: auto; height: 1.2em; vertical-align: middle; margin-right: 0.1em;">[Atom](https://atom.io/ "Atom")和微软的<img src="./img/editors/vscode_icon.png" style="width: auto; height: 1.2em; vertical-align: middle; margin-right: 0.1em;">[Visual Studio Code](https://code.visualstudio.com/ "Visual Studio Code")。我认为实际上，这两款IDE之间的相似处远远超过他们间的不同。如果说Atom有什么优于Visual Studio Code的地方，那可能是其Git整合，毕竟，Atom是Github开发的。如果说Visual Studio Code有什么优于Atom的地方，那就是速度，文本搜索和打开大的文件往往会噎着Atom，而Visual Studio Code则没问题。而且，Visual Studio Code也已整合了Git，虽然功能没有Atom全面，但是对我来说刚刚好——绝大部分时间你用不到那些功能。所以，对我来说，Visual Studio Code胜出。只是我仍要声明，选择Atom你也不会失望。
 
 ![Visual Studio Code](https://code.visualstudio.com/home/home-screenshot-mac-2x.png "Visual Studio Code")
-
-###### Atom
+_Visual Studio Code_
 
 ![Atom](https://upload.wikimedia.org/wikipedia/commons/7/7c/Screenshot_of_Atom_editor.png "Atom")
+_Atom_
 
-如果你有来自前端开发的背景，你也可以从Adobe的[Brackets](http://brackets.io/ "Brackets")入手。Brackets和Visual Studio Code、Atom也很相似，只是更着重于前端开发，有着不错的设备预览和Photoshop整合，但对Node.js等的后端支持就比较弱了。
+###### 其他
+如果你有来自前端开发的背景，你也可以从Adobe的<img src="./img/editors/brackets_icon.png" style="width: auto; height: 1.2em; vertical-align: middle; margin-right: 0.1em;">[Brackets](http://brackets.io/ "Brackets")入手。Brackets和Visual Studio Code、Atom也很相似，只是更着重于前端开发，有着不错的设备预览和Photoshop整合，但对Node.js等的后端支持就比较弱了。
 
-最后我还要提一提[TextMate](http://macromates.com/ "TextMate")和[Notepad++](https://notepad-plus-plus.org/ "Notepad\++")，虽然这两款免费软件并不跨平台（分别是macOS和Windows），也不是更全功能的IDE，但是我仍旧会安装，作为快速浏览、编辑代码的小工具。
+![Brackets](./img/editors/brackets_screenshot.png)
 
-关于Visual Studio Code的使用，我会另开博客详细介绍。
+最后我还要提一提<img src="./img/editors/textmate2_icon.png" style="width: auto; height: 1.2em; vertical-align: middle; margin-right: 0.1em;">[TextMate](http://macromates.com/ "TextMate")和<img src="./img/editors/notepad++_icon.png" style="width: auto; height: 1.2em; vertical-align: middle; margin-right: 0.1em;">[Notepad++](https://notepad-plus-plus.org/ "Notepad\++")，虽然这两款免费软件并不跨平台（分别是macOS和Windows），也不是更全功能的IDE，但是我仍旧会安装，作为快速浏览、编辑代码的小工具。
+
+###### 有用的VSCode插件
+
+关于Visual Studio Code的使用，我也许会另开博客详细介绍，但是先介绍几个有用的插件。
+
+Docker
+
+GitLens
+
+npm
+
+TSLint
+
+Quokka
+
+Jest
+
+Prettier
+
+Bracket Pair Colorizer 2
 
 ### Setup
 
@@ -700,7 +725,7 @@ npm i -g npm
 
 2013年刚开始接触[TypeScript](https://www.typescriptlang.org/ "TypeScript")，我就立马中招了。TypeScript最主要的功能是给JavaScript加上了静态类型（Static Types），而和更早的CoffeeScript不同的是，TypeScript是JavaScript的一个超集，代码兼容JavaScript。静态类型给动态、弱类的JavaScript划了一道圈，使大部分的bugs在编辑（Coding）和编译（Transcompiling）阶段就能被发现。
 
-TypeScript终于使得JavaScript成为一个中、大型项目可选的语言，[Slack](https://slack.com/)、[Asana](https://asana.com/)等企业App已经z转移到TypeScript上，[Angular 2+](https://angular.io)、[Nest.js](https://nextjs.org/)和[RxJS](https://rxjs-dev.firebaseapp.com/)等JavaScript框架，[Ant Design](https://ant.design/)、[material-ui](https://material-ui.com/)等设计库也都基于TypeScript。
+TypeScript使得JavaScript终于成为一个中、大型项目可选的语言，[Slack](https://slack.com/)、[Asana](https://asana.com/)等企业App已经z转移到TypeScript上，[Angular 2+](https://angular.io)、[Nest.js](https://nextjs.org/)和[RxJS](https://rxjs-dev.firebaseapp.com/)等JavaScript框架，[Ant Design](https://ant.design/)、[material-ui](https://material-ui.com/)等设计库也都基于TypeScript。
 
 ##### TypeScript vs. Flow
 
@@ -715,21 +740,51 @@ npm i -g typescript
 npm i --save-dev typescript ts-loader tsconfig-paths-webpack-plugin
 ```
 
-##### TypeScript基础知识
-
-###### Type
-
-###### Interface
-
-###### Decorator
-
 #### Webpack
 
+有很长一段时间，我为JavaScipt不像Java等语言需要编译才能在浏览器里运行而偷笑。但随着项目变得越来越复杂，需要调用的包（package）和需要优化的代码（JS、CSS、HTML等等）也变得越来越多。尤其是前端，需要更小的文件提高下载速度，更少的文件降低访问次数，还需要在各种装备上支持不同内核的浏览器，这时，各种自动化工具，如<img src="./img/editors/grunt_logo.png" style="width: auto; height: 1.2em; vertical-align: middle; margin-right: 0.1em;">[Grunt](https://gruntjs.com/)、<img src="./img/editors/gulp_logo.png" style="width: auto; height: 1.2em; vertical-align: middle; margin-right: 0.1em;">[Gulp](https://gulpjs.com/)和<img src="./img/editors/webpack_logo.png" style="width: auto; height: 1.2em; vertical-align: middle; margin-right: 0.1em;">[Webpack](https://webpack.js.org/)像雨后春笋般冒了出来。
 
+严格地说，Grunt和Gulp属于任务流工具（Tast Runner），而Webpack则是一个模块打包工具（Bundler），但经过配置，都可以达到相近甚至相同的结果。Webpack虽然更新一些，但上手门槛也更高一些，配置代码也更复杂（难懂）一些，但是相对Grunt和Gulp而言，流程更加简化一些，代码更少一些，纠错（debug）也更容易一些，是当前大部分开发者的首选<sup id="r13">[[13]](#f13)</sup>。
+
+13. <span id="f13">[^](#r13)<span> ["如何看待Grunt、Gulp和Webpack"](https://www.jianshu.com/p/fe96491ccf56 "如何看待Grunt、Gulp和Webpack") _简书_ (2018-10-27)
+
+##### 安装Webpack
+
+```sh
+npm i -g webpack
+npm i --save-dev webpack webpack-cli webpack-merge
+```
 
 #### Express
 
-##### Restify / Loopbback
+从2010年底发布以来，[Express](https://expressjs.com/ "Express")一直是部署最广泛的Node.js框架。SingularJS最早的规划之一，就是尽量不使用冷门的技术，让更多的开发者能更快上手。和较新的，专攻REST API的框架相比，Express未必是运行效率最高的，也未必是开发最简单的，但却肯定更为灵活，参考资料是最完备的，教材是最丰富的，社区也是最活跃的。
+
+##### 安装Express
+
+```sh
+npm i -S express
+npm i -D @types/node @types/express
+```
+
+##### Nest.js / Restify / Fastify / LoopBack
+
+SingularJS的主[API](https://baike.baidu.com/item/api/10154)（**A**pplication **P**rogramming **I**nterface，即应用程序编程接口）是使用[JSON](https://baike.baidu.com/item/JSON/2462549)（**J**ava**S**cript **O**bject **N**otation，即JS对象简谱）格式的[REST](https://baike.baidu.com/item/rest/6330506)（Representational state transfer或者**REST**ful web services，即表述性状态传递）服务。
+
+简单地说，SingularJS的服务器和客户端通讯的方式，是通过标准的HTTP请求（如Get、Post、Put、Patch、Delete等），传递JSON格式的文本信息。目前Node平台下有多个框架专攻这种服务，其中包括[NestJS](https://nestjs.com/)、[Restify](http://restify.com/)、[Fastify](https://www.fastify.io/)和[LoopBack](https://loopback.io/)。
+
+[npmtrends.com](https://www.npmtrends.com/)上可以发现，最近一年中，NestJS和Fastify的下载量是不断攀升的，而Restify和LoopBack则趋于平稳。
+
+![API框架对比](./img/api_frameworks_trends.png)
+
+最新登台的（2017年2月），基于TypeScript的NestJS目前攀升最快，已经和最老牌的Restify基本持平。
+
+![API框架对比](./img/node_frameworks_trends.png)
+
+但这些框架的下载量一旦和Express相比，简直是云泥之别，不能相提并论。所以现在仍继续使用Express，在NestJS或其他API框架有了足够的市场后，再考虑是否需要移植。
+
+#### GraphQL
+
+
 
 #### Jest
 
