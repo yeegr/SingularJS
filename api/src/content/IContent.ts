@@ -38,7 +38,7 @@ export default interface IContent extends Document {
   follows: Schema.Types.ObjectId[]
 
   // configuration
-  commentStatus: string
+  commentSetting: string
   
   // document status
   wasNew: boolean

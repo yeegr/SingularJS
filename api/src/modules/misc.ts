@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 import moment from 'moment-timezone'
 import randomstring from 'randomstring'
 
-import { CONFIG, CONST, ERRORS } from '@common'
+import { CONFIG, CONST, ERRORS, UTIL } from '@common'
 
 import IUser from '../users/IUser'
 
@@ -333,7 +333,7 @@ export function assembleSearchParams(req: Request, query: any = {}, keyFields: s
     count: number = getListCountPerPage(req),
     sort: any = getListSort(req)
 
-  if (this.isNotUndefinedNullEmpty(keyFields) && this.isNotUndefinedNullEmpty(getRequestParam(req, 'keywords'))) {
+  if (UTIL.isNotUndefinedNullEmpty(keyFields) && UTIL.isNotUndefinedNullEmpty(getRequestParam(req, 'keywords'))) {
     query.$or = getListKeywordQuery(req, keyFields)
   }
 

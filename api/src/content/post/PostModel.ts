@@ -67,7 +67,7 @@ let PostSchema: Schema = new Schema({
     type: String,
     required: true,
     enum: CONST.POST_STATUSES_ENUM,
-    default: CONST.STATUSES.POST.EDITING
+    default: CONST.STATUSES.CONTENT.EDITING
   },
   // last updated time
   updated: {
@@ -118,10 +118,10 @@ let PostSchema: Schema = new Schema({
     default: 0
   },
   // comment status
-  // @enum {String}
-  commentStatus: {
+  commentSetting: {
     type: String,
-    default: CONST.COMMENT_STATUSES_ENUM
+    enum: CONST.COMMENT_SETTINGS_ENUM,
+    default: CONST.CONTENT_SETTINGS.COMMENT.OPEN
   }
 }, {
   toObject: {

@@ -25,6 +25,10 @@ export default interface IConsumer extends Document {
   
   // virtual fields
   comments: Schema.Types.ObjectId[]
+  reminders: Schema.Types.ObjectId[]
+
+  // user groups member of
+  groups: Schema.Types.ObjectId[]
 
   // document status
   wasNew: boolean

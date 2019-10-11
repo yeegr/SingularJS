@@ -1,6 +1,6 @@
 import { Document, Schema } from 'mongoose'
 
-export default interface ITodoList extends Document {
+export default interface IReminderList extends Document {
   [key: string]: any
   _id: Schema.Types.ObjectId
 
@@ -17,13 +17,13 @@ export default interface ITodoList extends Document {
   description?: string
   tasks: string[]
   due_time: number
-  alarm: number
+  alarms: number[]
 
   // recurrence
   recurrence: string
   days_of_week?: number[]
   week_of_month?: number
-  day_of_month?: number
+  date_of_month?: number
   month_of_year?: number
 
   status: string

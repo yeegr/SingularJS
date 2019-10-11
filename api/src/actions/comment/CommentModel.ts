@@ -89,7 +89,7 @@ CommentSchema.post('save', function(comment: IComment) {
   TargetModel
   .findById(comment.target)
   .then((doc: any) => {
-    if ((doc as IContent).commentStatus === CONST.STATUSES.COMMENT.OPENED) {
+    if ((doc as IContent).commentSetting === CONST.CONTENT_SETTINGS.COMMENT.OPEN) {
       if (wasNew) {
         ModelHelper.addComment(doc, comment.rating)      
 

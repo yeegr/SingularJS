@@ -289,8 +289,7 @@ export function isUnique(req: Request, res: Response): void {
  */
 export function create(req: Request, res: Response): void {
   const [creator, creatorRef] = UserHelper.getLoginedUser(req),
-    title: string = req.body.title,
-    slug: string = req.body.slug
+    title: string = req.body.title
 
   // verify logined user
   if (!creator || validator.isEmpty(creatorRef)) {

@@ -300,6 +300,16 @@ ConsumerSchema.virtual('comments', {
 })
 
 /**
+ * Reminders created by user
+ */
+ConsumerSchema.virtual('reminders', {
+  ref: 'Reminder',
+  localField: '_id',
+  foreignField: 'creator',
+  justOne: false
+})
+
+/**
  * Likes
  */
 ConsumerSchema.virtual('likes', {

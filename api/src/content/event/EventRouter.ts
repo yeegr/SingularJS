@@ -10,8 +10,6 @@ import { CONST } from '@common'
 import * as ContentController from '../ContentController'
 
 
-import 'users/consumer/consumerAuth'
-
 import { CONFIG, ERRORS, UTIL } from '@common'
 import { Logger, Err } from '@modules'
 

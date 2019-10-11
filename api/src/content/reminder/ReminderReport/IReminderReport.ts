@@ -1,6 +1,6 @@
 import { Document, Schema } from 'mongoose'
 
-export default interface ITodoReport extends Document {
+export default interface IReminderReport extends Document {
   [key: string]: any
   _id: Schema.Types.ObjectId
 
@@ -14,7 +14,7 @@ export default interface ITodoReport extends Document {
   status: boolean
 
   // checkmark each heading
-  items: boolean[]
+  tasks: boolean[]
 
   // supervisor report
   note?: string

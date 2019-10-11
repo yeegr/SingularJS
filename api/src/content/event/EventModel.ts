@@ -166,7 +166,7 @@ let EventSchema: Schema = new Schema({
     type: String,
     required: true,
     enum: CONST.EVENT_STATUSES_ENUM,
-    default: CONST.STATUSES.EVENT.EDITING
+    default: CONST.STATUSES.CONTENT.EDITING
   },
   // last modified time
   updated: {
@@ -212,10 +212,10 @@ let EventSchema: Schema = new Schema({
     default: 0
   },
   // comment status
-  // @enum {String}
-  commentStatus: {
+  commentSetting: {
     type: String,
-    default: CONST.COMMENT_STATUSES_ENUM
+    enum: CONST.COMMENT_SETTINGS_ENUM,
+    default: CONST.CONTENT_SETTINGS.COMMENT.OPEN
   }
 }, {
   toObject: {

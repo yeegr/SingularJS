@@ -56,7 +56,7 @@ export const COOKIE_SECRET: string = 'cookie_secret'
 
 export const SMS_PROVIDER: string = 'ALIYUN'
 
-export const POST_REQUIRES_APPROVAL: boolean = true
+export const POST_REQUIRES_APPROVAL: boolean = false
 export const POST_SELF_PUBLISH_ROLE: string = CONST.USER_ROLES.CONSUMER.AUTHOR
 export const PUBLIC_EVENT_REQURIES_APPROVAL: boolean = true
 export const PUBLIC_EVENT_PUBLISH_ROLE: string = CONST.USER_ROLES.CONSUMER.ORGANIZER

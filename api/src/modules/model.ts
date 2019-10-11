@@ -8,9 +8,11 @@ import IContent from '@content/IContent'
 
 import Consumer from '@users/consumer/ConsumerModel'
 import Platform from '@users/platform/PlatformModel'
+import Group from '@users/group/GroupModel'
 
 import Post from '@content/post/PostModel'
 import Event from '@content/event/EventModel'
+import Reminder from '@content/reminder/ReminderList/ReminderModel'
 
 import Comment from '@actions/comment/CommentModel'
 import Like from '@actions/like/LikeModel'
@@ -84,6 +86,10 @@ export function getModelFromName(key: string): Model<any> {
       dataModel = Platform
     break
 
+    case CONST.USER_TYPES.GROUP:
+      dataModel = Group
+    break
+
     case CONST.ACTION_TARGETS.POST:
       dataModel = Post
     break
@@ -102,6 +108,10 @@ export function getModelFromName(key: string): Model<any> {
 
     case CONST.ACTION_TARGETS.COMMENT:
       dataModel = Comment
+    break
+
+    case CONST.ACTION_TARGETS.REMINDER:
+      dataModel = Reminder
     break
   }
 
@@ -138,6 +148,10 @@ export function getModelNameFromPath(path: string): string|any {
 
     case 'comments':
       model = 'Comment'
+    break
+
+    case 'reminders':
+      model = 'Reminder'
     break
   }
 
@@ -179,6 +193,10 @@ export function getRootFolderFromModelName(name: string): string {
       root = 'products'
     break
 
+    case CONST.ACTION_TARGETS.REMINDER:
+      root = 'reminders'
+    break
+
   }
 
   return root
@@ -190,7 +208,7 @@ export function getRootFolderFromModelName(name: string): string {
  * 
  * @export
  * @param {Request} req
- * @returns {[Model<IUser>, Model<IContent>]}
+ * @returns {[Model<IUser>, Model<IContent]}
  */
 export function getModels(req: Request): [Model<IUser>, Model<IContent>] {
   const UserModel = this.getModelFromName(req.routeVar.creatorType),

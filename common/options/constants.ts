@@ -169,6 +169,7 @@ interface IUserTypes {
   CONSUMER: string
   PROVIDER: string
   PLATFORM: string
+  GROUP: string
 }
 
 /**
@@ -181,7 +182,8 @@ interface IUserTypes {
 export const USER_TYPES: IUserTypes = {
   CONSUMER: 'Consumer',
   PROVIDER: 'Provider',
-  PLATFORM: 'Platform'
+  PLATFORM: 'Platform',
+  GROUP: 'Group'
 }
 
 /**
@@ -460,7 +462,8 @@ export const ACTION_TARGETS: IActionTargets = {
   ORDER: 'Order',
   COMMENT: 'Comment',
   PROCESS: 'Process',
-  ACTIVITY: 'Activity'
+  ACTIVITY: 'Activity',
+  REMINDER: 'Reminder'
 }
 
 /** 
@@ -539,21 +542,7 @@ interface IStatuses {
     ACTIVE: string
     SUSPENDED: string
   }
-  CHECKLIST: {
-    EDITING: string
-    ACTIVE: string
-    SUSPENDED: string
-    EXPIRED: string
-  }
-  POST: {
-    EDITING: string
-    PENDING: string
-    APPROVED: string
-    REJECTED: string
-    SUSPENDED: string
-    EXPIRED: string
-  }
-  EVENT: {
+  CONTENT: {
     EDITING: string
     PENDING: string
     APPROVED: string
@@ -584,10 +573,6 @@ interface IStatuses {
     NETWORK: string
     UNKNOWN: string
   }
-  COMMENT: {
-    OPENED: string
-    CLOSED: string
-  }
   PROCESS: {
     PENDING: string
     CANCELLED: string
@@ -615,21 +600,7 @@ export const STATUSES: IStatuses = {
     ACTIVE: 'active',
     SUSPENDED: 'suspended'
   },
-  CHECKLIST: {
-    EDITING: 'editing',
-    ACTIVE: 'active',
-    SUSPENDED: 'suspended',
-    EXPIRED: 'expired'
-  },
-  POST: {
-    EDITING: 'editing',
-    PENDING: 'pending',
-    APPROVED: 'approved',
-    REJECTED: 'rejected',
-    SUSPENDED: 'suspended',
-    EXPIRED: 'expired'
-  },
-  EVENT: {
+  CONTENT: {
     EDITING: 'editing',
     PENDING: 'pending',
     APPROVED: 'approved',
@@ -664,10 +635,6 @@ export const STATUSES: IStatuses = {
     PENDING: 'pending',
     CANCELLED: 'cancelled',
     FINALIZED: 'finalized'
-  },
-  COMMENT: {
-    OPENED: 'opened',
-    CLOSED: 'closed'
   }
 }
 
@@ -678,52 +645,107 @@ export const STATUSES: IStatuses = {
  * @constant CONSUMER_STATUSES_ENUM
  * @type {string[]}
  */
-export const CONSUMER_STATUSES_ENUM = obj2enum(STATUSES.CONSUMER)
+export const CONSUMER_STATUSES_ENUM: string[] = obj2enum(STATUSES.CONSUMER)
 /**
  * @constant PROVIDER_STATUSES_ENUM
  * @type {string[]}
  */
-export const PROVIDER_STATUSES_ENUM = obj2enum(STATUSES.PROVIDER)
+export const PROVIDER_STATUSES_ENUM: string[] = obj2enum(STATUSES.PROVIDER)
 /**
  * @constant PLATFORM_STATUSES_ENUM
  * @type {string[]}
  */
-export const PLATFORM_STATUSES_ENUM = obj2enum(STATUSES.PLATFORM)
-/** 
- * @constant CHECKLIST_STATUSES_ENUM
- * @type {string[]}
- */
-export const CHECKLIST_STATUSES_ENUM = obj2enum(STATUSES.CHECKLIST)
+export const PLATFORM_STATUSES_ENUM: string[] = obj2enum(STATUSES.PLATFORM)
 /** 
  * @constant POST_STATUSES_ENUM
  * @type {string[]}
  */
-export const POST_STATUSES_ENUM = obj2enum(STATUSES.POST)
+export const POST_STATUSES_ENUM: string[] = obj2enum(STATUSES.CONTENT)
 /**
  * @constant EVENT_STATUSES_ENUM
  * @type {string[]}
  */
-export const EVENT_STATUSES_ENUM = obj2enum(STATUSES.EVENT)
+export const EVENT_STATUSES_ENUM: string[] = obj2enum(STATUSES.CONTENT)
 /**
  * @constant EVENT_BATCH_STATUSES_ENUM
  * @type {string[]}
  */
-export const EVENT_BATCH_STATUSES_ENUM = obj2enum(STATUSES.EVENT_BATCH)
+export const EVENT_BATCH_STATUSES_ENUM: string[] = obj2enum(STATUSES.EVENT_BATCH)
 /**
  * @constant SIGNUP_STATUSES_ENUM
  * @type {string[]}
  */
-export const SIGNUP_STATUSES_ENUM = obj2enum(STATUSES.SIGNUP)
-/**
- * @constant COMMENT_STATUSES_ENUM
- * @type {string[]}
- */
-export const COMMENT_STATUSES_ENUM = obj2enum(STATUSES.COMMENT)
+export const SIGNUP_STATUSES_ENUM: string[] = obj2enum(STATUSES.SIGNUP)
 /**
  * @constant PAYMENT_STATUSES_ENUM
  * @type {string[]}
  */
-export const PAYMENT_STATUSES_ENUM = obj2enum(STATUSES.PAYMENT)
+export const PAYMENT_STATUSES_ENUM: string[] = obj2enum(STATUSES.PAYMENT)
+/** 
+ * @constant TODOLIST_STATUSES_ENUM
+ * @type {string[]}
+ */
+export const TODOLIST_STATUSES_ENUM: string[] = obj2enum(STATUSES.CONTENT)
+
+
+/*********************************
+ * CONTENT SETTING RELATED ITEMS *
+ *********************************/
+
+/**
+ * Interface for content settings
+ * 
+ * @interface IContent_Settings
+ */
+interface IContent_Settings {
+  [key: string]: {
+    [key: string]: string
+  }
+
+  COMMENT: {
+    OPEN: string
+    CLOSED: string
+  }
+
+  RECURRENCE: {
+    DAY_OF_WEEK: string
+    DATE_OF_MONTH: string
+    DAY_OF_MONTH: string
+    DATE_OF_YEAR: string
+    DAY_OF_YEAR: string
+    WORKDAYS: string
+    WEEKDAYS: string
+    WEEKENDS: string
+  }
+}
+
+export const CONTENT_SETTINGS: IContent_Settings = {
+  COMMENT: {
+    OPEN: 'open',
+    CLOSED: 'closed'
+  },
+  RECURRENCE: {
+    DAY_OF_WEEK: 'day_of_week',
+    DATE_OF_MONTH: 'date_of_month',
+    DAY_OF_MONTH: 'day_of_month',
+    DATE_OF_YEAR: 'date_of_year',
+    DAY_OF_YEAR: 'day_of_year',
+    WEEKDAYS: 'weekdays',
+    WEEKENDS: 'weekends',
+    WORKDAYS: 'workdays'
+  }
+}
+
+/**
+ * @constant COMMENT_SETTINGS_ENUM
+ * @type {string[]}
+ */
+export const COMMENT_SETTINGS_ENUM: string[] = obj2enum(CONTENT_SETTINGS.COMMENT)
+/**
+ * @constant RECURRENCE_ENUM
+ * @type {string[]}
+ */
+export const RECURRENCE_ENUM: string[] = obj2enum(CONTENT_SETTINGS.RECURRENCE)
 
 /*******************************************
  * ADMINISTRATIVE PROCESSING RELATED ITEMS *
@@ -756,7 +778,7 @@ export const PROCESS_TYPES: IProcessTypes = {
  * @constant PROCESS_TYPES_ENUM
  * @type {string[]}
  */
-export const PROCESS_TYPES_ENUM = obj2enum(PROCESS_TYPES)
+export const PROCESS_TYPES_ENUM: string[] = obj2enum(PROCESS_TYPES)
 
  /**
   * Interface for activity states
@@ -789,7 +811,7 @@ export const ACTIVITY_STATES: IActivityStates = {
  * @constant ACTIVITY_STATES_ENUM
  * @type {string[]}
  */
-export const ACTIVITY_STATES_ENUM = obj2enum(ACTIVITY_STATES)
+export const ACTIVITY_STATES_ENUM: string[] = obj2enum(ACTIVITY_STATES)
 
 
 /*******************
@@ -829,7 +851,7 @@ export const PAYMENT_METHODS: IPaymentMethods = {
  * @constant PAYMENT_METHODS_ENUM
  * @type {string[]}
  */
-export const PAYMENT_METHODS_ENUM = obj2enum(PAYMENT_METHODS)
+export const PAYMENT_METHODS_ENUM: string[] = obj2enum(PAYMENT_METHODS)
 
 
 /********************** 

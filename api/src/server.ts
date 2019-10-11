@@ -20,8 +20,9 @@ import AdminRouter from './routers/_admin'
 
 import ConsumerRouter from '@users/consumer/ConsumerRouter'
 
-import EventRouter from '@content/event/EventRouter'
 import PostRouter from '@content/post/PostRouter'
+import EventRouter from '@content/event/EventRouter'
+import ReminderRouter from '@content/reminder/ReminderRouter'
 
 import ActionRouter from '@actions/ActionRouter'
 import CommentRouter from '@actions/comment/CommentRouter'
@@ -208,6 +209,9 @@ class Server {
 
     // event router
     this.app.use(root + 'events', EventRouter)
+
+    // reminder router
+    this.app.use(root + 'reminders', ReminderRouter)
 
     // // service / prodcut provider router
     // this.app.use(root + 'providers', ProviderRouter)

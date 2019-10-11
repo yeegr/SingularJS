@@ -886,6 +886,8 @@ export function submit(req: Request, res: Response): void {
     ua: req.body.ua || req.ua
   }
 
+  console.log(log)
+
   DataModel
   .findOne({
     creator,
