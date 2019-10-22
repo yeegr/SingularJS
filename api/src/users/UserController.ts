@@ -27,6 +27,8 @@ import Processor from '@workflow/processor'
 import Process, { IProcess } from '@workflow/process/ProcessModel'
 import Activity, { IActivity } from '@workflow/activity/ActivityModel'
 
+import GroupRouter from './group/GroupRouter'
+
 /**
  * List search results
  *
@@ -645,7 +647,7 @@ export function login(req: Request, res: Response): void {
  * @returns {void}
  */
 export function sublist(req: Request, res: Response): void {
-  const [user, ref] = UserHelper.getLoginedUser(req),
+  const [id, ref] = UserHelper.getLoginedUser(req),
     UserModel: Model<IUser> = ModelHelper.getModelFromName(ref),
     path = req.params.sublist,
     model = ModelHelper.getModelNameFromPath(path),
@@ -653,7 +655,7 @@ export function sublist(req: Request, res: Response): void {
     select: string = ModelHelper.getSelectFieldsFromPath(path)
 
   UserModel
-  .findById(user)
+  .findById(id)
   .select('handle')
   .populate({
     path,
@@ -1069,32 +1071,35 @@ export function createRoutes(router: Router, setRouteVar: RequestHandler, auth: 
   router.patch('/login/reset', setRouteVar, verifyPasswords, verifyTotp)
 
   // update routes via TOTP
-  router.patch('/self/totp', setRouteVar, auth, verifyTotp)
+  router.patch(`${CONFIG.USER_PERSONAL_PATH}/totp`, setRouteVar, auth, verifyTotp)
 
   // login routes via username/password
   router.post('/login/local', setRouteVar, local, login)
 
   // JWT login routes
-  router.get('/self', auth, login)
+  router.get(CONFIG.USER_PERSONAL_PATH, auth, login)
+
+  // user group router
+  router.use(`${CONFIG.USER_PERSONAL_PATH}/groups`, auth, GroupRouter)
 
   // sublist route
-  router.get('/self/:sublist', auth, sublist)
+  router.get(`${CONFIG.USER_PERSONAL_PATH}/:sublist`, auth, sublist)
 
   // user created content route
-  router.get('/self/:sublist/:slug', auth, content)
+  router.get(`${CONFIG.USER_PERSONAL_PATH}/:sublist/:slug`, auth, content)
 
   // update route
-  router.patch('/self', auth, update)
+  router.patch(CONFIG.USER_PERSONAL_PATH, auth, update)
 
   // update user avatar
-  router.put('/self/avatar', setRouteVar, auth, avatar)
+  router.put(`${CONFIG.USER_PERSONAL_PATH}/avatar`, setRouteVar, auth, avatar)
 
   // delete route
-  router.delete('/self', auth, remove)
+  router.delete(CONFIG.USER_PERSONAL_PATH, auth, remove)
 
   // user submit content route
-  router.post('/self/submit', auth, submit)
+  router.post(`${CONFIG.USER_PERSONAL_PATH}/submit`, auth, submit)
 
   // user retract content route
-  router.post('/self/retract', auth, retract)
+  router.post(`${CONFIG.USER_PERSONAL_PATH}/retract`, auth, retract)
 }

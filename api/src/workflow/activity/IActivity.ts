@@ -20,7 +20,7 @@ export default interface IActivity extends Document {
   // document status
   wasNew: boolean
 
-  // virtuals
+  // virtual fields
   CreatorModel: any
   TargetModel: any
   HandlerModel?: any

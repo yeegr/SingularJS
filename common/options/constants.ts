@@ -169,7 +169,6 @@ interface IUserTypes {
   CONSUMER: string
   PROVIDER: string
   PLATFORM: string
-  GROUP: string
 }
 
 /**
@@ -182,8 +181,7 @@ interface IUserTypes {
 export const USER_TYPES: IUserTypes = {
   CONSUMER: 'Consumer',
   PROVIDER: 'Provider',
-  PLATFORM: 'Platform',
-  GROUP: 'Group'
+  PLATFORM: 'Platform'
 }
 
 /**
@@ -290,6 +288,44 @@ export const CONTENT_CREATOR_ROLES: ICreatorRoles = {
   ]
 }
 
+/******************************************
+ * USER GROUP MEMBERSHIP CONTROL SETTINGS *
+ ******************************************/
+
+/**
+ * Interface for user membership control settings
+ * 
+ * @interface IUserActions
+ */
+interface IGroup_Settings {
+  MEMBERSHIP: {
+    CLOSED: string
+    OPEN: string
+    MANAGED: string
+  }
+}
+/**
+ * User group membership settings
+ * in key/value-pair format
+ * 
+ * @constant GROUP_SETTINGS
+ * @type {IGroup_Settings}
+ */
+export const GROUP_SETTINGS: IGroup_Settings = {
+  MEMBERSHIP: {
+    CLOSED: 'closed',
+    OPEN: 'open',
+    MANAGED: 'managed'
+  }
+}
+/**
+ * User group membership settings
+ * in string array format
+
+ * @constant GROUP_SETTINGS_MEMBERSHIP_ENUM
+ * @type {string[]}
+ */
+export const GROUP_SETTINGS_MEMBERSHIP_ENUM: string[] = obj2enum(GROUP_SETTINGS.MEMBERSHIP)
 
 /*****************************
  * USER ACTION RELATED ITEMS *
@@ -348,6 +384,11 @@ interface IUserActions {
     REJECT: string
     SUSPEND: string
   }
+  GROUP: {
+    ADD_MEMBER: string
+    KICK_MEMBER: string
+    TRANSFER_MANAGER: string
+  }
 }
 
 /**
@@ -404,6 +445,11 @@ export const USER_ACTIONS: IUserActions = {
     APPROVE: 'APPROVE',
     REJECT: 'REJECT',
     SUSPEND: 'SUSPEND'
+  },
+  GROUP: {
+    ADD_MEMBER: 'ADD_MEMBER',
+    KICK_MEMBER: 'KICK_MEMBER',
+    TRANSFER_MANAGER: 'TRANSFER_MANAGER'
   }
 }
 
@@ -436,13 +482,16 @@ interface IActionTargets {
   CONSUMER: string
   PROVIDER: string
   PLATFORM: string
+  GROUP: string
   POST: string
   EVENT: string
+  SIGNUP: string
   PRODUCT: string
   ORDER: string
   COMMENT: string
   PROCESS: string
   ACTIVITY: string
+  REMINDER: string
 }
 
 /**
@@ -456,8 +505,10 @@ export const ACTION_TARGETS: IActionTargets = {
   CONSUMER: 'Consumer',
   PROVIDER: 'Provider',
   PLATFORM: 'Platform',
+  GROUP: 'Group',
   POST: 'Post',
   EVENT: 'Event',
+  SIGNUP: 'Signup',
   PRODUCT: 'Product',
   ORDER: 'Order',
   COMMENT: 'Comment',
@@ -542,6 +593,11 @@ interface IStatuses {
     ACTIVE: string
     SUSPENDED: string
   }
+  GROUP: {
+    ACTIVE: string
+    SUSPENDED: string
+  }
+
   CONTENT: {
     EDITING: string
     PENDING: string
@@ -597,6 +653,10 @@ export const STATUSES: IStatuses = {
     SUSPENDED: 'suspended'
   },
   PLATFORM: {
+    ACTIVE: 'active',
+    SUSPENDED: 'suspended'
+  },
+  GROUP: {
     ACTIVE: 'active',
     SUSPENDED: 'suspended'
   },
@@ -656,6 +716,11 @@ export const PROVIDER_STATUSES_ENUM: string[] = obj2enum(STATUSES.PROVIDER)
  * @type {string[]}
  */
 export const PLATFORM_STATUSES_ENUM: string[] = obj2enum(STATUSES.PLATFORM)
+/**
+ * @constant GROUP_STATUSES_ENUM
+ * @type {string[]}
+ */
+export const GROUP_STATUSES_ENUM: string[] = obj2enum(STATUSES.GROUP)
 /** 
  * @constant POST_STATUSES_ENUM
  * @type {string[]}
@@ -812,6 +877,49 @@ export const ACTIVITY_STATES: IActivityStates = {
  * @type {string[]}
  */
 export const ACTIVITY_STATES_ENUM: string[] = obj2enum(ACTIVITY_STATES)
+
+
+
+/*********************
+ * INVITATION STATES *
+ *********************/
+
+ /**
+  * Interface for invitation states
+  * 
+  * @interface IInvitationStates
+  */
+ interface IInvitationStates {
+  PENDING: string
+  ACCEPTED: string
+  REJECTED: string
+  IGNORED: string
+  EXPIRED: string
+  WITHDRAWN: string
+}
+/**
+ * Invitation states 
+ * in key/value-pair format
+ * 
+ * @constant INVITATION_STATES
+ * @type {IActivityStates}
+ */
+export const INVITATION_STATES: IInvitationStates = {
+  PENDING: 'pending',
+  ACCEPTED: 'accepted',
+  REJECTED: 'rejected',
+  IGNORED: 'ignored',
+  EXPIRED: 'expired',
+  WITHDRAWN: 'withdrawn'
+}
+/**
+ * Invitation states
+ * in string array format
+ * 
+ * @constant INVITATION_STATES_ENUM
+ * @type {string[]}
+ */
+export const INVITATION_STATES_ENUM: string[] = obj2enum(INVITATION_STATES)
 
 
 /*******************

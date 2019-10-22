@@ -21,7 +21,7 @@ class GroupRouter {
    * @constructor
    */
   constructor() {
-    this.router = Router()
+    this.router = Router({mergeParams: true})
   }
 
   /**
@@ -35,7 +35,7 @@ class GroupRouter {
    */
   private setRouteVar: RequestHandler = (req: Request, res: Response, next: NextFunction): void => {
     req.routeVar = {
-      contentType: CONST.USER_TYPES.GROUP
+      contentType: CONST.ACTION_TARGETS.GROUP
     }
 
     next()

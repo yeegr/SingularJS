@@ -46,7 +46,11 @@ class HelperRouter {
       message = '************************************************************',
       breaker = '\n************************************************************'
   
-    mongoose.connection.db.listCollections(query).toArray((err: Error, arr: object[]) => {
+    mongoose
+    .connection
+    .db
+    .listCollections(query)
+    .toArray((err: Error, arr: object[]) => {
       if (err) { console.log(err) }
 
       if (arr.length > 0) {

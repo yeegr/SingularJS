@@ -34,9 +34,10 @@ export const NODEMAILER_SERVER_OPTIONS = {
 */
 
 
-const DEFAULT_EMAIL_SERVICE: string = 'NETEASE'
-
 // retrieve and set default email server configuration from './ignored'
+const DEFAULT_EMAIL_SERVICE: string = 'NETEASE'
+export const DEFAULT_PAYMENT_METHOD: string = CONST.PAYMENT_METHODS.ALIPAY
+
 import { NODEMAILER_SERVER_OPTIONS } from './ignored'
 export const DEFAULT_EMAIL_SERVER_OPTIONS = NODEMAILER_SERVER_OPTIONS[DEFAULT_EMAIL_SERVICE]
 
@@ -69,6 +70,11 @@ export const TOTP_CODE_CHARSET: string = 'numeric'
 
 export const DEFAULT_EVENT_MAX_ATTENDEE: number = 200
 export const DEFAULT_EVENT_MIN_ATTENDEE: number = 20
+
+export const GROUP_NAME_LENGTH: number = 10
+export const GROUP_NAME_CHARSET: string = 'alphanumeric'
+
+export const USER_PERSONAL_PATH: string = '/self'
 
 /**
  * Default TOTP Expiration Time

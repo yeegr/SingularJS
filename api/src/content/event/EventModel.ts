@@ -37,8 +37,8 @@ let EventSchema: Schema = new Schema({
   // title
   title: {
     type: String,
-    default: '',
-    required: true
+    required: true,
+    default: ''
   },
   // content
   content: {
@@ -64,8 +64,8 @@ let EventSchema: Schema = new Schema({
   // TODO: set whether event is opened to public signup
   isPublic: {
     type: Boolean,
-    default: true,
-    required: true
+    required: true,
+    default: true
   },
   // TODO: set whether signup requires approval
   requireApproval: {

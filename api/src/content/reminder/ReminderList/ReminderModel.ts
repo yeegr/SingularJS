@@ -44,8 +44,8 @@ let ReminderListSchema: Schema = new Schema({
   // list of tasks
   tasks: {
     type: [String],
-    default: [''],
-    required: true
+    required: true,
+    default: ['']
   },
   // due time
   // stored in the format of minutes from hour zero
@@ -63,9 +63,9 @@ let ReminderListSchema: Schema = new Schema({
   // stored in strings
   recurrence: {
     type: String,
+    required: true,
     enum: CONST.RECURRENCE_ENUM,
-    default: CONST.CONTENT_SETTINGS.RECURRENCE.WORKDAYS,
-    required: true
+    default: CONST.CONTENT_SETTINGS.RECURRENCE.WORKDAYS
   },
   // [0,1,2,3,4,5,6]
   days_of_week: {
@@ -86,9 +86,9 @@ let ReminderListSchema: Schema = new Schema({
   // status
   status: {
     type: String,
+    required: true,
     enum: CONST.TODOLIST_STATUSES_ENUM,
-    default: CONST.STATUSES.CONTENT.EDITING,
-    required: true
+    default: CONST.STATUSES.CONTENT.EDITING
   },
   // last updated time
   updated: {

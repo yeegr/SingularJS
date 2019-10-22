@@ -14,9 +14,9 @@ let ActivitySchema: Schema = new Schema({
   // user type
   creatorRef: {
     type: String,
+    required: true,
     enum: CONST.USER_TYPES_ENUM,
-    default: CONST.USER_TYPES.CONSUMER,
-    required: true
+    default: CONST.USER_TYPES.CONSUMER
   },
   // target id
   target: {
@@ -27,8 +27,8 @@ let ActivitySchema: Schema = new Schema({
   // target reference
   targetRef: {
     type: String,
-    enum: CONST.ACTION_TARGETS_ENUM,
-    required: true
+    required: true,
+    enum: CONST.ACTION_TARGETS_ENUM
   },
   // initial status
   initStatus: {
@@ -51,9 +51,9 @@ let ActivitySchema: Schema = new Schema({
   // current activity state
   state: {
     type: String,
+    required: true,
     enum: CONST.ACTIVITY_STATES_ENUM,
-    default: CONST.ACTIVITY_STATES.READY,
-    required: true
+    default: CONST.ACTIVITY_STATES.READY
   },
   // activity handler
   handler: {

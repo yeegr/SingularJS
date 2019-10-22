@@ -32,8 +32,8 @@ let PostSchema: Schema = new Schema({
   // title
   title: {
     type: String,
-    default: '',
-    required: true
+    required: true,
+    default: ''
   },
   // subhead | secondary title
   subhead: {

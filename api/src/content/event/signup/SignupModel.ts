@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose'
 
-import { CONST } from '@common'
+import { CONST, CONFIG } from '@common'
 
 import Attendee from '../attendee/AttendeeModel'
 
@@ -36,16 +36,16 @@ let SignupSchema: Schema = new Schema({
   // order status
   status: {
     type: String,
+    required: true,
     enum: CONST.PAYMENT_STATUSES_ENUM,
-    default: CONST.STATUSES.PAYMENT.PENDING,
-    required: true    
+    default: CONST.STATUSES.PAYMENT.PENDING
   },
   // payment methods
   paymentMethod: {
     type: String,
+    required: true,
     enum: CONST.PAYMENT_METHODS_ENUM,
-    default: CONST.PAYMENT_METHODS.ALIPAY,
-    required: true
+    default: CONFIG.DEFAULT_PAYMENT_METHOD
   }
 })
 

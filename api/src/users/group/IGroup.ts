@@ -1,20 +1,18 @@
 import { Document, Schema } from 'mongoose'
-
-export interface IMember {
-  user: Schema.Types.ObjectId
-  userRef: string
-  isCreator: boolean
-  isManager: boolean
-  alias: string
-  joined: number
-  status: string
-}
+import IMember from './IMember'
 
 export default interface IGroup extends Document {
   [key: string]: any
   _id: Schema.Types.ObjectId
 
   title: string
+  slug: string
+  avatar?: string
+  background?: string
   members: [IMember]
   updated: number
+  status: string
+  settings: {
+    membership: string
+  }
 }

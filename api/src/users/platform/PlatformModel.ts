@@ -16,9 +16,9 @@ let PlatformSchema: Schema = new Schema({
   // user type
   ref: {
     type: String,
+    required: true,
     default: CONST.USER_TYPES.PLATFORM,
-    enum: [CONST.USER_TYPES.PLATFORM],
-    required: true
+    enum: [CONST.USER_TYPES.PLATFORM]
   },
   // user name
   username: {
@@ -33,8 +33,8 @@ let PlatformSchema: Schema = new Schema({
   // user password, hashed
   password: {
     type: String,
-    default: '',
-    required: true
+    required: true,
+    default: ''
   },
   // user handle
   handle: {
@@ -143,6 +143,10 @@ let PlatformSchema: Schema = new Schema({
   activityCount: {
     type: Number,
     default: 0
+  },
+  // groups user is member of
+  groups: {
+    type: [Schema.Types.ObjectId]
   }
 }, {
   toObject: {

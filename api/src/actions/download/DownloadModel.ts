@@ -15,9 +15,9 @@ let DownloadSchema: Schema = new Schema({
   // user type
   creatorRef: {
     type: String,
+    required: true,
     enum: CONST.USER_TYPES_ENUM,
-    default: CONST.USER_TYPES.CONSUMER,
-    required: true
+    default: CONST.USER_TYPES.CONSUMER
   },
   // reference id
   target: {
@@ -28,8 +28,8 @@ let DownloadSchema: Schema = new Schema({
   // target model type
   targetRef: {
     type: String,
-    enum: CONST.ACTION_TARGETS_ENUM,
-    required: true
+    required: true,
+    enum: CONST.ACTION_TARGETS_ENUM
   }
 }, {
   toObject: {

@@ -19,6 +19,7 @@ import _HelperRouter from './helper'
 import AdminRouter from './routers/_admin'
 
 import ConsumerRouter from '@users/consumer/ConsumerRouter'
+import GroupRouter from '@users/group/GroupRouter'
 
 import PostRouter from '@content/post/PostRouter'
 import EventRouter from '@content/event/EventRouter'
@@ -71,7 +72,8 @@ class Server {
       autoReconnect: true,
       useCreateIndex: true,
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
+      useFindAndModify: false
     })
 
     // CONNECTION EVENTS
@@ -203,6 +205,9 @@ class Server {
 
     // consumer router - use 'users' in url following common practices
     this.app.use(root, ConsumerRouter)
+
+    // user group router
+    // this.app.use(root + 'self/groups', GroupRouter)
 
     // post router
     this.app.use(root + 'posts', PostRouter)

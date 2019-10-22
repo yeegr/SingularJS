@@ -15,9 +15,9 @@ let ConsumerSchema: Schema = new Schema({
   // user type
   ref: {
     type: String,
+    required: true,
     default: CONST.USER_TYPES.CONSUMER,
-    enum: [CONST.USER_TYPES.CONSUMER],
-    required: true
+    enum: [CONST.USER_TYPES.CONSUMER]
   },
   // user name
   username: {
@@ -235,6 +235,10 @@ let ConsumerSchema: Schema = new Schema({
     type: Number,
     min: 0,
     default: 0
+  },
+  // groups user is member of
+  groups: {
+    type: [Schema.Types.ObjectId]
   }
 }, {
   toObject: {
@@ -242,6 +246,7 @@ let ConsumerSchema: Schema = new Schema({
   },
   toJSON: {
     virtuals: true,
+    // remove password from JSON
     transform: function(doc: any, ret: any, opt: any) {
       delete ret.password
       return ret
@@ -263,7 +268,7 @@ ConsumerSchema.virtual('posts', {
  * Events created by user
  */
 ConsumerSchema.virtual('events', {
-  ref: 'Event',
+  ref: CONST.ACTION_TARGETS.EVENT,
   localField: '_id',
   foreignField: 'creator',
   justOne: false
@@ -273,7 +278,7 @@ ConsumerSchema.virtual('events', {
  * Events signuped by user
  */
 ConsumerSchema.virtual('signups', {
-  ref: 'Signup',
+  ref: CONST.ACTION_TARGETS.SIGNUP,
   localField: '_id',
   foreignField: 'creator',
   justOne: false
@@ -283,7 +288,7 @@ ConsumerSchema.virtual('signups', {
  * Orders placed by user
  */
 ConsumerSchema.virtual('orders', {
-  ref: 'Order',
+  ref: CONST.ACTION_TARGETS.ORDER,
   localField: '_id',
   foreignField: 'creator',
   justOne: false
@@ -293,7 +298,7 @@ ConsumerSchema.virtual('orders', {
  * Comments posted by user
  */
 ConsumerSchema.virtual('comments', {
-  ref: 'Comment',
+  ref: CONST.ACTION_TARGETS.COMMENT,
   localField: '_id',
   foreignField: 'creator',
   justOne: false
@@ -303,7 +308,7 @@ ConsumerSchema.virtual('comments', {
  * Reminders created by user
  */
 ConsumerSchema.virtual('reminders', {
-  ref: 'Reminder',
+  ref: CONST.ACTION_TARGETS.REMINDER,
   localField: '_id',
   foreignField: 'creator',
   justOne: false

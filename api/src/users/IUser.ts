@@ -27,7 +27,7 @@ export default interface IConsumer extends Document {
   comments: Schema.Types.ObjectId[]
   reminders: Schema.Types.ObjectId[]
 
-  // user groups member of
+  // groups user is a member of
   groups: Schema.Types.ObjectId[]
 
   // document status

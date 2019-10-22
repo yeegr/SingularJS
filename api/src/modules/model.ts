@@ -86,7 +86,7 @@ export function getModelFromName(key: string): Model<any> {
       dataModel = Platform
     break
 
-    case CONST.USER_TYPES.GROUP:
+    case CONST.ACTION_TARGETS.GROUP:
       dataModel = Group
     break
 
@@ -152,6 +152,10 @@ export function getModelNameFromPath(path: string): string|any {
 
     case 'reminders':
       model = 'Reminder'
+    break
+
+    case 'groups':
+      model = 'Group'
     break
   }
 

@@ -16,8 +16,8 @@ let TotpSchema: Schema = new Schema({
   },
   type: {
     type: String,
-    enum: CONST.TOTP_TYPES_ENUM,
     required: true,
+    enum: CONST.TOTP_TYPES_ENUM,
     trim: true
   },
   value: {

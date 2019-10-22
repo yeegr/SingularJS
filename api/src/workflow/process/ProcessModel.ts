@@ -16,8 +16,8 @@ let ProcessSchema: Schema = new Schema({
   // user type
   creatorRef: {
     type: String,
-    enum: CONST.USER_TYPES_ENUM,
-    required: true
+    required: true,
+    enum: CONST.USER_TYPES_ENUM
   },
   // target
   target: {
@@ -28,14 +28,14 @@ let ProcessSchema: Schema = new Schema({
   // target type
   targetRef: {
     type: String,
-    enum: CONST.ACTION_TARGETS_ENUM,
-    required: true
+    required: true,
+    enum: CONST.ACTION_TARGETS_ENUM
   },
   // process type
   type: {
     type: String,
-    enum: CONST.PROCESS_TYPES_ENUM,
-    required: true
+    required: true,
+    enum: CONST.PROCESS_TYPES_ENUM
   },
   // activities
   activities: [{
@@ -46,8 +46,8 @@ let ProcessSchema: Schema = new Schema({
   // current process status
   status: {
     type: String,
-    default: CONST.STATUSES.PROCESS.PENDING,
-    required: true
+    required: true,
+    default: CONST.STATUSES.PROCESS.PENDING
   },
   // process expiration time
   expireAt: {

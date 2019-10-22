@@ -13,8 +13,8 @@ let LogSchema: Schema = new Schema({
   // user type
   creatorRef: {
     type: String,
-    enum: CONST.USER_TYPES_ENUM,
-    required: true
+    required: true,
+    enum: CONST.USER_TYPES_ENUM
   },
   // target id
   target: {
