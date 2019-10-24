@@ -598,6 +598,10 @@ SingularJS将会开发、使用以下几个容器
 
 ![Postman](./img/postman.png "Postman")
 
+###### Newman
+
+`npm install -g newman`
+
 ##### 文本编辑器
 
 当下编程文本编辑器多的数不胜数，或许你已经有自己习惯的一个，或许没有。没关系，看看我的选择或许会给你一些启发，或许没有，你只需要知道，一个好的编辑器会加快你的开发速度、提升你的开发体验，但是只要你愿意，Vim😵或Notepad😱照样能用来开发，不大可能，但是可以。
@@ -708,18 +712,22 @@ npm i -g npm
 * [jsdoc](https://devdocs.io/ "JSDoc")
 * [jslint](https://www.jslint.com/ "JSLint")
 * [less](https://lesscss.org/ "Less")
+* [npx](https://www.npmjs.com/package/npx "npx")
 * [react-native-cli](https://facebook.github.io/react-native/ "React Native")
 * [tslint](https://palantir.github.io/tslint/ "TSLint")
 * [typescript](https://www.typescriptlang.org/ "TypeScript")
 * [typings](https://github.com/typings/typings "Typings")
 * [webpack-cli](https://webpack.js.org/ "webpack")
+* [yarn](https://yarnpkg.com/ "yarn")
 
 ##### Yarn
 
-[Yarn](https://yarnpkg.com/zh-Hans/ "Yarn")是一个由Facebook、Exponent、Google和Tilde共同开发的JavaScript包管理器，在2016年10月开源代码，2017年9月正式发布1.0版，还是个小鲜肉。相对于npm，Yarn主打稳定和安全，默认自动锁包，并能平行安装包。
+[Yarn](https://yarnpkg.com/zh-Hans/ "Yarn")是一个由Facebook、Exponent、Google和Tilde共同开发的JavaScript包管理器，在2016年10月开源代码，2017年9月正式发布1.0版，和npm相比还是个小鲜肉。相对于npm，Yarn主打稳定和安全，默认自动锁包，并能平行安装包。
 
 * [Yarn vs npm: Everything You Need to Know](https://www.sitepoint.com/yarn-vs-npm/)
 * [Yarn vs npm - The State of Node.js Package Managers](https://blog.risingstack.com/yarn-vs-npm-node-js-package-managers/)
+
+_注：在使用`react-native init`初始化项目时会提示安装yarn可以提高速度。_
 
 #### TypeScript
 
@@ -792,30 +800,52 @@ SingularJS的主[API](https://baike.baidu.com/item/api/10154)（**A**pplication 
 
 #### 安装React Native
 
-首先在全局安装react-native-cli指令
+0.60版的React Native有重大的改动，开发者应首先参考[Getting Started](https://facebook.github.io/react-native/docs/getting-started)页面的指示，提前安装好dependencies，包括yarn，node，watchman，JDK和CocoaPods。
 
-`npm i -g react-native-cli`
+```sh
+brew install yarn
+brew install node
+brew install watchman
+```
+
+##### macOS初始化提示
+
+1. 在使用brew安装JDK时，以下React Native官方指令可能会报错
+
+```sh
+brew tap AdoptOpenJDK/openjdk
+brew cask install adoptopenjdk8
+```
+
+可以改用
+
+```sh
+brew cask install adoptopenjdk/openjdk/adopopenjdk8
+```
+
+2. 在初始化React Native项目时（见下），[CocoaPods](https://cocoapods.org/ "CocoaPods")可能会安装失败，最好提前手动安装。但是注意，使用brew安装仍旧会导致初始化失败。
+
+```sh
+brew install cocoapods
+```
+
+应该按照CocoaPods的官方提示，使用Python安装。
+
+```sh
+sudo gem install cocoapods
+```
+
+3. 最后在全局安装npx和react-native-cli指令
+
+```sh
+npm i -g npx react-native-cli
+```
 
 之后在项目根目录下执行
 
-`react-native init <app-name>`
+~~`react-native init <app-name>`~~
 
-##### 报错
-
-首次执行react-native run-ios时，也许会出现下面这个错误
-
-```
-curl: (7) Failed to connect to github-production-release-asset-2e65be.s3.amazonaws.com port 443: Connection timed out
-```
-
-或
-
-```
-curl: (7) Failed to connect to github-production-release-asset-2e65be.s3.amazonaws.com port 443: Connection refused
-```
-
-很明显，亚马逊AWS被防火墙屏蔽了，一般的VPN软件也未必能下载。这个文件实际是`boost_1_63_0.tar.gz`，最简单的方式是使用浏览器访问[Boost for React Native](https://github.com/react-native-community/boost-for-react-native/releases)从Github下载（多数不需要翻墙）。然后，将文件拖拽到`~/Users/{user}/.rncache`文件夹内。这是个隐藏文件夹，可以用Finder打开`~/Users/{user}/`，然后<kbd>⌘CMD</kbd>+<kbd>⇧SHIFT</kbd>+<kbd>.</kbd>来显示隐藏文件。记着完成后再<kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>.</kbd>一次以重新隐藏文件。
-
+`npx react-native init <app-name>`
 
 #### Mongoose
 

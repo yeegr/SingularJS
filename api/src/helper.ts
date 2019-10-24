@@ -7,6 +7,7 @@ import { MISC } from '@modules'
 import * as ModelHelper from '@modelHelpers'
 
 import Consumer from '@users/consumer/ConsumerModel'
+import Platform from '@users/platform/PlatformModel'
 import IAction from '@actions/IAction'
 import Log, { ILog } from './system/log/LogModel'
 import Err, { IErr } from './system/err/ErrModel'
@@ -183,9 +184,27 @@ class HelperRouter {
     })
   }
 
+  public platforms = (req: Request, res: Response): void => {
+    Platform
+    .find()
+    .select('username handle email mobile')
+    .sort({_id: -1})
+    .lean()
+    .exec()
+    .then((data) => {
+      res.status(200).json(data)
+    })
+    .catch((err: Error) => {
+      res.status(res.statusCode).send()
+      console.log(err)
+    })
+  }
+
   routes() {
     this.router.purge('/drop/:table', this.drop)
     this.router.get('/consumers', this.consumers)
+    // this.router.get('/providers', this.providers)
+    this.router.get('/platforms', this.platforms)
     this.router.get('/logs', this.logs)
     this.router.get('/errs', this.errs)
     this.router.get('/totp', this.totp)

@@ -1,7 +1,16 @@
 {
   "name": "kidmngr",
   "version": "1.0.0",
+  "author": "Stone Chen",
+  "license": "ISC",
   "description": "",
+  "keywords": [
+    "Full-stack"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yeegr/kidmngr.git"
+  },
   "config": {
     "init": ". ./config/development/init.sh",
     "registry": "registry.cn-hangzhou.aliyuncs.com"
@@ -9,11 +18,7 @@
   "scripts": {
     "setup": "./config/development/setup.sh",
     "mongo": "docker exec -it $npm_package_name-db mongo db -u user -p UserPassWord",
-    "install:api": "cd api && npm install && cd .. ",
-    "install:upload": "cd upload && npm install && cd .. ",
-    "install:lib": "cd lib && npm install && cd .. ",
-    "install:platform": "cd platform && npm install && cd .. ",
-    "install": "npm run install:api && npm run install:upload && npm run install:lib && npm run install:platform",
+    "install": "./config/install.sh",
     "status": "docker ps -a",
     "rmi": "docker rmi -f $(docker images -qf since=$npm_package_name/mongo)",
     "api": "cd api && npm run dev && cd .. && $npm_package_config_init && docker-compose restart api",
@@ -25,15 +30,7 @@
     "restart": "npm run stop && npm run start",
     "reset": "npm stop && npm run rmi && npm run build && npm start",
     "logs": "$npm_package_config_init && docker-compose logs -t",
-    "ps": "$npm_package_config_init && docker-compose ps"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yeegr/kidmngr.git"
-  },
-  "keywords": [
-    "Full-stack"
-  ],
-  "author": "Stone Chen",
-  "license": "ISC"
+    "ps": "$npm_package_config_init && docker-compose ps",
+    "test": "cd api && npm test"
+  }
 }

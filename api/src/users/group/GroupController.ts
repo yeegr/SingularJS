@@ -63,7 +63,6 @@ export function get(req: Request, res: Response): void {
   })
   .populate({
     path: 'members.user',
-    model: 'Consumer',
     select: CONST.BASIC_USER_INFO
   })
   .exec()
