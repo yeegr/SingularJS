@@ -1,44 +1,13 @@
 import * as CONST from './constants'
 
 // sensitive information not sync to git service
-export * from './ignored'
-
-/** 
- * content of './ignored.ts'
- * 
-export const ALIYUN_SMS_ACCESS_ID: string = ''
-export const ALIYUN_SMS_ACCESS_KEY: string = ''
-export const ALIYUN_SMS_TEMPLATES: any = {
-  LOGIN_SIGNUP: '',
-  RESET_PASSWORD: '',
-  UPDATE_MOBILE_NUMBER: ''
-}
-
-interface INodeMailer_Server_Options {
-  [key: string]: any
-}
-
-export const NODEMAILER_SERVER_OPTIONS = {
-  NETEASE: {
-    service: '163',
-    host: 'smtp.163.com',
-    port: 465,
-    secure: true,
-    greetingTimeout: 100000,
-    auth: {
-      user: 'username@163.com',
-      pass: 'auth_code'
-    }
-  }
-}
-*/
-
+export * from '../../.ignored'
 
 // retrieve and set default email server configuration from './ignored'
-const DEFAULT_EMAIL_SERVICE: string = 'NETEASE'
 export const DEFAULT_PAYMENT_METHOD: string = CONST.PAYMENT_METHODS.ALIPAY
+const DEFAULT_EMAIL_SERVICE: string = 'NETEASE'
 
-import { NODEMAILER_SERVER_OPTIONS } from './ignored'
+import { NODEMAILER_SERVER_OPTIONS } from '../../.ignored/MailServers'
 export const DEFAULT_EMAIL_SERVER_OPTIONS = NODEMAILER_SERVER_OPTIONS[DEFAULT_EMAIL_SERVICE]
 
 export const DB_CONNECTION_RETRIES: number = 10

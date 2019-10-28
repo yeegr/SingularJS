@@ -1,9 +1,4 @@
 {
-  "app": {
-    "name": "SingularJS",
-    "company": "北京蓝光移客信息技术有限公司",
-    "icp": "京ICP备17011684号"
-  },
   "gender": {
     "Male": "男",
     "Female": "女",

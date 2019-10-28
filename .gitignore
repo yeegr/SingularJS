@@ -1,11 +1,10 @@
-# node.js
-#
-
-**/assets/alipay/*
+# these files stores sensitive variables that are not made to the public
+**/.ignored/**/*
 **/config/production/*
 
-# this file stores sensitive variables that are not made to the public
-**/common/options/ignored.ts
+!**/.ignored/index.ts
+
+# node.js
 
 !**/node_modules/
 **/node_modules/*

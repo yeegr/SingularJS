@@ -1152,10 +1152,10 @@ interface IStorageType {
  * Local storage types
  * in key/value-pair format
  * 
- * @constant STORAGE_TYPE
+ * @constant STORAGE_TYPES
  * @type {IStorageType}
  */
-export const STORAGE_TYPE: IStorageType = {
+export const STORAGE_TYPES: IStorageType = {
   ASYNC: 'ASYNC',
   LOCAL: 'LOCAL'
 }
@@ -1250,4 +1250,35 @@ export const PLATFORM_LIMITS: IPlatformLimits = {
   MAX_USERNAME_LENGTH: INPUT_LIMITS.MAX_USERNAME_LENGTH,
   MIN_PASSWORD_LENGTH: INPUT_LIMITS.MIN_PASSWORD_LENGTH,
   MAX_PASSWORD_LENGTH: INPUT_LIMITS.MAX_PASSWORD_LENGTH
+}
+
+/**
+ * THIRD-PARTY CONFIGURATIONS
+ */
+export const PAYMENT_REQUEST_URLS = {
+  ALIPAY: {
+    DIST: "https://openapi.alipay.com/gateway.do?",
+    DEV: "https://openapi.alipaydev.com/gateway.do?"
+  }
+}
+
+/**
+ * APP CONSTANTS
+ * 
+ */
+
+export const ACCESS_TOKEN: string = 'access_token'
+export const USER: string = 'user'
+
+
+interface IAccountActions {
+  LOGIN: string
+  BIND: string
+  SIGNUP: string
+}
+
+export const ACCOUNT_ACTIONS: IAccountActions = {
+  LOGIN: 'LOGIN',
+  BIND: 'BIND',
+  SIGNUP: 'SIGNUP'
 }

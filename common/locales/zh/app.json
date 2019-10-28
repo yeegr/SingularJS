@@ -1,0 +1,10 @@
+{
+  "name": "SingularJS",
+  "company": "北京蓝光移客信息技术有限公司",
+  "icp": "京ICP备17011684号",
+  "consumer": {
+    "description": "this is a test description",
+    "keywords": "these are some test keywords",
+    "title": "SingularJS Consumer App"
+  }
+}

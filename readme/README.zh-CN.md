@@ -707,7 +707,6 @@ npm i -g npm
 
 * [apidoc](https://http://apidocjs.com/ "apiDoc")
 * [babel-cli](https://babeljs.io/ "Babel")
-* [code-push-cli](https://microsoft.github.io/code-push/ "CodePush")
 * [eslint](http://eslint.org/ "ESLint")
 * [jsdoc](https://devdocs.io/ "JSDoc")
 * [jslint](https://www.jslint.com/ "JSLint")
@@ -847,6 +846,10 @@ npm i -g npx react-native-cli
 
 `npx react-native init <app-name>`
 
+而如果想顺手配置好TypeScript，则
+
+`npx react-native init <app-name> --template typescript`
+
 #### Mongoose
 
 mongoose-delete
@@ -901,13 +904,18 @@ Ant Design & Ant Design Mobile
 ```map
 SingularJS
 │
+├───.ignored        // files ignored by Git，用于保存敏感信息，如第三方服务的用户名和密码等
+│ ├───alipay
+│ ├───aliyun
+│ ├───wechat
+│ └───...
+│
 ├─┬─api             // API接口
 │ ├───dev
 │ ├───dist
 │ └───src
 │
 ├─┬─assets          // 静态文件夹，用以保存各级服务共享的资源
-│ ├───alipay
 │ ├───...
 │ ├───logo
 │ └───ui
@@ -924,8 +932,7 @@ SingularJS
 │ ├─┬─options       // 项目设置
 │ │ ├───config      // 项目常量
 │ │ ├───constants   // 共享的常量
-│ │ ├───errors      // 错误常量
-│ │ └───ignored     // Git ignored，用于保存敏感信息，如第三方服务的用户名和密码等
+│ │ └───errors      // 错误常量
 │ └───...
 │
 ├─┬─devops          // 静态文件夹，用以保存服务器脚本
