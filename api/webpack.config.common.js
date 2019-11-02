@@ -1,5 +1,5 @@
 const webpack = require('webpack'),
-  TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')  // enables path mapping in tsconfig.json
+  TSConfigPathsPlugin = require('tsconfig-paths-webpack-plugin')  // enables path mapping in tsconfig.json
 
 module.exports = {
   target: 'node',
@@ -9,7 +9,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.json'],
-    plugins: [new TsconfigPathsPlugin()]
+    plugins: [new TSConfigPathsPlugin()]
   },
   module: {
     rules: [

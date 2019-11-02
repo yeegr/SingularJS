@@ -1,6 +1,11 @@
-import path from 'path'
-
 module.exports = {
+  projectRoot: path.resolve(__dirname),
+  watchFolders: [
+    path.resolve(__dirname, '../common')
+  ],
+  resolver: {
+    sourceExts: ['ts', 'tsx', 'js', 'jsx']
+  },
   transformer: {
     getTransformOptions: async () => ({
       transform: {
@@ -9,18 +14,4 @@ module.exports = {
       },
     }),
   },
-  resolver: {
-    sourceExts: ['ts', 'tsx', 'js']
-  },
-  projectRoot: path.resolve(__dirname),
-  watchFolders: [
-    path.resolve(__dirname, '../common')
-  ]
 }
-
-// module.exports = {
-//   projectRoot: './',
-//   watchFolders: [
-//     '../common'
-//   ]
-// }

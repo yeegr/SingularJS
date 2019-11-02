@@ -1,4 +1,4 @@
-// adds type for JSON
+// adds type for Global
 declare module NodeJS {
   interface Global {
     storageEngine: any

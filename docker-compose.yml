@@ -11,14 +11,14 @@ services:
   mongo:
     container_name: ${APP_TITLE}-${DB_NAME}
     image: ${APP_TITLE}/mongo
+    build:
+      context: .
+      dockerfile: ./config/${NODE_ENV}/mongo.dockerfile
     labels:
       com.kidmngr.db: ${DB_NAME}
       com.kidmngr.description: "NoSQL database"
       com.kidmngr.maintainer: ${MAINTAINER}
       com.kidmngr.email: ${EMAIL}
-    build:
-      context: .
-      dockerfile: ./config/${NODE_ENV}/mongo.dockerfile
     command: "--auth"
     expose: 
       - ${DB_PORT}
@@ -39,8 +39,6 @@ services:
       com.kidmngr.description: "Main API endpoint"
       com.kidmngr.maintainer: ${MAINTAINER}
       com.kidmngr.email: ${EMAIL}
-    build:
-      context: .
     depends_on:
       - mongo
     ports:
@@ -52,7 +50,7 @@ services:
     volumes:
       - "./api/dev/:/usr/app/"
       - "./api/node_modules/:/usr/app/node_modules/"
-      - "./assets/alipay:/usr/app/assets/alipay"
+      - "./.ignored/alipay:/usr/app/assets/alipay"
       - "./public:/public"
     working_dir: "/usr/app"
     command: node bundle.js
@@ -62,6 +60,25 @@ services:
       options:
         max-size: "50k"
         max-file: "2"
+    networks:
+      - data
+      - web
+
+  consumer:
+    container_name: ${APP_TITLE}-consumer
+    image: nginx
+    labels:
+      com.kidmngr.consumer: ${APP_TITLE}
+      com.kidmngr.description: "consumer frontend"
+      com.kidmngr.maintainer: ${MAINTAINER}
+      com.kidmngr.email: ${EMAIL}
+    depends_on:
+      - api
+    ports: 
+      - "${CONSUMER_WEBAPP_PORT}:80"
+    volumes:
+      - "./consumer/dev:/usr/share/nginx/html"
+    working_dir: "/usr/share/nginx/html"
     networks:
       - data
       - web

@@ -5,6 +5,7 @@ import * as consumer from './consumer.json'
 import * as platform from './platform.json'
 
 export default {
+  app,
   base,
   api,
   consumer,

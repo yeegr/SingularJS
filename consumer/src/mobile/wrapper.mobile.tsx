@@ -1,9 +1,11 @@
-import React, { Component} from 'react'
+import React, { Component } from 'react'
 import AsyncStorage from '@react-native-community/async-storage'
 import { Provider } from 'react-redux'
 
+import { View, Text } from 'react-native'
+
 import configureStore from '../redux/store'
-import { CONST } from '../../../common'
+// import { CONST } from '../../../common'
 
 import App from './components/app'
 
@@ -15,7 +17,9 @@ class Wrapper extends Component {
 
     global.storageEngine = AsyncStorage
     global.storageType = 'async'
-    global.storageType = CONST.STORAGE_TYPES.ASYNC
+    // global.storageType = CONST.STORAGE_TYPES.ASYNC
+
+    // console.log(CONST.ACCESS_TOKEN)
   }
 
   render() {

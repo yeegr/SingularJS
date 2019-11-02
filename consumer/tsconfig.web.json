@@ -1,11 +1,11 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "jsx": "react-native"
+    "jsx": "react"
   },
   "include": [
     "src/types.d.ts",
-    "src/mobile",
+    "src/web",
     "src/redux"
   ]
 }

@@ -7,5 +7,7 @@
     "**/dev/": true,
     "**/public/": true
   },
-  "editor.fontSize": 14
+  "editor.fontSize": 14,
+  "git.ignoreLimitWarning": true,
+  "editor.tabSize": 2
 }

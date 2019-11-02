@@ -19,6 +19,7 @@ export USER_NAME=$USER_NAME
 export USER_PASSWORD=$USER_PASSWORD
 
 export API_PORT=$API_PORT
+export CONSUMER_WEBAPP_PORT="8080"
 
 # Reset
 RESET='\033[0m'           # Text Reset

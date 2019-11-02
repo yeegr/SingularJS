@@ -24,6 +24,7 @@
     "api": "cd api && npm run dev && cd .. && $npm_package_config_init && docker-compose restart api",
     "upload": "cd upload && webpack",
     "platform": "cd platform && webpack -d",
+    "clean": "$npm_package_config_init && docker rmi -f $(docker images -qf since=$npm_package_name/mongodb)",
     "build": "$npm_package_config_init && docker-compose build",
     "start": "$npm_package_config_init && docker-compose up -d",
     "stop": "$npm_package_config_init && docker-compose down",
@@ -31,6 +32,8 @@
     "reset": "npm stop && npm run rmi && npm run build && npm start",
     "logs": "$npm_package_config_init && docker-compose logs -t",
     "ps": "$npm_package_config_init && docker-compose ps",
-    "test": "cd api && npm test"
+    "test": "cd api && npm test",
+    "consumer": "$npm_package_config_init && cd consumer && webpack && docker-compose restart -t 10 consumer",
+    "consumer-ios": "$npm_package_config_init && cd consumer && react-native run-ios"
   }
 }
