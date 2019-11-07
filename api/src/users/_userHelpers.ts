@@ -1,10 +1,10 @@
-import { Schema, NativeError } from 'mongoose'
-import { Request, Response } from 'express'
+import {Schema, NativeError} from 'mongoose'
+import {Request, Response} from 'express'
 import jwt from 'jsonwebtoken'
 import moment from 'moment-timezone'
 import randomstring from 'randomstring'
 
-import { CONFIG, CONST, ERRORS, UTIL } from '@common'
+import {CONFIG, CONST, ERRORS, UTIL} from '@common'
 
 import IUser from './IUser'
 

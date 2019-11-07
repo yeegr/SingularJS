@@ -1,8 +1,8 @@
-import { Schema, model } from 'mongoose'
+import {Schema, model} from 'mongoose'
 import moment from 'moment-timezone'
 import validator from 'validator'
 
-import { CONFIG, CONST } from '@common'
+import {CONFIG, CONST} from '@common'
 
 import ITotp from './ITotp'
 

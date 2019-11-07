@@ -1,6 +1,6 @@
-import { NativeError, Schema, model } from 'mongoose'
+import {NativeError, Schema, model} from 'mongoose'
 
-import { CONST } from '@common'
+import {CONST} from '@common'
 import * as ModelHelper from '@modelHelpers'
 
 import IComment from './IComment'

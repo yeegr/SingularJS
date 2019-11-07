@@ -1,6 +1,6 @@
 import * as AliyunSMSClient from '@alicloud/sms-sdk'
 
-import { CONFIG } from '@common'
+import {CONFIG} from '@common'
 
 const { COMPANY_NAME,
   SMS_PROVIDER,

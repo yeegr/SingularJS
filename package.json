@@ -13,6 +13,7 @@
   },
   "config": {
     "init": ". ./config/development/init.sh",
+    "timestamp": ". ./config/_shared/timestamp.sh",
     "registry": "registry.cn-hangzhou.aliyuncs.com"
   },
   "scripts": {
@@ -33,7 +34,11 @@
     "logs": "$npm_package_config_init && docker-compose logs -t",
     "ps": "$npm_package_config_init && docker-compose ps",
     "test": "cd api && npm test",
-    "consumer": "$npm_package_config_init && cd consumer && webpack && docker-compose restart -t 10 consumer",
+    "tmp": "$npm_package_config_timestamp",
+    "consumer": "$npm_package_config_init && cd consumer && webpack && docker-compose restart -t 10 consumer && cd .. && $npm_package_config_timestamp",
     "consumer-ios": "$npm_package_config_init && cd consumer && react-native run-ios"
+  },
+  "dependencies": {
+    "i18next": "^19.0.0"
   }
 }

@@ -1,9 +1,9 @@
-import { Schema, model } from 'mongoose'
+import {Schema, model} from 'mongoose'
 
-import { CONST, UTIL } from '@common'
+import {CONST, UTIL} from '@common'
 import * as ModelHelper from '@modelHelpers'
 
-import Consumer, { IConsumer } from '@users/consumer/ConsumerModel'
+import Consumer, { IConsumer} from '@users/consumer/ConsumerModel'
 
 import Media from '@content/_shared/media/MediaModel'
 

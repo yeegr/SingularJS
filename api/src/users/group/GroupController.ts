@@ -1,16 +1,16 @@
-import { NextFunction, Request, RequestHandler, Response, Router } from 'express'
-import { NativeError, Schema, Model } from 'mongoose'
+import {NextFunction, Request, RequestHandler, Response, Router} from 'express'
+import {NativeError, Schema, Model} from 'mongoose'
 import validator from 'validator'
 
-import { CONST, ERRORS, SERVERS, UTIL } from '@common'
-import { Logger, Err, MISC } from '@modules'
+import {CONST, ERRORS, SERVERS, UTIL} from '@common'
+import {Logger, Err, MISC} from '@modules'
 import * as ModelHelper from '@modelHelpers'
 import * as UserHelper from '@users/_userHelpers'
 
 import IUser from '@users/IUser'
-import GroupModel, { IGroup } from './GroupModel'
-import MemberModel, { IMember } from './MemberModel'
-import { request } from 'https'
+import GroupModel, { IGroup} from './GroupModel'
+import MemberModel, { IMember} from './MemberModel'
+import {request} from 'https'
 
 /**
  * List search results

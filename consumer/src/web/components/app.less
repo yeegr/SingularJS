@@ -1,4 +1,17 @@
 @assets: '../../../../assets';
+@import '../../../node_modules/antd/dist/antd.less';
+
+// overrides default collapsed sider menu width
+@menu-collapsed-width: 64px;
+@menu-icon-size: 16px;
+
+// length
+@unitLength: 1px;
+@baseLength: @unitLength * 8;
+@halfLength: @baseLength / 2;
+@doubleLength: @baseLength * 2;
+@tripleLength: @baseLength * 3;
+@iconSideLength: @baseLength * 4;
 
 button {
   background-color: transparent;
@@ -6,39 +19,107 @@ button {
   cursor: pointer;
   float: left;
   outline: none;
-  margin: 0;
-  padding: 0;
 }
 
 wrapper {
   display: block;
   width: 100%;
   height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
+  position: absolute;
 
   > .ant-layout {
     height: 100%;
   }
 }
 
+@sideBarWidth: 200px;
+@titleBarHeight: @baseLength * 8;
+
+
 .title-bar {
-  padding: 0 24px;
-  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 120;
+
+  .menu-bar {
+    display: inline-flex;
+    flex-direction: row;
+
+    button {
+      width: 64px;
+    }
+  }
+
+  .nav-bar {
+    align-items: center;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+  }
 }
 
-.main-content {
-  margin-top: 64px;
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+
+  .logo {
+    height: @titleBarHeight;
+    width: 100%;
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+
+    &::-webkit-scrollbar-track {
+      border-width: 0;
+      background-color: #000;
+    }
+  
+    &::-webkit-scrollbar {
+      width: @baseLength;
+      background-color: #333;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background-color: #333;  
+    }
+
+    .ant-menu-item {
+      margin: 0;
+      height: 48px;
+      line-height: 48px;
+    }
+  }
 }
+
+.main-view {
+  position: relative;
+
+  .main-content {
+    display: block;
+    height: calc(100% - @titleBarHeight);
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
 
 .logo {
+  align-items: center;
   display: inline-flex;
   flex-direction: row;
-  align-items: center;
-  padding: 0 24px 0 16px;
-  height: 64px;
+  height: @titleBarHeight;
   white-space: nowrap;
 
   &::before {
@@ -58,8 +139,8 @@ wrapper {
     content: 'SingularJS';
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 400;
-    margin-left: 2px;
+    margin: 0;
+    padding: 0;
     white-space: nowrap;
   }
 }
-

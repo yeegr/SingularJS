@@ -1,6 +1,6 @@
-import { Schema, model } from 'mongoose'
+import {Schema, model} from 'mongoose'
 
-import { CONST, UTIL } from '@common'
+import {CONST, UTIL} from '@common'
 import * as ModelHelper from '@modelHelpers'
 
 import IReminderList from './IReminderList'

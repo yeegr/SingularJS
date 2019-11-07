@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose'
+import {Schema} from 'mongoose'
 import IUser from '../IUser'
 import IHistory from '../_shared/history/IHistory'
 

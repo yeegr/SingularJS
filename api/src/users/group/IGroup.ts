@@ -1,4 +1,4 @@
-import { Document, Schema } from 'mongoose'
+import {Document, Schema} from 'mongoose'
 import IMember from './IMember'
 
 export default interface IGroup extends Document {

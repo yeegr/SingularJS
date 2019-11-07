@@ -1,7 +1,7 @@
-import { Schema, model } from 'mongoose'
+import {Schema, model} from 'mongoose'
 import * as validator from 'validator'
 
-import { CONST } from '@common'
+import {CONST} from '@common'
 
 import Attendee from '../attendee/AttendeeModel'
 import Point from '@content/_shared/point/PointModel'

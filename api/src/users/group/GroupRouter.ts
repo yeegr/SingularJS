@@ -1,8 +1,8 @@
-import { Request, Response, NextFunction, RequestHandler, Router } from 'express'
+import {Request, Response, NextFunction, RequestHandler, Router} from 'express'
 import passport from 'passport'
 import 'users/consumer/consumerAuth'
 
-import { CONST } from '@common'
+import {CONST} from '@common'
 
 import * as GroupController from './GroupController'
 

@@ -1,6 +1,6 @@
-import { Schema, model } from 'mongoose'
+import {Schema, model} from 'mongoose'
 
-import { CONST, CONFIG } from '@common'
+import {CONST, CONFIG} from '@common'
 
 import Attendee from '../attendee/AttendeeModel'
 

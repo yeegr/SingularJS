@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose'
+import {Schema, model} from 'mongoose'
 
 import IHistory from 'users/_shared/history/IHistory'
 

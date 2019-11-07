@@ -1,13 +1,17 @@
 {
-  "nav": {
-
+  "menu": {
+    "Posts": "论坛",
+    "Events": "活动",
+    "People": "通讯录",
+    "Messages": "消息",
+    "Shopping": "购物",
+    "Login": "登录"
   },
-  "splash": {
-    "Start": "开始",
-    "Back": "上一步",
-    "Next": "下一步",
-    "Done": "完成",
-    "Skip": "跳过"
+  "nav": {
+    "Search": "搜索",
+    "Downloads": "下载",
+    "Documentation": "参考资料",
+    "About": "关于"
   },
   "login": {
 

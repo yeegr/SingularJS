@@ -1,8 +1,8 @@
-import { Schema, model } from 'mongoose'
+import {Schema, model} from 'mongoose'
 import bcrypt from 'bcryptjs'
 import validator from 'validator'
 
-import { CONFIG, CONST, UTIL } from '@common'
+import {CONFIG, CONST, UTIL} from '@common'
 import * as ModelHelper from '@modelHelpers'
 
 import IConsumer from './IConsumer'

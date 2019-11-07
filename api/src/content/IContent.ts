@@ -1,4 +1,4 @@
-import { Document, Schema } from 'mongoose'
+import {Document, Schema} from 'mongoose'
 
 export default interface IContent extends Document {
   [key: string]: any

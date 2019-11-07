@@ -7,7 +7,7 @@ export * from '../../.ignored'
 export const DEFAULT_PAYMENT_METHOD: string = CONST.PAYMENT_METHODS.ALIPAY
 const DEFAULT_EMAIL_SERVICE: string = 'NETEASE'
 
-import { NODEMAILER_SERVER_OPTIONS } from '../../.ignored/MailServers'
+import {NODEMAILER_SERVER_OPTIONS} from '../../.ignored/MailServers'
 export const DEFAULT_EMAIL_SERVER_OPTIONS = NODEMAILER_SERVER_OPTIONS[DEFAULT_EMAIL_SERVICE]
 
 export const DB_CONNECTION_RETRIES: number = 10

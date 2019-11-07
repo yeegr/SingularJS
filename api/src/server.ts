@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction } from 'express'
+import express, { Request, Response, NextFunction} from 'express'
 import bodyParser from 'body-parser'
 import compression from 'compression'
 import colors from 'colors'
@@ -9,9 +9,9 @@ import morgan from 'morgan'
 import mongoose from 'mongoose'
 import passport from 'passport'
 import path from 'path'
-import { UAParser } from 'ua-parser-js'
+import {UAParser} from 'ua-parser-js'
 
-import { CONFIG } from '@common'
+import {CONFIG} from '@common'
 
 import db_uri from './config/db_uri'
 

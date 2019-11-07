@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose'
+import {Schema} from 'mongoose'
 import IAction from '@actions/IAction'
 
 export default interface IInvitation extends IAction {

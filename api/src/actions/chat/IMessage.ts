@@ -1,4 +1,4 @@
-import { Document, Schema } from 'mongoose'
+import {Document, Schema} from 'mongoose'
 import IMedia from '@content/_shared/media/IMedia'
 import IUri from '@content/_shared/uri/IUri'
 

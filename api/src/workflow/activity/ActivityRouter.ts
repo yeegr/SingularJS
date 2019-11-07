@@ -1,14 +1,14 @@
-import { Request, Response, NextFunction, Router } from 'express'
-import { Schema, Types } from 'mongoose'
+import {Request, Response, NextFunction, Router} from 'express'
+import {Schema, Types} from 'mongoose'
 
 import passport from 'passport'
 import '@users/consumer/consumerAuth'
 
-import { CONST, UTIL } from '@common'
-import { Logger, Err } from '@modules'
+import {CONST, UTIL} from '@common'
+import {Logger, Err} from '@modules'
 
 import IUser from '@users/IUser'
-import Activity, { IActivity } from './ActivityModel'
+import Activity, { IActivity} from './ActivityModel'
 
 /**
  * ActivityRouter class

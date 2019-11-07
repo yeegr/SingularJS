@@ -1,17 +1,17 @@
-import { Request, Response, NextFunction, Router } from 'express'
+import {Request, Response, NextFunction, Router} from 'express'
 
 import debug from 'debug'
 import mongoose from 'mongoose'
 
-import { MISC } from '@modules'
+import {MISC} from '@modules'
 import * as ModelHelper from '@modelHelpers'
 
 import Consumer from '@users/consumer/ConsumerModel'
 import Platform from '@users/platform/PlatformModel'
 import IAction from '@actions/IAction'
-import Log, { ILog } from './system/log/LogModel'
-import Err, { IErr } from './system/err/ErrModel'
-import Totp, { ITotp } from '@users/_shared/totp/TotpModel'
+import Log, { ILog} from './system/log/LogModel'
+import Err, { IErr} from './system/err/ErrModel'
+import Totp, { ITotp} from '@users/_shared/totp/TotpModel'
 
 /**
  * HelperRouter class

@@ -1,16 +1,16 @@
-import { Request, Response, NextFunction, Router } from 'express'
-import { Schema, Types } from 'mongoose'
+import {Request, Response, NextFunction, Router} from 'express'
+import {Schema, Types} from 'mongoose'
 
 import passport from 'passport'
 import '@users/consumer/consumerAuth'
 
-import { CONST, ERRORS } from '@common'
-import { Logger, Err, MISC } from '@modules'
+import {CONST, ERRORS} from '@common'
+import {Logger, Err, MISC} from '@modules'
 
 import Consumer from '@users/consumer/ConsumerModel'
 import IUser from '@users/IUser'
 
-import Comment, { IComment } from './CommentModel'
+import Comment, { IComment} from './CommentModel'
 
 /**
  * CommentRouter class

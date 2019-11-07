@@ -1,4 +1,4 @@
-import { Document, Schema } from 'mongoose'
+import {Document, Schema} from 'mongoose'
 
 export default interface IAction extends Document {
   _id: Schema.Types.ObjectId

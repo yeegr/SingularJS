@@ -1,26 +1,26 @@
-import { Request, Response, NextFunction, RequestHandler, Router } from 'express'
+import {Request, Response, NextFunction, RequestHandler, Router} from 'express'
 import passport from 'passport'
 import 'users/consumer/consumerAuth'
 
-import { Schema, Types } from 'mongoose'
+import {Schema, Types} from 'mongoose'
 import * as validator from 'validator'
 
-import { CONST } from '@common'
+import {CONST} from '@common'
 
 import * as ContentController from '../ContentController'
 
 
-import { CONFIG, ERRORS, UTIL } from '@common'
-import { Logger, Err } from '@modules'
+import {CONFIG, ERRORS, UTIL} from '@common'
+import {Logger, Err} from '@modules'
 
 import Processor from '@workflow/processor'
-import Process, { IProcess } from '@workflow/process/ProcessModel'
+import Process, { IProcess} from '@workflow/process/ProcessModel'
 import Activity, { IActivity }  from '@workflow/activity/ActivityModel'
 
 import Consumer from '@users/consumer/ConsumerModel'
 import IUser from '@users/IUser'
 
-import Event, { IEvent } from './EventModel'
+import Event, { IEvent} from './EventModel'
 
 /**
  * EventRouter class

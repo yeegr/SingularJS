@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component} from 'react'
 import AsyncStorage from '@react-native-community/async-storage'
-import { Provider } from 'react-redux'
+import {Provider} from 'react-redux'
 
-import { View, Text } from 'react-native'
+import {View, Text} from 'react-native'
 
 import configureStore from '../redux/store'
-// import { CONST } from '../../../common'
+// import {CONST} from '../../../common'
 
 import App from './components/app'
 

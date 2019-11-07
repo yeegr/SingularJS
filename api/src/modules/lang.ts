@@ -1,8 +1,8 @@
 import i18next from 'i18next'
 import moment from 'moment-timezone'
 
-import { default as zh } from '@common/locales/zh'
-import { default as en } from '@common/locales/en'
+import {default as zh} from '@common/locales/zh'
+import {default as en} from '@common/locales/en'
 
 i18next
 .init({

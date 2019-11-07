@@ -1,15 +1,15 @@
-import { Request, Response, NextFunction, Router } from 'express'
-import { Schema, Types } from 'mongoose'
+import {Request, Response, NextFunction, Router} from 'express'
+import {Schema, Types} from 'mongoose'
 
 import passport from 'passport'
 import '@users/platform/platformAuth'
 
-import { CONST, ERRORS, UTIL } from '@common'
-import { Logger, Err, MISC } from '@modules'
+import {CONST, ERRORS, UTIL} from '@common'
+import {Logger, Err, MISC} from '@modules'
 
 import IUser from '@users/IUser'
-import Process, { IProcess } from './ProcessModel'
-import Activity, { IActivity } from '../activity/ActivityModel'
+import Process, { IProcess} from './ProcessModel'
+import Activity, { IActivity} from '../activity/ActivityModel'
 
 /**
  * ProcessRouter class

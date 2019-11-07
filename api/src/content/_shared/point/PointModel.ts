@@ -1,6 +1,6 @@
-import { Schema, model } from 'mongoose'
+import {Schema, model} from 'mongoose'
 
-import { CONFIG, UTIL } from '@common'
+import {CONFIG, UTIL} from '@common'
 
 import IPoint from './IPoint'
 

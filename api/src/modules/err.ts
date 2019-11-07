@@ -1,8 +1,8 @@
-import { Response } from 'express'
+import {Response} from 'express'
 
-import { ERRORS } from '@common'
+import {ERRORS} from '@common'
 
-import ErrModel, { IErr } from '../system/err/ErrModel'
+import ErrModel, { IErr} from '../system/err/ErrModel'
 
 class ErrLogger {
   constructor(res: Response, err: any, log: any) {

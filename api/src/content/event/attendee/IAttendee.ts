@@ -1,4 +1,4 @@
-import { Document } from 'mongoose'
+import {Document} from 'mongoose'
 
 export default interface IAttendee extends Document {
   added: number

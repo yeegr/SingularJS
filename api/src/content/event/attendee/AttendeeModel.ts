@@ -1,7 +1,7 @@
-import { Schema, model } from 'mongoose'
+import {Schema, model} from 'mongoose'
 import * as validator from 'validator'
 
-import { CONFIG, CONST, UTIL } from '@common'
+import {CONFIG, CONST, UTIL} from '@common'
 
 import IAttendee from './IAttendee'
 

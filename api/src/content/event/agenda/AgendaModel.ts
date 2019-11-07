@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose'
+import {Schema, model} from 'mongoose'
 
 import Point from '@content/_shared/point/PointModel'
 

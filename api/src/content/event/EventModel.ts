@@ -1,10 +1,10 @@
-import { Schema, model } from 'mongoose'
+import {Schema, model} from 'mongoose'
 import * as validator from 'validator'
 
-import { CONFIG, CONST, UTIL } from '@common'
+import {CONFIG, CONST, UTIL} from '@common'
 import * as ModelHelper from '@modelHelpers'
 
-import Consumer, { IConsumer } from '../../users/consumer/ConsumerModel'
+import Consumer, { IConsumer} from '../../users/consumer/ConsumerModel'
 
 import Agenda from './agenda/AgendaModel'
 import Attendee from './attendee/AttendeeModel'

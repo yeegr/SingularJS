@@ -61,6 +61,13 @@
       "mps": "每秒{{value}}米"
     }
   },
+  "splash": {
+    "Start": "开始",
+    "Back": "上一步",
+    "Next": "下一步",
+    "Done": "完成",
+    "Skip": "跳过"
+  },
   "action": {
     "CREATE": "添加",
     "UPDATE": "更新",

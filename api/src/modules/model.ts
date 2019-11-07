@@ -1,7 +1,7 @@
-import { NativeError, Model } from 'mongoose'
-import { Request, Response } from 'express'
+import {NativeError, Model} from 'mongoose'
+import {Request, Response} from 'express'
 
-import { CONST, UTIL } from '@common'
+import {CONST, UTIL} from '@common'
 
 import IUser from '@users/IUser'
 import IContent from '@content/IContent'

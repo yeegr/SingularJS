@@ -2,7 +2,7 @@
 
 MODE="development"
 
-. ./config/shared/app.env
+. ./config/_shared/app.env
 . ./config/$MODE/db.env
 . ./config/$MODE/api.env
 
@@ -21,17 +21,7 @@ export USER_PASSWORD=$USER_PASSWORD
 export API_PORT=$API_PORT
 export CONSUMER_WEBAPP_PORT="8080"
 
-# Reset
-RESET='\033[0m'           # Text Reset
-
-# Regular Colors
-BLACK='\033[0;30m'        # Black
-RED='\033[0;31m'          # Red
-GREEN='\033[0;32m'        # Green
-YELLOW='\033[0;33m'       # Yellow
-BLUE='\033[0;34m'         # Blue
-PURPLE='\033[0;35m'       # Purple
-CYAN='\033[0;36m'         # Cyan
-WHITE='\033[0;37m'        # White
-
-echo -e "\n${GREEN}APP:${YELLOW} ${APP_TITLE} \n${GREEN}MODE:${YELLOW} ${NODE_ENV}${RESET}"
+. ./config/_shared/colors.sh
+. ./config/_shared/timestamp.sh
+echo "${GREEN}APP: ${YELLOW}${APP_TITLE}"
+echo "${GREEN}MODE: ${YELLOW}${NODE_ENV}${RESET}"

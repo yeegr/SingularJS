@@ -1,6 +1,6 @@
-import nodemailer, { Transporter, SendMailOptions, SentMessageInfo } from 'nodemailer'
+import nodemailer, { Transporter, SendMailOptions, SentMessageInfo} from 'nodemailer'
 
-import { CONFIG } from '@common'
+import {CONFIG} from '@common'
 
 class Emailer {
   serverOptions: any

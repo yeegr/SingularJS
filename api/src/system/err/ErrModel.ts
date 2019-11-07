@@ -1,6 +1,6 @@
-import { Schema, model } from 'mongoose'
+import {Schema, model} from 'mongoose'
 
-import { CONST } from '@common'
+import {CONST} from '@common'
 
 import IErr from './IErr'
 

@@ -1,7 +1,7 @@
-import { Schema, model } from 'mongoose'
+import {Schema, model} from 'mongoose'
 import randomstring from 'randomstring'
 
-import { CONFIG, CONST, UTIL } from '@common'
+import {CONFIG, CONST, UTIL} from '@common'
 
 import IGroup from './IGroup'
 import MemberSchema from './MemberModel'

@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose'
+import {Schema} from 'mongoose'
 import IAction from '../IAction'
 
 export default interface IComment extends IAction {

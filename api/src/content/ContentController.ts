@@ -1,17 +1,17 @@
-import { NextFunction, Request, RequestHandler, Response, Router } from 'express'
-import { Schema, Model } from 'mongoose'
+import {NextFunction, Request, RequestHandler, Response, Router} from 'express'
+import {Schema, Model} from 'mongoose'
 import validator from 'validator'
 import fs from 'fs'
 import path from 'path'
 import request from 'request'
-import { IncomingForm, Fields, Files } from 'formidable'
+import {IncomingForm, Fields, Files} from 'formidable'
 
-import { CONST, ERRORS, SERVERS } from '@common'
-import { Logger, Err, MISC } from '@modules'
+import {CONST, ERRORS, SERVERS} from '@common'
+import {Logger, Err, MISC} from '@modules'
 import * as ModelHelper from '@modelHelpers'
 import * as UserHelper from '@users/_userHelpers'
 
-import Media, { IMedia } from '@content/_shared/media/MediaModel'
+import Media, { IMedia} from '@content/_shared/media/MediaModel'
 import IUser from '@users/IUser'
 import IContent from '@content/IContent'
 

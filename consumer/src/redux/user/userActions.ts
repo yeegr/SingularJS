@@ -1,7 +1,7 @@
-import { Dispatch } from 'redux'
+import {Dispatch} from 'redux'
 
 import * as ACTIONS from './userConstants'
-import { CONST, FETCH } from '@common'
+import {CONST, FETCH} from '@common'
 
 let storageEngine: any = global.storageEngine,
   storageType: string = CONST.STORAGE_TYPES.ASYNC

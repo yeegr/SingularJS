@@ -1,11 +1,11 @@
-import { Request, Response, NextFunction, RequestHandler, Router } from 'express'
+import {Request, Response, NextFunction, RequestHandler, Router} from 'express'
 import moment from 'moment-timezone'
 import passport from 'passport'
 import 'users/platform/platformAuth'
 
-import { CONFIG, CONST } from '@common'
+import {CONFIG, CONST} from '@common'
 
-import Platform, { IPlatform } from './PlatformModel'
+import Platform, { IPlatform} from './PlatformModel'
 import * as UserController from '../UserController'
 
 /**

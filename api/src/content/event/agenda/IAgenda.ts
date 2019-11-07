@@ -1,4 +1,4 @@
-import { Document } from 'mongoose'
+import {Document} from 'mongoose'
 
 import IPoint from '@content/_shared/point/IPoint'
 

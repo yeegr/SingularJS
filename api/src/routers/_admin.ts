@@ -1,4 +1,4 @@
-import { Router } from 'express'
+import {Router} from 'express'
 
 import PlatformRouter from '@users/platform/PlatformRouter'
 import ActivityRouter from '@workflow/activity/ActivityRouter'

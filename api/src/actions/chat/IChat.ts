@@ -1,4 +1,4 @@
-import { Document, Schema } from 'mongoose'
+import {Document, Schema} from 'mongoose'
 import IMessage from './IMessage'
 
 export default interface IChat extends Document {

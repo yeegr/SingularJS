@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose'
+import {Schema} from 'mongoose'
 import IContent from '../IContent'
 
 import IAgenda from './agenda/IAgenda'

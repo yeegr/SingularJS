@@ -1,9 +1,9 @@
-import { NativeError, Schema, model } from 'mongoose'
+import {NativeError, Schema, model} from 'mongoose'
 
-import { CONST, UTIL }  from '@common'
+import {CONST, UTIL }  from '@common'
 import * as ModelHelper from '@modelHelpers'
 
-import Activity, { IActivity } from '../activity/ActivityModel'
+import Activity, { IActivity} from '../activity/ActivityModel'
 import IProcess from './IProcess'
 
 let ProcessSchema: Schema = new Schema({

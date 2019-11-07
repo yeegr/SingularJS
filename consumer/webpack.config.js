@@ -47,26 +47,23 @@ module.exports = {
         loader: 'file-loader?name=[name].[ext]'
       },
       {
-        test: /\.css$/,
-        use: [{
-          loader: MiniCssExtractPlugin.loader,
-          options: {
-            publicPath: '../',
-            hmr: process.env.NODE_ENV === 'development',
-          },
-        }, 'css-loader']
-      },
-      {
         test: /\.less$/,
         use: [
           {
-            loader: 'style-loader'
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../',
+              hmr: process.env.NODE_ENV === 'development',
+            },
           },
           {
             loader: 'css-loader'
           },
           {
-            loader: 'less-loader'
+            loader: 'less-loader',
+            options: {
+              javascriptEnabled: true
+            }
           }
         ]
       },

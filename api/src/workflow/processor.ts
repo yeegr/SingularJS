@@ -1,8 +1,8 @@
-import { CONST } from '@common'
-import { Logger } from '../modules'
+import {CONST} from '@common'
+import {Logger} from '../modules'
 
-import Process, { IProcess } from '@workflow/process/ProcessModel'
-import Activity, { IActivity } from '@workflow/activity/ActivityModel'
+import Process, { IProcess} from '@workflow/process/ProcessModel'
+import Activity, { IActivity} from '@workflow/activity/ActivityModel'
 
 class ProcessorClass {
   constructor(act: IActivity, type: string) {

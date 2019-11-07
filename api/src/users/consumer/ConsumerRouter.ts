@@ -1,11 +1,11 @@
-import { Request, Response, NextFunction, RequestHandler, Router } from 'express'
+import {Request, Response, NextFunction, RequestHandler, Router} from 'express'
 import moment from 'moment-timezone'
 import passport from 'passport'
 import 'users/consumer/consumerAuth'
 
-import { CONFIG, CONST } from '@common'
+import {CONFIG, CONST} from '@common'
 
-import Consumer, { IConsumer } from './ConsumerModel'
+import Consumer, { IConsumer} from './ConsumerModel'
 import * as UserController from '../UserController'
 
 /**

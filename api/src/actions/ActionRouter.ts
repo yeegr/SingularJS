@@ -1,10 +1,10 @@
-import { Request, Response, NextFunction, Router } from 'express'
-import { Schema, NativeError } from 'mongoose'
+import {Request, Response, NextFunction, Router} from 'express'
+import {Schema, NativeError} from 'mongoose'
 import passport from 'passport'
 import '@users/consumer/consumerAuth'
 
-import { CONST, ERRORS, UTIL } from '@common'
-import { Logger, Err, MISC } from '@modules'
+import {CONST, ERRORS, UTIL} from '@common'
+import {Logger, Err, MISC} from '@modules'
 import * as ModelHelper from '@modelHelpers'
 
 import Consumer from '@users/consumer/ConsumerModel'
