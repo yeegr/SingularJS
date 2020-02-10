@@ -10,8 +10,8 @@ interface IServers {
 }
 
 const HTTP_PROTOCOL: string = 'http://'
-const PRODUCTION_SERVER: string = 'kidmngr.com/'
-const STAGING_SERVER: string = 'http://lab.kidmngr.com/'
+const PRODUCTION_SERVER: string = 'singularjs.com/'
+const STAGING_SERVER: string = 'http://lab.singularjs.com/'
 const DEV_SERVER: string = 'http://localhost'
 
 /**

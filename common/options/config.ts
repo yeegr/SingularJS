@@ -15,7 +15,7 @@ export const DB_CONNECTION_INTERVAL: number = 500  // milliseconds
 
 export const COMPANY_NAME: string = '蓝光移客'
 export const COMPANY_FULL_NAME: string = '北京蓝光移客信息技术有限公司'
-export const PROJECT_TITLE: string = 'KidManager'
+export const PROJECT_TITLE: string = 'SingularJS'
 
 export const DEFAULT_COUNTRY_CODE: string = 'CN'
 export const DEFAULT_LOCALE = 'zh-CN'

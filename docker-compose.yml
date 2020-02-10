@@ -15,10 +15,10 @@ services:
       context: .
       dockerfile: ./config/${NODE_ENV}/mongo.dockerfile
     labels:
-      com.kidmngr.db: ${DB_NAME}
-      com.kidmngr.description: "NoSQL database"
-      com.kidmngr.maintainer: ${MAINTAINER}
-      com.kidmngr.email: ${EMAIL}
+      - "${SERVER_DOMAIN}.db=${DB_NAME}"
+      - "${SERVER_DOMAIN}.description=${DB_DESCRIPTION}"
+      - "${SERVER_DOMAIN}.maintainer=${MAINTAINER}"
+      - "${SERVER_DOMAIN}.email=${EMAIL}"
     command: "--auth"
     expose: 
       - ${DB_PORT}
@@ -35,10 +35,10 @@ services:
     container_name: ${APP_TITLE}-api
     image: node:10.16.3
     labels:
-      com.kidmngr.api: "api"
-      com.kidmngr.description: "Main API endpoint"
-      com.kidmngr.maintainer: ${MAINTAINER}
-      com.kidmngr.email: ${EMAIL}
+      - "${SERVER_DOMAIN}.api=api"
+      - "${SERVER_DOMAIN}.description=${API_DESCRIPTION}"
+      - "${SERVER_DOMAIN}.maintainer=${MAINTAINER}"
+      - "${SERVER_DOMAIN}.email=${EMAIL}"
     depends_on:
       - mongo
     ports:
@@ -68,10 +68,10 @@ services:
     container_name: ${APP_TITLE}-consumer
     image: nginx
     labels:
-      com.kidmngr.consumer: ${APP_TITLE}
-      com.kidmngr.description: "consumer frontend"
-      com.kidmngr.maintainer: ${MAINTAINER}
-      com.kidmngr.email: ${EMAIL}
+      - "${SERVER_DOMAIN}.consumer=${APP_TITLE}"
+      - "${SERVER_DOMAIN}.description=${CONSUMER_DESCRIPTION}"
+      - "${SERVER_DOMAIN}.maintainer=${MAINTAINER}"
+      - "${SERVER_DOMAIN}.email=${EMAIL}"
     depends_on:
       - api
     ports: 

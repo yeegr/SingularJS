@@ -1,7 +1,7 @@
 {
-  "name": "kid-manager-api",
+  "name": "api",
   "version": "1.0.0",
-  "description": "API server endpoint",
+  "description": "Main Service Backend",
   "keywords": [],
   "author": "Stone Chen",
   "license": "ISC",

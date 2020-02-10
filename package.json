@@ -1,5 +1,5 @@
 {
-  "name": "kidmngr",
+  "name": "singularjs",
   "version": "1.0.0",
   "author": "Stone Chen",
   "license": "ISC",
@@ -9,7 +9,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/yeegr/kidmngr.git"
+    "url": "https://github.com/yeegr/singularjs.git"
   },
   "config": {
     "init": ". ./config/development/init.sh",
