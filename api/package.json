@@ -84,7 +84,7 @@
     "randomstring": "^1.1.5",
     "request": "^2.88.0",
     "saslprep": "^1.0.3",
-    "ua-parser-js": "^0.7.20",
+    "ua-parser-js": "^0.7.24",
     "validator": "^11.1.0"
   }
 }
